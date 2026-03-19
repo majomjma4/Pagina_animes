@@ -1,0 +1,310 @@
+*** Begin Patch
+*** Update File: series.html
+@@ -7,7 +7,7 @@
+ </style>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+- <title>AniDex - Series</title>
++ <title>AniDex - Animes</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+@@ -134,7 +134,7 @@
+     <script>
+       const menuItems = [
+         { name: "Inicio", href: "index.html" },
+-        { name: "Series", href: "series.html" },
++        { name: "Animes", href: "series.html" },
+         { name: "Peli­culas", href: "catalogo.html" },
+         { name: "Ranking", href: "#" }
+       ];
+@@ -221,7 +221,7 @@
+  <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-type">Tipo</label>
+  <select id="filter-type" class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface" aria-label="Filtrar por tipo">
+  <option>Todos</option>
+- <option>Serie</option>
++ <option>Anime</option>
+  <option>Pelicula</option>
+  <option>OVA</option>
+  </select>
+@@ -308,11 +308,11 @@
+ 
+  <!-- AnimeCard Component -->
+  <section class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5" aria-label="Grid de anime">
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="jujutsu kaisen" data-genres="accion,fantasia" data-year="2020" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="jujutsu kaisen" data-genres="accion,fantasia" data-year="2020" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="Jujutsu Kaisen">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Jujutsu Kaisen" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf_5yu8ItByDxj1mtS86M1c4L-O9mK0YowNyDHJw9W3iBVZ8FyDg-EqWFT6-8OHsq_coAIAP0l958Z_MmlAFEJw4WhJphbR4l9vrMyWi2j3WVvXgYbjrEmsF1lNw_pei3FsECFfbJAjngFTubB3gifJd8ggZOoo0o4uF2DMo2NTvstvfpwoVeh2cIGu3izqmnqcGUvtn3bfztDQjI_3f_PqRWRxgPC6iAsoNpidsC32rJsZNIfPPYMhlo5KeRXtnq6jjUFrMUTk0d4" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 47 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 47 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -323,11 +323,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="monster" data-genres="thriller,drama" data-year="2004" data-type="Serie" data-status="Finalizado">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="monster" data-genres="thriller,drama" data-year="2004" data-type="Anime" data-status="Finalizado">
+  <a class="block" href="detail.html" aria-label="Monster">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Monster" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG7j1khN7oa42GFgVO0GGKUGrbVAHUi69ljVSoVZw2JzGhXLGZPmMJVg-fuQthZ2BjRmQPHtiljA6oG5wD0e2QgsOauHs8rHo6CfVW_-qbdDPyc6WFV6NSVCR2bXYGfJANdbVZu3JCvQHDHUgQb-65j6hS6Sxh3KsQpp8TrqHwC-smxyfYY2kHVMRaba4VaaF-d0mASZkln-xJrLjreN-5Eryk7As7G1yYpz_0v5C6rK-TlGmV91TVOYBi2hNx43byaOojLl2FHhT9" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 74 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 74 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Thriller</span>
+@@ -338,11 +338,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="cyberpunk: edgerunners" data-genres="accion,sci-fi" data-year="2022" data-type="Serie" data-status="Finalizado">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="cyberpunk: edgerunners" data-genres="accion,sci-fi" data-year="2022" data-type="Anime" data-status="Finalizado">
+  <a class="block" href="detail.html" aria-label="Cyberpunk: Edgerunners">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Cyberpunk: Edgerunners" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWK6GEmMfgg6EfbuobMqKnAGEoBR-JDGiUg00ci-kmNlIZtDkYI6Kn2Ke0sXVPIgNQCXFd-IsHB0kiCe8S2Zky7Vx8s8Yv0q9tzs5HYMvwxzBr6cc0oZ2o_86dXwOsGkjr4PDjv3ULdj9hX4Eanz5BPS7V2PEEqNSKPjrv61ZaMxz7RmFHx1Ah01hoqVReWKva7mpYkiw9VwRTTlov4AGu-uJhSG3Bln2hIug_IIGpsqGQXkCpk6x8T2qTeXcy2R7y7otUdEHtPV9T" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 10 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 10 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -353,11 +353,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="demon slayer" data-genres="accion,fantasia" data-year="2019" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="demon slayer" data-genres="accion,fantasia" data-year="2019" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="Demon Slayer">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Demon Slayer" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR9x5iy6NpAOvezWnwzK2vesTKLBp29cvFNXUtwXht6dD1l_D5gxqns-j0rTWWHrKxrDe_gNz2hRv_bp72i7d3-B1XfbVcKL9UOdKUyxhkn7PVkTFK6gvR6FYot0OR1ZFv5kxq0aRiZ5uP-MPaYLYP3NbHMNLEF22YktmuRvb3820xC4ub0dVEhj3jZVy7-ZDMJBIgRaWhSUwsjWpaA_FPrQNkZspeF-urqaKWFj1HOZJbRz951KKRSdvfM9UeaS3zgtT822TzJSbT" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 55 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 55 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -368,11 +368,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="mushishi" data-genres="fantasia,sobrenatural" data-year="2005" data-type="Serie" data-status="Finalizado">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="mushishi" data-genres="fantasia,sobrenatural" data-year="2005" data-type="Anime" data-status="Finalizado">
+  <a class="block" href="detail.html" aria-label="Mushishi">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Mushishi" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCje1xHJ1WUA4g9yIIDEH_pR92E2kB6X1s837gGJD9UFj8E0mQUkxMN_rTpbmtI9LLd4eZnx3hIvb-U8EcBBpfSmNGAKWLzD_Eb1ppR87UR5wnTD3fPpOlY74X-I4P4p5J0Wpv-HTIa4kWox8n8dlfB6caMiMRLPuYkHJD_0lxfUZz4aT79i5VovpVuKkPEe3n5WiMUARuk4BRWUvsDr1xczcOQelSreIiJtPyQWQfnq0GKXptfgVdrHAE1Wxb4YsMhAapniXWKOFfH" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 46 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 46 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Fantasia</span>
+@@ -383,11 +383,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="solo leveling" data-genres="accion,fantasia" data-year="2026" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="solo leveling" data-genres="accion,fantasia" data-year="2026" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="Solo Leveling">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Solo Leveling" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfEs1IvGWNIZxiSWnnh8wCUr59ea4njuZckziZXqicnQPNvJkan5uFN_-BmFdNvpNSE7c6Gy-mHlJOyMU4hG1QNd2nk5WYUB4_uFh5jJL-K6arAlskDJ_8qihvbrLMvZNDOsSiBXcBUPHNcfenZNrmyKDhpAa0TRP_9gxyxTMIHLtWKcJBfTyyYK2OT7w8mggHKLEv6KE0h3MMHguW46V5ghR79auKbPcZFbiWP4qDRaPBSBDdTGBjWbacwEx2LnRwcBnZnp4l3j-4" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 12 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 12 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -398,11 +398,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="the apothecary diaries" data-genres="drama,misterio" data-year="2023" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="the apothecary diaries" data-genres="drama,misterio" data-year="2023" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="The Apothecary Diaries">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="The Apothecary Diaries" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2q_skNN7IEXINa_mQLWLtLooGZISRCJFcyFjR3-NhCFoQIV4rVukiI28cqzl7NwA1WRT10f9y_sBVA5KkJuprPzW2QkHsxVtQR7BFHYdKPirCvmU9EAQOC4weVwBfy07uTKoRhP1y13VRDG3hA9igt5f2qH88HGxQ7HJ0NF_FJ80hss_-Tj-Z198bRHpqi85zQe-swEt4fP6Cj4nJcWzWyRxEPOSaQv6kswMt5oDI9hJkaV25CtItXBgjs9EUI-R4wQ4uD4lO2a_z" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 24 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 24 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Drama</span>
+@@ -413,11 +413,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="undead unluck" data-genres="accion,comedia" data-year="2023" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="undead unluck" data-genres="accion,comedia" data-year="2023" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="Undead Unluck">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Undead Unluck" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZs4Vw9PZ84i6Ys2r4zaN7qIUjHi2HdaV26z-79Pfi17ztATEPT0KLGu0_DQz9awHO680k4vEkXKbI8fxecyDrissO8rGhpL9NVVqM2kiBD6Y4ZYyACz-yNaK6doyItKZ2PQsrFzUyZWrJh3CH-YMfrUN5_z_9cxUYzO2Ndk-hV9TENhD2MlVYucSYbhM9xyGBr5aq1t2I2_h9llA0wSZqupDhEcmjfJccvzCwcKaeyEkRrAXEW_p7QMs_pt5XwUfXBAlV0As10pqp" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 24 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 24 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -428,11 +428,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="attack on titan" data-genres="accion,drama" data-year="2013" data-type="Serie" data-status="Finalizado">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="attack on titan" data-genres="accion,drama" data-year="2013" data-type="Anime" data-status="Finalizado">
+  <a class="block" href="detail.html" aria-label="Attack on Titan">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Attack on Titan" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcIQtxOd6qOsXx7ByE8oZn1oCXSPjEJzsUOHQIOSQYhHH0OYYB_eJlZhZNz3w4BHdnldRu7iEiS9w18kbo_Z0hKzmIiXP7aiQNfz2tM80qkstdNDxLa6JqFEVe0MaL19MslgUay1G49G96_nr3avtPuZ1bsDRBHEMkYXwbJXR78yArKNKgPuo_FS84akJ8xyLqb9-VO67Md2PDUJJhpFC-KvDBlFjJ6jb60bCEeVK3KhKkAeDGb_sY6HuC9kf3yivDQCPx_K043ssp" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 88 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 88 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -443,11 +443,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="frieren: beyond journey's end" data-genres="fantasia,aventura" data-year="2023" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="frieren: beyond journey's end" data-genres="fantasia,aventura" data-year="2023" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="Frieren: Beyond Journey's End">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Frieren: Beyond Journey's End" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ6Ah-IV3lUQiVO02y1I0SuB8bLgACNC8qwVPEgr-NhJFTPAD2A_LQeg_h72ejiI56UKVnMh_Puk_E_i5W-zvO3byCKKRI_lYcmJvyZdFj6aX-w5fJQ2gDPxJdfbeYCsHOjPjaGO45hE1NcsL9FuhwWH2aaPbXfZfhrHmRYPEvNATzTxZIDy21c9Y27vxZmKoI6Z2oG5CWH7305d55-BRLe0KJwbYM5drbE-215zNLDf1nAWDi87ubZTX2HHsCJ-JVUzNOTOTlUsge" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 28 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 28 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Fantasia</span>
+@@ -458,11 +458,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="chainsaw man" data-genres="accion,terror" data-year="2022" data-type="Serie" data-status="Finalizado">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="chainsaw man" data-genres="accion,terror" data-year="2022" data-type="Anime" data-status="Finalizado">
+  <a class="block" href="detail.html" aria-label="Chainsaw Man">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Chainsaw Man" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzVx7iJLr4Mfgd79RK6X6Km0uzNQjGsPP7jCamqWRwpAQFl-8CsoExOcyJkVD1eheVat1utCOZKROorocz3XsKQLFaGETmOawxeNH-136-XG_1PQcn5MXZ7g81t7Z55330se4DwC5s7SvRCtzVQRcFbfElkSuvdNfwK4HjUiJ6db3EX8fcQGB_DheO4xIpT2CNTuwAmeZane81aKqI2y5RC4gXhsupCBLUOUFf0ECvO-ti-ewKZAF-T3Q2aVq3uYDQwlzBrv3s4Cah" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 12 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 12 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -473,11 +473,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="spy x family" data-genres="comedia,accion" data-year="2022" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="spy x family" data-genres="comedia,accion" data-year="2022" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="Spy x Family">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Spy x Family" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf_5yu8ItByDxj1mtS86M1c4L-O9mK0YowNyDHJw9W3iBVZ8FyDg-EqWFT6-8OHsq_coAIAP0l958Z_MmlAFEJw4WhJphbR4l9vrMyWi2j3WVvXgYbjrEmsF1lNw_pei3FsECFfbJAjngFTubB3gifJd8ggZOoo0o4uF2DMo2NTvstvfpwoVeh2cIGu3izqmnqcGUvtn3bfztDQjI_3f_PqRWRxgPC6iAsoNpidsC32rJsZNIfPPYMhlo5KeRXtnq6jjUFrMUTk0d4" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 37 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 37 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Comedia</span>
+@@ -488,11 +488,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="fullmetal alchemist: brotherhood" data-genres="accion,aventura" data-year="2009" data-type="Serie" data-status="Finalizado">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="fullmetal alchemist: brotherhood" data-genres="accion,aventura" data-year="2009" data-type="Anime" data-status="Finalizado">
+  <a class="block" href="detail.html" aria-label="Fullmetal Alchemist: Brotherhood">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Fullmetal Alchemist: Brotherhood" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG7j1khN7oa42GFgVO0GGKUGrbVAHUi69ljVSoVZw2JzGhXLGZPmMJVg-fuQthZ2BjRmQPHtiljA6oG5wD0e2QgsOauHs8rHo6CfVW_-qbdDPyc6WFV6NSVCR2bXYGfJANdbVZu3JCvQHDHUgQb-65j6hS6Sxh3KsQpp8TrqHwC-smxyfYY2kHVMRaba4VaaF-d0mASZkln-xJrLjreN-5Eryk7As7G1yYpz_0v5C6rK-TlGmV91TVOYBi2hNx43byaOojLl2FHhT9" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 64 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 64 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -503,11 +503,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="my hero academia" data-genres="accion,shonen" data-year="2016" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="my hero academia" data-genres="accion,shonen" data-year="2016" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="My Hero Academia">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="My Hero Academia" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWK6GEmMfgg6EfbuobMqKnAGEoBR-JDGiUg00ci-kmNlIZtDkYI6Kn2Ke0sXVPIgNQCXFd-IsHB0kiCe8S2Zky7Vx8s8Yv0q9tzs5HYMvwxzBr6cc0oZ2o_86dXwOsGkjr4PDjv3ULdj9hX4Eanz5BPS7V2PEEqNSKPjrv61ZaMxz7RmFHx1Ah01hoqVReWKva7mpYkiw9VwRTTlov4AGu-uJhSG3Bln2hIug_IIGpsqGQXkCpk6x8T2qTeXcy2R7y7otUdEHtPV9T" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 138 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 138 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -518,11 +518,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="one piece" data-genres="aventura,accion" data-year="1999" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="one piece" data-genres="aventura,accion" data-year="1999" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="One Piece">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="One Piece" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR9x5iy6NpAOvezWnwzK2vesTKLBp29cvFNXUtwXht6dD1l_D5gxqns-j0rTWWHrKxrDe_gNz2hRv_bp72i7d3-B1XfbVcKL9UOdKUyxhkn7PVkTFK6gvR6FYot0OR1ZFv5kxq0aRiZ5uP-MPaYLYP3NbHMNLEF22YktmuRvb3820xC4ub0dVEhj3jZVy7-ZDMJBIgRaWhSUwsjWpaA_FPrQNkZspeF-urqaKWFj1HOZJbRz951KKRSdvfM9UeaS3zgtT822TzJSbT" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 1000+ eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 1000+ eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Aventura</span>
+@@ -533,11 +533,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="vinland saga" data-genres="accion,drama" data-year="2019" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="vinland saga" data-genres="accion,drama" data-year="2019" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="Vinland Saga">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Vinland Saga" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCje1xHJ1WUA4g9yIIDEH_pR92E2kB6X1s837gGJD9UFj8E0mQUkxMN_rTpbmtI9LLd4eZnx3hIvb-U8EcBBpfSmNGAKWLzD_Eb1ppR87UR5wnTD3fPpOlY74X-I4P4p5J0Wpv-HTIa4kWox8n8dlfB6caMiMRLPuYkHJD_0lxfUZz4aT79i5VovpVuKkPEe3n5WiMUARuk4BRWUvsDr1xczcOQelSreIiJtPyQWQfnq0GKXptfgVdrHAE1Wxb4YsMhAapniXWKOFfH" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 48 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 48 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -548,11 +548,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="haikyuu!!" data-genres="deporte,comedia" data-year="2014" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="haikyuu!!" data-genres="deporte,comedia" data-year="2014" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="Haikyuu!!">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Haikyuu!!" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfEs1IvGWNIZxiSWnnh8wCUr59ea4njuZckziZXqicnQPNvJkan5uFN_-BmFdNvpNSE7c6Gy-mHlJOyMU4hG1QNd2nk5WYUB4_uFh5jJL-K6arAlskDJ_8qihvbrLMvZNDOsSiBXcBUPHNcfenZNrmyKDhpAa0TRP_9gxyxTMIHLtWKcJBfTyyYK2OT7w8mggHKLEv6KE0h3MMHguW46V5ghR79auKbPcZFbiWP4qDRaPBSBDdTGBjWbacwEx2LnRwcBnZnp4l3j-4" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 85 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 85 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Deporte</span>
+@@ -563,11 +563,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="naruto shippuden" data-genres="accion,aventura" data-year="2007" data-type="Serie" data-status="Finalizado">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="naruto shippuden" data-genres="accion,aventura" data-year="2007" data-type="Anime" data-status="Finalizado">
+  <a class="block" href="detail.html" aria-label="Naruto Shippuden">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Naruto Shippuden" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2q_skNN7IEXINa_mQLWLtLooGZISRCJFcyFjR3-NhCFoQIV4rVukiI28cqzl7NwA1WRT10f9y_sBVA5KkJuprPzW2QkHsxVtQR7BFHYdKPirCvmU9EAQOC4weVwBfy07uTKoRhP1y13VRDG3hA9igt5f2qH88HGxQ7HJ0NF_FJ80hss_-Tj-Z198bRHpqi85zQe-swEt4fP6Cj4nJcWzWyRxEPOSaQv6kswMt5oDI9hJkaV25CtItXBgjs9EUI-R4wQ4uD4lO2a_z" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 500 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 500 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -578,11 +578,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="bleach" data-genres="accion,sobrenatural" data-year="2004" data-type="Serie" data-status="En emision">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="bleach" data-genres="accion,sobrenatural" data-year="2004" data-type="Anime" data-status="En emision">
+  <a class="block" href="detail.html" aria-label="Bleach">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Bleach" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZs4Vw9PZ84i6Ys2r4zaN7qIUjHi2HdaV26z-79Pfi17ztATEPT0KLGu0_DQz9awHO680k4vEkXKbI8fxecyDrissO8rGhpL9NVVqM2kiBD6Y4ZYyACz-yNaK6doyItKZ2PQsrFzUyZWrJh3CH-YMfrUN5_z_9cxUYzO2Ndk-hV9TENhD2MlVYucSYbhM9xyGBr5aq1t2I2_h9llA0wSZqupDhEcmjfJccvzCwcKaeyEkRrAXEW_p7QMs_pt5XwUfXBAlV0As10pqp" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 366 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 366 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Accion</span>
+@@ -593,11 +593,11 @@
+  </a>
+ </article>
+ 
+-<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="death note" data-genres="thriller,sobrenatural" data-year="2006" data-type="Serie" data-status="Finalizado">
++<article class="group rounded-lg bg-surface-container-low p-4 transition-transform duration-300 ease-snappy hover:scale-[1.02]" data-anime-card data-title="death note" data-genres="thriller,sobrenatural" data-year="2006" data-type="Anime" data-status="Finalizado">
+  <a class="block" href="detail.html" aria-label="Death Note">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-lg bg-surface-container-high">
+  <img alt="Death Note" class="h-full w-full object-cover transition-transform duration-500 ease-snappy group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcIQtxOd6qOsXx7ByE8oZn1oCXSPjEJzsUOHQIOSQYhHH0OYYB_eJlZhZNz3w4BHdnldRu7iEiS9w18kbo_Z0hKzmIiXP7aiQNfz2tM80qkstdNDxLa6JqFEVe0MaL19MslgUay1G49G96_nr3avtPuZ1bsDRBHEMkYXwbJXR78yArKNKgPuo_FS84akJ8xyLqb9-VO67Md2PDUJJhpFC-KvDBlFjJ6jb60bCEeVK3KhKkAeDGb_sY6HuC9kf3yivDQCPx_K043ssp" loading="lazy"/>
+- <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Serie 37 eps</span>
++ <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface">Anime 37 eps</span>
+  </div>
+  <div class="space-y-2 mt-2">
+                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Thriller</span>
+*** End Patch

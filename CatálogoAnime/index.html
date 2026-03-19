@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
+<html class="dark" lang="es"><head>
+<script data-ui-preload>document.documentElement.classList.add("preload-ui");</script>
+<style>
+  .preload-ui body { opacity: 0; }
+</style>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>AniDex - Home</title>
+<title>AniDex - Inicio</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -93,7 +97,7 @@
         }
     </style>
   <link rel="icon" href="img/icon.png" />
-
+
 <body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
 <!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
@@ -107,9 +111,9 @@
     <script>
       const menuItems = [
         { name: "Inicio", href: "index.html" },
-        { name: "Series", href: "series.html" },
-        { name: "Peliculas", href: "catalogo.html" },
-        { name: "Populares", href: "#" }
+        { name: "Animes", href: "series.html" },
+        { name: "Películas", href: "catalogo.html" },
+        { name: "Ranking", href: "#" }
       ];
 
       const currentPage = window.location.pathname.split("/").pop();
@@ -135,36 +139,23 @@
       </div>
       <div class="relative">
         <button class="flex items-center gap-2 rounded-full bg-surface-container-high px-3 py-2 text-xs font-semibold text-on-surface-variant hover:text-on-surface transition-colors" type="button" aria-haspopup="menu" aria-expanded="false" data-lang-toggle>
-          <span class="text-sm">????</span>
-          <span class="uppercase tracking-widest">ES</span>
+          <img src="img/espana.png" alt="ES" class="w-4 h-4" />
           <span class="material-symbols-outlined text-[16px]">expand_more</span>
         </button>
         <div class="absolute right-0 mt-2 hidden min-w-[160px] rounded-xl bg-surface-container-high p-2 shadow-elevated" role="menu" data-lang-menu>
           <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="es" role="menuitem">
-            <span>????</span><span class="uppercase tracking-widest">ES</span>
+            <img src="img/espana.png" alt="ES" class="w-4 h-4" /><span class="uppercase tracking-widest">ES</span>
           </button>
           <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="en" role="menuitem">
-            <span>????</span><span class="uppercase tracking-widest">EN</span>
-          </button>
-          <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="pt" role="menuitem">
-            <span>????</span><span class="uppercase tracking-widest">PT</span>
-          </button>
-          <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="fr" role="menuitem">
-            <span>????</span><span class="uppercase tracking-widest">FR</span>
-          </button>
-          <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="de" role="menuitem">
-            <span>????</span><span class="uppercase tracking-widest">DE</span>
-          </button>
-          <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="it" role="menuitem">
-            <span>????</span><span class="uppercase tracking-widest">IT</span>
+            <img src="img/reino-unido.png" alt="EN" class="w-4 h-4" /><span class="uppercase tracking-widest">EN</span>
           </button>
         </div>
       </div>
-    </div>
+
 <div class="flex items-center gap-4">
-        <a class="relative group hover:bg-neutral-800/50 rounded-full p-2 transition-all duration-300 scale-95 active:scale-90 flex items-center justify-center" href="user.html"><span class="material-symbols-outlined text-neutral-400">favorite</span><span class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-on-surface opacity-0 transition-opacity duration-200 group-hover:opacity-100">Favoritos</span></a>
+        <a class="relative group hover:bg-neutral-800/50 rounded-full p-2 transition-all duration-300 scale-95 active:scale-90 flex items-center justify-center" href="user.html"><span class="material-symbols-outlined text-neutral-400 group-hover:text-violet-500 transition-colors">favorite</span><span class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-on-surface opacity-0 transition-opacity duration-200 group-hover:opacity-100">Favoritos</span></a>
         <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-violet-500/30 hover:border-violet-500 transition-colors cursor-pointer" onclick="window.location.href='user.html'">
-          <img alt="User profile" class="w-full h-full object-cover" data-alt="Close up of a modern minimalist avatar profile picture" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
+          <img alt="Perfil de usuario" class="w-full h-full object-cover" data-alt="Primer plano de un avatar minimalista moderno" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
         </div>
       </div>
     </div>
@@ -174,24 +165,29 @@
 <!-- Hero Section -->
 <section class="relative w-full h-[921px] flex items-end overflow-hidden">
 <div class="absolute inset-0 z-0">
-<img alt="Featured Anime Background" class="w-full h-full object-cover hero-mask scale-105" data-alt="High quality cinematic scene with ethereal lighting and purple hues" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASyl0CtuKLwGu8E0g6kJg-AFMonCwUb2HQ4hZvUGuD0_n-GwG61WBtLa1P4WxLShGtZ1WdK79L8IStuCkdamLElWUpBsSuyOjlLszhFAARPXJXAMh5O1B7nkmoUbt235bb4gzcno51HQSRTI6Oh2kkDxU1qcK6jFx8LgH0ImqNPAd91dTA_ZC-HvQVlTdYcRV6Atw2S7_DgDyx7j2rgSWD3OpPRb6OBprhy06fu2rokdR9xMrz_zaaSt7N3Zs--RXOE0QQpITwOxiB"/>
+<img id="hero-image" alt="Fondo de anime destacado" class="w-full h-full object-cover hero-mask scale-105" data-alt="Escena cinematográfica de alta calidad con iluminación etérea y tonos púrpura" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASyl0CtuKLwGu8E0g6kJg-AFMonCwUb2HQ4hZvUGuD0_n-GwG61WBtLa1P4WxLShGtZ1WdK79L8IStuCkdamLElWUpBsSuyOjlLszhFAARPXJXAMh5O1B7nkmoUbt235bb4gzcno51HQSRTI6Oh2kkDxU1qcK6jFx8LgH0ImqNPAd91dTA_ZC-HvQVlTdYcRV6Atw2S7_DgDyx7j2rgSWD3OpPRb6OBprhy06fu2rokdR9xMrz_zaaSt7N3Zs--RXOE0QQpITwOxiB"/>
 <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
 <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent"></div>
 </div>
 <div class="relative z-10 px-8 md:px-16 pb-24 max-w-4xl">
 <div class="flex items-center gap-2 mb-4">
 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase">Destacado</span>
-<span class="text-on-surface-variant text-sm font-medium"> 28 Episodios</span>
+<span id="hero-meta" class="text-on-surface-variant text-sm font-medium"> 28 Episodios</span>
 </div>
-<h1 class="text-6xl md:text-8xl font-extrabold font-headline tracking-tighter mb-6 leading-[0.9] text-shadow-glow">
-                    Frieren: Beyond <br/><span class="text-primary-dim">Journey's End</span>
+<h1 id="hero-title" class="text-6xl md:text-8xl font-extrabold font-headline tracking-tighter mb-6 leading-[0.9] text-shadow-glow">
+                    Frieren: Más allá <br/><span class="text-primary-dim">del final del viaje</span>
 </h1>
-<p class="text-lg md:text-xl text-on-surface-variant max-w-2xl mb-10 leading-relaxed font-body">
-                    After the party of heroes defeated the Demon King, they restored peace to the land and returned to their separate lives. For elven mage Frieren, decades pass in the blink of an eye.
+<p id="hero-description" class="text-lg md:text-xl text-on-surface-variant max-w-2xl mb-10 leading-relaxed font-body">
+                    Después de que el grupo de héroes derrotara al Rey Demonio, restauraron la paz en la tierra y regresaron a sus vidas separadas. Para la maga elfa Frieren, décadas pasan en un abrir y cerrar de ojos.
                 </p>
 <div class="flex flex-wrap gap-4">
 <button class="bg-gradient-to-br from-primary to-primary-container px-8 py-4 rounded-full text-on-primary font-bold tracking-tight hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shadow-lg shadow-primary-container/20" onclick="window.location.href='detail.html'"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span> VER AHORA</button>
 <button class="bg-surface-container-high/60 backdrop-blur-md px-8 py-4 rounded-full text-on-surface font-bold border border-outline-variant/20 hover:bg-surface-container-high transition-all flex items-center gap-2" onclick="window.location.href='user.html'"><span class="material-symbols-outlined">add</span> MI LISTA</button>
+</div>
+<div class="mt-8 flex items-center gap-3">
+  <button id="hero-prev" class="rounded-full bg-surface-container-high/70 px-4 py-2 text-xs font-bold hover:bg-surface-container-high transition-colors" type="button">‹</button>
+  <div id="hero-dots" class="flex items-center gap-2"></div>
+  <button id="hero-next" class="rounded-full bg-surface-container-high/70 px-4 py-2 text-xs font-bold hover:bg-surface-container-high transition-colors" type="button">›</button>
 </div>
 </div>
 </section>
@@ -201,20 +197,24 @@
 <section class="pl-8 md:pl-16">
 <div class="flex items-end justify-between pr-8 mb-8">
 <div>
-<h2 class="text-3xl font-bold font-headline tracking-tight">Tendencias</h2>
+<h2 class="text-3xl font-bold font-headline tracking-tight">Animes Populares</h2>
 <div class="h-1 w-12 bg-primary mt-2 rounded-full"></div>
 </div>
-<a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium flex items-center gap-1" href="#"><a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium flex items-center gap-1" href="catalogo.html">Ver todo</a></a>
+<div class="flex items-center gap-4">
+<button id="trending-prev" class="rounded-full bg-surface-container-high/70 px-3 py-2 text-xs font-bold text-violet-400 hover:text-violet-300 hover:bg-surface-container-high transition-colors" type="button" aria-label="Anterior">&lsaquo;</button>
+<button id="trending-next" class="rounded-full bg-surface-container-high/70 px-3 py-2 text-xs font-bold text-violet-400 hover:text-violet-300 hover:bg-surface-container-high transition-colors" type="button" aria-label="Siguiente">&rsaquo;</button>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium flex items-center gap-1" href="catalogo.html">Ver m&aacute;s</a>
 </div>
-<div class="flex gap-6 overflow-x-auto no-scrollbar pb-8 pr-8">
+</div>
+<div id="trending-row" class="flex gap-6 overflow-x-auto no-scrollbar pb-8 pr-8 scroll-smooth">
 <!-- Anime Card -->
 <div class="flex-none w-64 group cursor-pointer" onclick="window.location.href='detail.html'">
 <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl group-hover:shadow-primary-container/10">
-<img alt="Anime Poster" class="w-full h-full object-cover" data-alt="Stylized anime character art with vibrant colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf_5yu8ItByDxj1mtS86M1c4L-O9mK0YowNyDHJw9W3iBVZ8FyDg-EqWFT6-8OHsq_coAIAP0l958Z_MmlAFEJw4WhJphbR4l9vrMyWi2j3WVvXgYbjrEmsF1lNw_pei3FsECFfbJAjngFTubB3gifJd8ggZOoo0o4uF2DMo2NTvstvfpwoVeh2cIGu3izqmnqcGUvtn3bfztDQjI_3f_PqRWRxgPC6iAsoNpidsC32rJsZNIfPPYMhlo5KeRXtnq6jjUFrMUTk0d4"/>
+<img alt="Póster de anime" class="w-full h-full object-cover" data-alt="Arte de personaje anime estilizado con colores vibrantes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf_5yu8ItByDxj1mtS86M1c4L-O9mK0YowNyDHJw9W3iBVZ8FyDg-EqWFT6-8OHsq_coAIAP0l958Z_MmlAFEJw4WhJphbR4l9vrMyWi2j3WVvXgYbjrEmsF1lNw_pei3FsECFfbJAjngFTubB3gifJd8ggZOoo0o4uF2DMo2NTvstvfpwoVeh2cIGu3izqmnqcGUvtn3bfztDQjI_3f_PqRWRxgPC6iAsoNpidsC32rJsZNIfPPYMhlo5KeRXtnq6jjUFrMUTk0d4"/>
 <div class="absolute inset-0 bg-primary-container/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
 <div class="flex flex-wrap gap-1 mb-2">
-<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Action</span>
-<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Supernatural</span>
+<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Acción</span>
+<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Sobrenatural</span>
 </div>
 </div>
 <div class="absolute top-3 right-3 bg-surface-container-lowest/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1">
@@ -226,10 +226,10 @@
 </div>
 <div class="flex-none w-64 group cursor-pointer" onclick="window.location.href='detail.html'">
 <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
-<img alt="Anime Poster" class="w-full h-full object-cover" data-alt="Dynamic anime character illustration with sharp lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG7j1khN7oa42GFgVO0GGKUGrbVAHUi69ljVSoVZw2JzGhXLGZPmMJVg-fuQthZ2BjRmQPHtiljA6oG5wD0e2QgsOauHs8rHo6CfVW_-qbdDPyc6WFV6NSVCR2bXYGfJANdbVZu3JCvQHDHUgQb-65j6hS6Sxh3KsQpp8TrqHwC-smxyfYY2kHVMRaba4VaaF-d0mASZkln-xJrLjreN-5Eryk7As7G1yYpz_0v5C6rK-TlGmV91TVOYBi2hNx43byaOojLl2FHhT9"/>
+<img alt="Póster de anime" class="w-full h-full object-cover" data-alt="Ilustración dinámica de personaje anime con líneas definidas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG7j1khN7oa42GFgVO0GGKUGrbVAHUi69ljVSoVZw2JzGhXLGZPmMJVg-fuQthZ2BjRmQPHtiljA6oG5wD0e2QgsOauHs8rHo6CfVW_-qbdDPyc6WFV6NSVCR2bXYGfJANdbVZu3JCvQHDHUgQb-65j6hS6Sxh3KsQpp8TrqHwC-smxyfYY2kHVMRaba4VaaF-d0mASZkln-xJrLjreN-5Eryk7As7G1yYpz_0v5C6rK-TlGmV91TVOYBi2hNx43byaOojLl2FHhT9"/>
 <div class="absolute inset-0 bg-primary-container/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
 <div class="flex flex-wrap gap-1 mb-2">
-<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Psychological</span>
+<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Psicológico</span>
 </div>
 </div>
 <div class="absolute top-3 right-3 bg-surface-container-lowest/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1">
@@ -237,29 +237,29 @@
                             </div>
 </div>
 <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Monster</h3>
-<p class="text-xs text-on-surface-variant">Estudio Madhouse: Clasico</p>
+<p class="text-xs text-on-surface-variant">Estudio Madhouse: Clásico</p>
 </div>
 <div class="flex-none w-64 group cursor-pointer" onclick="window.location.href='detail.html'">
 <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
-<img alt="Anime Poster" class="w-full h-full object-cover" data-alt="Detailed anime cityscape at night with neon lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWK6GEmMfgg6EfbuobMqKnAGEoBR-JDGiUg00ci-kmNlIZtDkYI6Kn2Ke0sXVPIgNQCXFd-IsHB0kiCe8S2Zky7Vx8s8Yv0q9tzs5HYMvwxzBr6cc0oZ2o_86dXwOsGkjr4PDjv3ULdj9hX4Eanz5BPS7V2PEEqNSKPjrv61ZaMxz7RmFHx1Ah01hoqVReWKva7mpYkiw9VwRTTlov4AGu-uJhSG3Bln2hIug_IIGpsqGQXkCpk6x8T2qTeXcy2R7y7otUdEHtPV9T"/>
+<img alt="Póster de anime" class="w-full h-full object-cover" data-alt="Ciudad anime detallada de noche con luces de neón" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWK6GEmMfgg6EfbuobMqKnAGEoBR-JDGiUg00ci-kmNlIZtDkYI6Kn2Ke0sXVPIgNQCXFd-IsHB0kiCe8S2Zky7Vx8s8Yv0q9tzs5HYMvwxzBr6cc0oZ2o_86dXwOsGkjr4PDjv3ULdj9hX4Eanz5BPS7V2PEEqNSKPjrv61ZaMxz7RmFHx1Ah01hoqVReWKva7mpYkiw9VwRTTlov4AGu-uJhSG3Bln2hIug_IIGpsqGQXkCpk6x8T2qTeXcy2R7y7otUdEHtPV9T"/>
 <div class="absolute inset-0 bg-primary-container/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
 <div class="flex flex-wrap gap-1 mb-2">
-<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Cyberpunk</span>
+<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Ciberpunk</span>
 </div>
 </div>
 <div class="absolute top-3 right-3 bg-surface-container-lowest/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1">
 <span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">star</span> 8.5
                             </div>
 </div>
-<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Cyberpunk: Edgerunners</h3>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Ciberpunk: Edgerunners</h3>
 <p class="text-xs text-on-surface-variant">Estudio Trigger: Limitado</p>
 </div>
 <div class="flex-none w-64 group cursor-pointer" onclick="window.location.href='detail.html'">
 <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
-<img alt="Anime Poster" class="w-full h-full object-cover" data-alt="Anime sword fighter silhouette against a red moon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR9x5iy6NpAOvezWnwzK2vesTKLBp29cvFNXUtwXht6dD1l_D5gxqns-j0rTWWHrKxrDe_gNz2hRv_bp72i7d3-B1XfbVcKL9UOdKUyxhkn7PVkTFK6gvR6FYot0OR1ZFv5kxq0aRiZ5uP-MPaYLYP3NbHMNLEF22YktmuRvb3820xC4ub0dVEhj3jZVy7-ZDMJBIgRaWhSUwsjWpaA_FPrQNkZspeF-urqaKWFj1HOZJbRz951KKRSdvfM9UeaS3zgtT822TzJSbT"/>
+<img alt="Póster de anime" class="w-full h-full object-cover" data-alt="Silueta de espadachín anime contra una luna roja" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR9x5iy6NpAOvezWnwzK2vesTKLBp29cvFNXUtwXht6dD1l_D5gxqns-j0rTWWHrKxrDe_gNz2hRv_bp72i7d3-B1XfbVcKL9UOdKUyxhkn7PVkTFK6gvR6FYot0OR1ZFv5kxq0aRiZ5uP-MPaYLYP3NbHMNLEF22YktmuRvb3820xC4ub0dVEhj3jZVy7-ZDMJBIgRaWhSUwsjWpaA_FPrQNkZspeF-urqaKWFj1HOZJbRz951KKRSdvfM9UeaS3zgtT822TzJSbT"/>
 <div class="absolute inset-0 bg-primary-container/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
 <div class="flex flex-wrap gap-1 mb-2">
-<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Adventure</span>
+<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Aventura</span>
 </div>
 </div>
 <div class="absolute top-3 right-3 bg-surface-container-lowest/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1">
@@ -271,10 +271,10 @@
 </div>
 <div class="flex-none w-64 group cursor-pointer" onclick="window.location.href='detail.html'">
 <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
-<img alt="Anime Poster" class="w-full h-full object-cover" data-alt="Peaceful rural anime landscape with soft sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCje1xHJ1WUA4g9yIIDEH_pR92E2kB6X1s837gGJD9UFj8E0mQUkxMN_rTpbmtI9LLd4eZnx3hIvb-U8EcBBpfSmNGAKWLzD_Eb1ppR87UR5wnTD3fPpOlY74X-I4P4p5J0Wpv-HTIa4kWox8n8dlfB6caMiMRLPuYkHJD_0lxfUZz4aT79i5VovpVuKkPEe3n5WiMUARuk4BRWUvsDr1xczcOQelSreIiJtPyQWQfnq0GKXptfgVdrHAE1Wxb4YsMhAapniXWKOFfH"/>
+<img alt="Póster de anime" class="w-full h-full object-cover" data-alt="Paisaje rural anime tranquilo con luz suave" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCje1xHJ1WUA4g9yIIDEH_pR92E2kB6X1s837gGJD9UFj8E0mQUkxMN_rTpbmtI9LLd4eZnx3hIvb-U8EcBBpfSmNGAKWLzD_Eb1ppR87UR5wnTD3fPpOlY74X-I4P4p5J0Wpv-HTIa4kWox8n8dlfB6caMiMRLPuYkHJD_0lxfUZz4aT79i5VovpVuKkPEe3n5WiMUARuk4BRWUvsDr1xczcOQelSreIiJtPyQWQfnq0GKXptfgVdrHAE1Wxb4YsMhAapniXWKOFfH"/>
 <div class="absolute inset-0 bg-primary-container/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
 <div class="flex flex-wrap gap-1 mb-2">
-<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Slice of Life</span>
+<span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Recuentos de la vida</span>
 </div>
 </div>
 <div class="absolute top-3 right-3 bg-surface-container-lowest/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1">
@@ -282,7 +282,36 @@
                             </div>
 </div>
 <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Mushishi</h3>
-<p class="text-xs text-on-surface-variant">Estudio Artland: Clasico</p>
+<p class="text-xs text-on-surface-variant">Estudio Artland: Clásico</p>
+</div>
+
+<div class="flex-none w-64 group cursor-pointer" onclick="window.location.href='detail.html'">
+<div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
+<img alt="P??ster de anime" class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/1171/109222l.jpg"/>
+</div>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Hunter x Hunter</h3>
+<p class="text-xs text-on-surface-variant">Estudio Madhouse: Aventura</p>
+</div>
+<div class="flex-none w-64 group cursor-pointer" onclick="window.location.href='detail.html'">
+<div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
+<img alt="P??ster de anime" class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/1935/127974l.jpg"/>
+</div>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Chainsaw Man</h3>
+<p class="text-xs text-on-surface-variant">Estudio MAPPA: Acci??n</p>
+</div>
+<div class="flex-none w-64 group cursor-pointer" onclick="window.location.href='detail.html'">
+<div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
+<img alt="P??ster de anime" class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/1208/94745l.jpg"/>
+</div>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">One Punch Man</h3>
+<p class="text-xs text-on-surface-variant">Estudio Madhouse: Comedia</p>
+</div>
+<div class="flex-none w-64 group cursor-pointer" onclick="window.location.href='detail.html'">
+<div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
+<img alt="P??ster de anime" class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/10/47347l.jpg"/>
+</div>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Shingeki no Kyojin</h3>
+<p class="text-xs text-on-surface-variant">Estudio WIT: Drama</p>
 </div>
 </div>
 </section>
@@ -294,29 +323,28 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-[600px]">
 <div class="md:col-span-2 md:row-span-2 relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10" onclick="window.location.href='detail.html'">
-<img alt="Seasonal Big Feature" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Dramatic anime battle scene with glowing energy effects" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfEs1IvGWNIZxiSWnnh8wCUr59ea4njuZckziZXqicnQPNvJkan5uFN_-BmFdNvpNSE7c6Gy-mHlJOyMU4hG1QNd2nk5WYUB4_uFh5jJL-K6arAlskDJ_8qihvbrLMvZNDOsSiBXcBUPHNcfenZNrmyKDhpAa0TRP_9gxyxTMIHLtWKcJBfTyyYK2OT7w8mggHKLEv6KE0h3MMHguW46V5ghR79auKbPcZFbiWP4qDRaPBSBDdTGBjWbacwEx2LnRwcBnZnp4l3j-4"/>
+<img alt="Destacado grande de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Escena dramática de batalla anime con efectos de energía brillante" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfEs1IvGWNIZxiSWnnh8wCUr59ea4njuZckziZXqicnQPNvJkan5uFN_-BmFdNvpNSE7c6Gy-mHlJOyMU4hG1QNd2nk5WYUB4_uFh5jJL-K6arAlskDJ_8qihvbrLMvZNDOsSiBXcBUPHNcfenZNrmyKDhpAa0TRP_9gxyxTMIHLtWKcJBfTyyYK2OT7w8mggHKLEv6KE0h3MMHguW46V5ghR79auKbPcZFbiWP4qDRaPBSBDdTGBjWbacwEx2LnRwcBnZnp4l3j-4"/>
 <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90"></div>
 <div class="absolute bottom-0 left-0 p-8">
-<span class="text-primary font-bold text-sm tracking-widest uppercase mb-2 block">Estreno Invierno 2024</span>
 <h3 class="text-4xl font-extrabold font-headline mb-4">Solo Leveling</h3>
 <button class="bg-primary px-6 py-2 rounded-full text-on-primary text-sm font-bold hover:bg-primary-dim transition-colors" onclick="event.stopPropagation(); window.location.href='detail.html'">VER TRAILER</button>
 </div>
 </div>
 <div class="md:col-span-2 relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10" onclick="window.location.href='detail.html'">
-<img alt="Seasonal Small Feature" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close up of an anime character's expressive face" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgJ-yNDPcau0sSBkw_cGTC3DcXxC0TQo-0fTUKahdE5DUWtAnr0hWZaO_7WJ1gNB1_h-q_W6GPkuV2mT5Pf_09bEmD4iNptwXJ15fHn_aPbRDzSebKsJAt3Nk2DuquWSC2OQRmssyZjmOVP4z44_mMFUKikgnzhW0yPGnZEZUAq-6sf8Ozv51ef5cqpnYy3s9V9geTRNL41WRE40oFQMp5zgTlJ8dXSOdEkpFMpZoFdCAp2wYDSdJqyEpWS1-JaM960BH1zhV7A813"/>
+<img alt="Destacado de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Primer plano del rostro expresivo de un personaje anime" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgJ-yNDPcau0sSBkw_cGTC3DcXxC0TQo-0fTUKahdE5DUWtAnr0hWZaO_7WJ1gNB1_h-q_W6GPkuV2mT5Pf_09bEmD4iNptwXJ15fHn_aPbRDzSebKsJAt3Nk2DuquWSC2OQRmssyZjmOVP4z44_mMFUKikgnzhW0yPGnZEZUAq-6sf8Ozv51ef5cqpnYy3s9V9geTRNL41WRE40oFQMp5zgTlJ8dXSOdEkpFMpZoFdCAp2wYDSdJqyEpWS1-JaM960BH1zhV7A813"/>
 <div class="absolute inset-0 bg-black/40 group-hover:bg-primary-container/20 transition-colors"></div>
 <div class="absolute inset-0 flex items-center justify-center">
 <h3 class="text-2xl font-bold text-center px-4">The Apothecary Diaries</h3>
 </div>
 </div>
 <div class="relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10" onclick="window.location.href='detail.html'">
-<img alt="Seasonal Small Feature" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Serene anime forest with mystical glowing plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2q_skNN7IEXINa_mQLWLtLooGZISRCJFcyFjR3-NhCFoQIV4rVukiI28cqzl7NwA1WRT10f9y_sBVA5KkJuprPzW2QkHsxVtQR7BFHYdKPirCvmU9EAQOC4weVwBfy07uTKoRhP1y13VRDG3hA9igt5f2qH88HGxQ7HJ0NF_FJ80hss_-Tj-Z198bRHpqi85zQe-swEt4fP6Cj4nJcWzWyRxEPOSaQv6kswMt5oDI9hJkaV25CtItXBgjs9EUI-R4wQ4uD4lO2a_z"/>
+<img alt="Destacado de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Bosque anime sereno con plantas místicas luminosas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2q_skNN7IEXINa_mQLWLtLooGZISRCJFcyFjR3-NhCFoQIV4rVukiI28cqzl7NwA1WRT10f9y_sBVA5KkJuprPzW2QkHsxVtQR7BFHYdKPirCvmU9EAQOC4weVwBfy07uTKoRhP1y13VRDG3hA9igt5f2qH88HGxQ7HJ0NF_FJ80hss_-Tj-Z198bRHpqi85zQe-swEt4fP6Cj4nJcWzWyRxEPOSaQv6kswMt5oDI9hJkaV25CtItXBgjs9EUI-R4wQ4uD4lO2a_z"/>
 <div class="absolute inset-0 bg-black/40 flex flex-col justify-end p-4">
 <h4 class="font-bold text-sm">Undead Unluck</h4>
 </div>
 </div>
 <div class="relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10" onclick="window.location.href='detail.html'">
-<img alt="Seasonal Small Feature" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Fast paced anime sports action scene" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ5qAXtvlxTvCn09vDY4wAIFQ0pSixDM-EZ1_G2ikLShfPSIVgjE6BRxgPZEX_LsVn_WN_zHvw3ynIuf2qN3IVoT3ni8MkH0QMTcMI974YwQFJtcJeBMyvGHjDidzk9ppyNm3ysCA4gFA2aUBroWZ3GLFWIcpCLnxsJwGwJtIli6M5os4aZ5oTC_I4oEIhYCuZ55qZQomDSUFsexP297sinHqj50nQvCWlkqo4afO3JcqzF1tr5BSCvjidzOA?oBQUw-a_ATVuBrXKq"/>
+<img alt="Destacado de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Escena de acción deportiva anime a ritmo frenético" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ5qAXtvlxTvCn09vDY4wAIFQ0pSixDM-EZ1_G2ikLShfPSIVgjE6BRxgPZEX_LsVn_WN_zHvw3ynIuf2qN3IVoT3ni8MkH0QMTcMI974YwQFJtcJeBMyvGHjDidzk9ppyNm3ysCA4gFA2aUBroWZ3GLFWIcpCLnxsJwGwJtIli6M5os4aZ5oTC_I4oEIhYCuZ55qZQomDSUFsexP297sinHqj50nQvCWlkqo4afO3JcqzF1tr5BSCvjidzOA?oBQUw-a_ATVuBrXKq"/>
 <div class="absolute inset-0 bg-black/40 flex flex-col justify-end p-4">
 <h4 class="font-bold text-sm">Haikyuu!! Final</h4>
 </div>
@@ -327,14 +355,19 @@
 <section class="pl-8 md:pl-16">
 <div class="flex items-end justify-between pr-8 mb-8">
 <div>
-<h2 class="text-3xl font-bold font-headline tracking-tight">Peliculas Populares</h2>
+<h2 class="text-3xl font-bold font-headline tracking-tight">Películas Populares</h2>
 <div class="h-1 w-12 bg-primary mt-2 rounded-full"></div>
 </div>
+<div class="flex items-center gap-4">
+<button id="movies-prev" class="rounded-full bg-surface-container-high/70 px-3 py-2 text-xs font-bold text-violet-400 hover:text-violet-300 hover:bg-surface-container-high transition-colors" type="button" aria-label="Anterior">&lsaquo;</button>
+<button id="movies-next" class="rounded-full bg-surface-container-high/70 px-3 py-2 text-xs font-bold text-violet-400 hover:text-violet-300 hover:bg-surface-container-high transition-colors" type="button" aria-label="Siguiente">&rsaquo;</button>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium flex items-center gap-1" href="catalogo.html">Ver m&aacute;s</a>
 </div>
-<div class="flex gap-6 overflow-x-auto no-scrollbar pb-8 pr-8">
+</div>
+<div id="movies-row" class="flex gap-6 overflow-x-auto no-scrollbar pb-8 pr-8 scroll-smooth">
 <div class="flex-none w-80 group cursor-pointer" onclick="window.location.href='detail.html'">
 <div class="relative aspect-video rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
-<img alt="Movie Landscape" class="w-full h-full object-cover" data-alt="Vibrant cityscape at sunset in a cinematic anime style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZs4Vw9PZ84i6Ys2r4zaN7qIUjHi2HdaV26z-79Pfi17ztATEPT0KLGu0_DQz9awHO680k4vEkXKbI8fxecyDrissO8rGhpL9NVVqM2kiBD6Y4ZYyACz-yNaK6doyItKZ2PQsrFzUyZWrJh3CH-YMfrUN5_z_9cxUYzO2Ndk-hV9TENhD2MlVYucSYbhM9xyGBr5aq1t2I2_h9llA0wSZqupDhEcmjfJccvzCwcKaeyEkRrAXEW_p7QMs_pt5XwUfXBAlV0As10pqp"/>
+<img alt="Paisaje de película" class="w-full h-full object-cover" data-alt="Paisaje urbano vibrante al atardecer en estilo anime cinematográfico" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZs4Vw9PZ84i6Ys2r4zaN7qIUjHi2HdaV26z-79Pfi17ztATEPT0KLGu0_DQz9awHO680k4vEkXKbI8fxecyDrissO8rGhpL9NVVqM2kiBD6Y4ZYyACz-yNaK6doyItKZ2PQsrFzUyZWrJh3CH-YMfrUN5_z_9cxUYzO2Ndk-hV9TENhD2MlVYucSYbhM9xyGBr5aq1t2I2_h9llA0wSZqupDhEcmjfJccvzCwcKaeyEkRrAXEW_p7QMs_pt5XwUfXBAlV0As10pqp"/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
 <div class="absolute bottom-4 left-4 flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
@@ -344,31 +377,71 @@
 </div>
 <div class="flex-none w-80 group cursor-pointer" onclick="window.location.href='detail.html'">
 <div class="relative aspect-video rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
-<img alt="Movie Landscape" class="w-full h-full object-cover" data-alt="Epic mountain range under a starry anime night sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcIQtxOd6qOsXx7ByE8oZn1oCXSPjEJzsUOHQIOSQYhHH0OYYB_eJlZhZNz3w4BHdnldRu7iEiS9w18kbo_Z0hKzmIiXP7aiQNfz2tM80qkstdNDxLa6JqFEVe0MaL19MslgUay1G49G96_nr3avtPuZ1bsDRBHEMkYXwbJXR78yArKNKgPuo_FS84akJ8xyLqb9-VO67Md2PDUJJhpFC-KvDBlFjJ6jb60bCEeVK3KhKkAeDGb_sY6HuC9kf3yivDQCPx_K043ssp"/>
+<img alt="Paisaje de película" class="w-full h-full object-cover" data-alt="Cordillera épica bajo un cielo nocturno estrellado estilo anime" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcIQtxOd6qOsXx7ByE8oZn1oCXSPjEJzsUOHQIOSQYhHH0OYYB_eJlZhZNz3w4BHdnldRu7iEiS9w18kbo_Z0hKzmIiXP7aiQNfz2tM80qkstdNDxLa6JqFEVe0MaL19MslgUay1G49G96_nr3avtPuZ1bsDRBHEMkYXwbJXR78yArKNKgPuo_FS84akJ8xyLqb9-VO67Md2PDUJJhpFC-KvDBlFjJ6jb60bCEeVK3KhKkAeDGb_sY6HuC9kf3yivDQCPx_K043ssp"/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
 <div class="absolute bottom-4 left-4 flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
-<span class="font-bold">Your Name.</span>
+<span class="font-bold">Tu Nombre.</span>
 </div>
 </div>
 </div>
 <div class="flex-none w-80 group cursor-pointer" onclick="window.location.href='detail.html'">
 <div class="relative aspect-video rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
-<img alt="Movie Landscape" class="w-full h-full object-cover" data-alt="Lush green anime forest with sunlight filtering through leaves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ6Ah-IV3lUQiVO02y1I0SuB8bLgACNC8qwVPEgr-NhJFTPAD2A_LQeg_h72ejiI56UKVnMh_Puk_E_i5W-zvO3byCKKRI_lYcmJvyZdFj6aX-w5fJQ2gDPxJdfbeYCsHOjPjaGO45hE1NcsL9FuhwWH2aaPbXfZfhrHmRYPEvNATzTxZIDy21c9Y27vxZmKoI6Z2oG5CWH7305d55-BRLe0KJwbYM5drbE-215zNLDf1nAWDi87ubZTX2HHsCJ-JVUzNOTOTlUsge"/>
+<img alt="Paisaje de película" class="w-full h-full object-cover" data-alt="Bosque anime frondoso y verde con luz filtrándose entre las hojas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ6Ah-IV3lUQiVO02y1I0SuB8bLgACNC8qwVPEgr-NhJFTPAD2A_LQeg_h72ejiI56UKVnMh_Puk_E_i5W-zvO3byCKKRI_lYcmJvyZdFj6aX-w5fJQ2gDPxJdfbeYCsHOjPjaGO45hE1NcsL9FuhwWH2aaPbXfZfhrHmRYPEvNATzTxZIDy21c9Y27vxZmKoI6Z2oG5CWH7305d55-BRLe0KJwbYM5drbE-215zNLDf1nAWDi87ubZTX2HHsCJ-JVUzNOTOTlUsge"/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
 <div class="absolute bottom-4 left-4 flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
-<span class="font-bold">Spirited Away</span>
+<span class="font-bold">El Viaje de Chihiro</span>
 </div>
 </div>
 </div>
 <div class="flex-none w-80 group cursor-pointer" onclick="window.location.href='detail.html'">
 <div class="relative aspect-video rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
-<img alt="Movie Landscape" class="w-full h-full object-cover" data-alt="Calm anime ocean scene with a distant island" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzVx7iJLr4Mfgd79RK6X6Km0uzNQjGsPP7jCamqWRwpAQFl-8CsoExOcyJkVD1eheVat1utCOZKROorocz3XsKQLFaGETmOawxeNH-136-XG_1PQcn5MXZ7g81t7Z55330se4DwC5s7SvRCtzVQRcFbfElkSuvdNfwK4HjUiJ6db3EX8fcQGB_DheO4xIpT2CNTuwAmeZane81aKqI2y5RC4gXhsupCBLUOUFf0ECvO-ti-ewKZAF-T3Q2aVq3uYDQwlzBrv3s4Cah"/>
+<img alt="Paisaje de película" class="w-full h-full object-cover" data-alt="Escena de océano anime en calma con una isla a lo lejos" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzVx7iJLr4Mfgd79RK6X6Km0uzNQjGsPP7jCamqWRwpAQFl-8CsoExOcyJkVD1eheVat1utCOZKROorocz3XsKQLFaGETmOawxeNH-136-XG_1PQcn5MXZ7g81t7Z55330se4DwC5s7SvRCtzVQRcFbfElkSuvdNfwK4HjUiJ6db3EX8fcQGB_DheO4xIpT2CNTuwAmeZane81aKqI2y5RC4gXhsupCBLUOUFf0ECvO-ti-ewKZAF-T3Q2aVq3uYDQwlzBrv3s4Cah"/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
 <div class="absolute bottom-4 left-4 flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
-<span class="font-bold">Weathering With You</span>
+<span class="font-bold">El Tiempo Contigo</span>
+</div>
+</div>
+</div>
+<div class="flex-none w-80 group cursor-pointer" onclick="window.location.href='detail.html'">
+<div class="relative aspect-video rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
+<img alt="Paisaje de pel?cula" class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/7/75919l.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span class="font-bold">La Princesa Mononoke</span>
+</div>
+</div>
+</div>
+<div class="flex-none w-80 group cursor-pointer" onclick="window.location.href='detail.html'">
+<div class="relative aspect-video rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
+<img alt="Paisaje de pel?cula" class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/1775/111742l.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span class="font-bold">El Castillo Ambulante</span>
+</div>
+</div>
+</div>
+<div class="flex-none w-80 group cursor-pointer" onclick="window.location.href='detail.html'">
+<div class="relative aspect-video rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
+<img alt="Paisaje de pel?cula" class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/10/75815l.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span class="font-bold">Mi Vecino Totoro</span>
+</div>
+</div>
+</div>
+<div class="flex-none w-80 group cursor-pointer" onclick="window.location.href='detail.html'">
+<div class="relative aspect-video rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
+<img alt="Paisaje de pel?cula" class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/6/79597l.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span class="font-bold">Akira</span>
 </div>
 </div>
 </div>
@@ -380,7 +453,7 @@
 <footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-950 tonal-shift bg-neutral-900 font-['Inter'] text-sm tracking-wide">
 <div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-7xl mx-auto">
 <div class="flex flex-col gap-4 mb-8 md:mb-0">
-<a class="text-lg font-bold text-neutral-100 flex items-center gap-2" href="index.html"><img src="img/icon.png" alt="AniDex" class="h-6 w-6 rounded-full transition-transform duration-200 active:scale-110" /><span class="text-neutral-100">Ani</span><span class="text-violet-400">Dex</span></a>
+<a class="text-lg font-bold text-neutral-100 flex items-center gap-2" href="index.html"><img src="img/icon.png" alt="AniDex" class="h-6 w-6 rounded-full transition-transform duration-200 active:scale-110" /><span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span></a>
 <p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jamas creadas. Curado para el fan exigente.</p>
 </div>
 <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
@@ -392,4 +465,154 @@
 <div class="mt-8 md:mt-0 text-neutral-500"> 2024 AniDex. Todos los derechos reservados.</div>
 </div>
 </footer>
-</body></html
+<script src="i18n.js"></script>
+<script src="title-images.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const heroImage = document.getElementById("hero-image");
+    const heroTitle = document.getElementById("hero-title");
+    const heroMeta = document.getElementById("hero-meta");
+    const heroDescription = document.getElementById("hero-description");
+    const dots = document.getElementById("hero-dots");
+    const prevBtn = document.getElementById("hero-prev");
+    const nextBtn = document.getElementById("hero-next");
+    let heroItems = [];
+    let heroIndex = 0;
+    let heroTimer = null;
+    const summaryCache = new Map();
+    const localHeroOverrides = [
+      { match: "attack on titan", src: ["img/snk.jpg"] },
+      { match: "shingeki no kyojin", src: ["img/snk.jpg"] },
+      { match: "snk", src: ["img/snk.jpg"] },
+      { match: "death note", src: ["img/death_note.webp", "img/death-note.jpg", "img/deathnote.jpg", "img/death_note.jpg"] },
+      { match: "fullmetal alchemist", src: ["img/fullmetal.webp"] },
+      { match: "fullmetal alchemist: brotherhood", src: ["img/fullmetal.webp"] },
+      { match: "one punch man", src: ["img/OPM.webp"] },
+      { match: "demon slayer", src: ["img/knY.webp"] },
+      { match: "kimetsu no yaiba", src: ["img/knY.webp"] },
+      { match: "sword art online", src: ["img/SaO.webp"] }
+    ];
+
+    const pickHeroImage = async (item, fallback) => {
+      const title = `${item?.title || ""} ${item?.title_english || ""}`.toLowerCase();
+      const override = localHeroOverrides.find((x) => title.includes(x.match));
+      if (!override) return fallback;
+      const candidates = Array.isArray(override.src) ? override.src : [override.src];
+      for (const candidate of candidates) {
+        const chosen = await new Promise((resolve) => {
+          const test = new Image();
+          test.onload = () => resolve(candidate);
+          test.onerror = () => resolve(null);
+          test.src = candidate;
+        });
+        if (chosen) return chosen;
+      }
+      return fallback;
+    };
+
+    const shortSpanishSummary = async (text) => {
+      const raw = (text || "").trim();
+      if (!raw) return "Sinopsis no disponible.";
+      if (summaryCache.has(raw)) return summaryCache.get(raw);
+      const cleanSentences = (value) => {
+        const normalized = (value || "").replace(/\s+/g, " ").trim();
+        if (!normalized) return "Sinopsis no disponible.";
+        const parts = normalized.match(/[^.!?]+[.!?]/g) || [normalized];
+        const merged = parts.slice(0, 2).join(" ").trim();
+        return merged.endsWith(".") || merged.endsWith("!") || merged.endsWith("?")
+          ? merged
+          : `${merged}.`;
+      };
+      try {
+        const res = await fetch(
+          "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=es&dt=t&q=" +
+            encodeURIComponent(raw)
+        );
+        const data = await res.json();
+        const translated = (data?.[0] || []).map((r) => r?.[0] || "").join("").trim();
+        const short = cleanSentences(translated);
+        summaryCache.set(raw, short || "Sinopsis no disponible.");
+        return summaryCache.get(raw);
+      } catch {
+        const short = cleanSentences(raw);
+        summaryCache.set(raw, short || "Sinopsis no disponible.");
+        return summaryCache.get(raw);
+      }
+    };
+
+    const setHero = async (idx) => {
+      if (!heroItems.length) return;
+      heroIndex = (idx + heroItems.length) % heroItems.length;
+      const item = heroItems[heroIndex];
+      const bg =
+        item?.trailer?.images?.maximum_image_url ||
+        item?.trailer?.images?.large_image_url ||
+        item?.images?.webp?.large_image_url ||
+        item?.images?.jpg?.large_image_url ||
+        item?.images?.jpg?.image_url ||
+        "";
+      if (bg) heroImage.src = await pickHeroImage(item, bg);
+      heroTitle.textContent = item?.title || "Anime";
+      heroMeta.textContent = `${item?.episodes || "?"} Episodios`;
+      heroDescription.textContent = "Cargando sinopsis...";
+      heroDescription.textContent = await shortSpanishSummary(item?.synopsis || "");
+      Array.from(dots.children).forEach((dot, i) => {
+        dot.className =
+          i === heroIndex
+            ? "h-2.5 w-6 rounded-full bg-primary"
+            : "h-2.5 w-2.5 rounded-full bg-on-surface-variant/50";
+      });
+    };
+
+    const startHero = async () => {
+      try {
+        const res = await fetch(
+          "https://api.jikan.moe/v4/top/anime?filter=bypopularity&type=tv&limit=6"
+        );
+        const json = await res.json();
+        heroItems = (json?.data || []).slice(0, 6);
+        dots.innerHTML = "";
+        heroItems.forEach((_, i) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "h-2.5 w-2.5 rounded-full bg-on-surface-variant/50";
+          dot.addEventListener("click", () => setHero(i));
+          dots.appendChild(dot);
+        });
+        await setHero(0);
+        heroTimer = setInterval(() => {
+          setHero(heroIndex + 1);
+        }, 12000);
+      } catch {
+        // fallback: keep static Frieren block
+      }
+    };
+
+    if (prevBtn) prevBtn.addEventListener("click", () => setHero(heroIndex - 1));
+    if (nextBtn) nextBtn.addEventListener("click", () => setHero(heroIndex + 1));
+    startHero();
+
+
+    const bindHorizontalArrows = (rowId, prevId, nextId) => {
+      const row = document.getElementById(rowId);
+      const prev = document.getElementById(prevId);
+      const next = document.getElementById(nextId);
+      if (!row || !prev || !next) return;
+      const step = () => Math.max(280, Math.floor(row.clientWidth * 0.85));
+      prev.addEventListener("click", () => row.scrollBy({ left: -step(), behavior: "smooth" }));
+      next.addEventListener("click", () => row.scrollBy({ left: step(), behavior: "smooth" }));
+    };
+
+    bindHorizontalArrows("trending-row", "trending-prev", "trending-next");
+    bindHorizontalArrows("movies-row", "movies-prev", "movies-next");
+
+    if (window.AniDexI18n) window.AniDexI18n.init();
+    if (window.AniDexTitleImages) window.AniDexTitleImages.init();
+  });
+</script>
+<script data-ui-unlock>document.documentElement.classList.remove("preload-ui");</script>
+</body></html>
+
+
+
+
