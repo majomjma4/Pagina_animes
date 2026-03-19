@@ -4,7 +4,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AniDex - Ranking</title>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>  <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-dim": "#c0adff",
+              "primary-fixed-dim": "#dacdff",
+              "background": "#0e0e0e",
+              "on-background": "#e7e5e4",
+              "surface-bright": "#2c2c2c",
+              "on-surface-variant": "#acabaa",
+              "tertiary-dim": "#cecfef",
+              "on-tertiary-container": "#4c4e68",
+              "on-secondary-fixed-variant": "#5d5b5f",
+              "on-tertiary-fixed-variant": "#565873",
+              "inverse-surface": "#fcf8f8",
+              "error-container": "#7f2737",
+              "on-primary": "#4800bf",
+              "on-secondary-fixed": "#403e42",
+              "on-error-container": "#ff97a3",
+              "surface-container-highest": "#252626",
+              "on-surface": "#e7e5e4",
+              "outline": "#767575",
+              "on-error": "#490013",
+              "tertiary-fixed": "#ddddfe",
+              "surface-container-lowest": "#000000",
+              "surface-tint": "#cdbdff",
+              "surface": "#0e0e0e",
+              "tertiary-container": "#ddddfe",
+              "surface-variant": "#252626",
+              "inverse-on-surface": "#565554",
+              "inverse-primary": "#6834eb",
+              "surface-container-high": "#1f2020",
+              "primary-container": "#4f00d0",
+              "primary": "#cdbdff",
+              "secondary-fixed": "#e6e1e6",
+              "on-primary-fixed-variant": "#652fe7",
+              "outline-variant": "#484848",
+              "on-secondary-container": "#c2bec3",
+              "on-tertiary-fixed": "#3a3c55",
+              "secondary-dim": "#a09da1",
+              "secondary-container": "#3c3b3e",
+              "error": "#ec7c8a",
+              "on-primary-container": "#d6c9ff",
+              "tertiary": "#edecff",
+              "surface-container-low": "#131313",
+              "surface-container": "#191a1a",
+              "secondary-fixed-dim": "#d8d3d8",
+              "surface-dim": "#0e0e0e",
+              "on-tertiary": "#555671",
+              "on-secondary": "#211f23",
+              "tertiary-fixed-dim": "#cecfef",
+              "error-dim": "#b95463",
+              "secondary": "#a09da1",
+              "primary-fixed": "#e8deff",
+              "on-primary-fixed": "#4700bd"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <style>
@@ -18,63 +85,69 @@
 </head>
 <body class="bg-zinc-950 text-zinc-100 font-['Inter']">
   <div class="min-h-screen">
-    <nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
-      <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
-        <a class="text-2xl font-bold tracking-tighter text-neutral-100 flex items-center gap-2" href="index.html">
-          <img src="img/icon.png" alt="AniDex" class="h-7 w-7 rounded-full transition-transform duration-200 active:scale-110" />
-          <span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span>
-        </a>
+    <!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
+  <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
+    <a class="text-2xl font-bold tracking-tighter text-neutral-100 flex items-center gap-2" href="index.html">
+      <img src="img/icon.png" alt="AniDex" class="h-7 w-7 rounded-full transition-transform duration-200 active:scale-110" />
+      <span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span>
+    </a>
 
-        <div class="hidden md:flex items-center gap-8" id="main-menu"></div>
-        <script>
-          const menuItems = [
-            { name: "Inicio", href: "index.html" },
-            { name: "Animes", href: "series.html" },
-            { name: "Películas", href: "catalogo.html" },
-            { name: "Destacados", href: "destacados.html" },
-            { name: "Ranking", href: "ranking.html" }
-          ];
-          const currentPage = window.location.pathname.split("/").pop();
-          const menuEl = document.getElementById("main-menu");
-          if (menuEl) {
-            menuEl.innerHTML = menuItems.map(item => {
-              const isActive = item.href === currentPage;
-              const base = "transition-colors";
-              const active = "text-violet-400 font-bold border-b-2 border-violet-500 pb-1";
-              const inactive = "text-neutral-400 hover:text-neutral-100";
-              return `<a href="${item.href}" class="${isActive ? active : inactive + ' ' + base}">${item.name}</a>`;
-            }).join("");
-          }
-        </script>
+    <div class="hidden md:flex items-center gap-8" id="main-menu"></div>
+    <script>
+      const menuItems = [
+        { name: "Inicio", href: "index.html" },
+        { name: "Animes", href: "series.html" },
+        { name: "Peliculas", href: "catalogo.html" },
+        { name: "Destacados", href: "destacados.html" },
+        { name: "Ranking", href: "ranking.html" }
+      ];
 
-        <div class="flex items-center gap-6">
-          <div class="hidden lg:flex items-center bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-2 w-48 group transition-all">
-            <span class="material-symbols-outlined text-violet-400 text-sm">search</span>
-            <input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-zinc-400" placeholder="Buscar..." type="text"/>
-          </div>
-          <div class="relative">
-            <button class="flex items-center gap-2 rounded-full bg-zinc-900/80 border border-zinc-800 px-3 py-2 text-xs font-semibold text-zinc-300 hover:text-zinc-100 transition-colors" type="button" aria-haspopup="menu" aria-expanded="false" data-lang-toggle>
-              <img src="img/espana.png" alt="ES" class="w-4 h-4" />
-              <span class="material-symbols-outlined text-[16px]">expand_more</span>
-            </button>
-            <div class="absolute right-0 mt-2 hidden min-w-[160px] rounded-xl bg-surface-container-high p-2 shadow-elevated" role="menu" data-lang-menu>
-              <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="es" role="menuitem">
-                <img src="img/espana.png" alt="ES" class="w-4 h-4" /><span class="uppercase tracking-widest">ES</span>
-              </button>
-              <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="en" role="menuitem">
-                <img src="img/reino-unido.png" alt="EN" class="w-4 h-4" /><span class="uppercase tracking-widest">EN</span>
-              </button>
-            </div>
-          </div>
-          <div class="flex items-center gap-4">
-            <a class="relative group hover:bg-neutral-800/50 rounded-full p-2 transition-all duration-300 scale-95 active:scale-90 flex items-center justify-center" href="user.html"><span class="material-symbols-outlined text-neutral-400 group-hover:text-violet-500 transition-colors">favorite</span><span class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-on-surface opacity-0 transition-opacity duration-200 group-hover:opacity-100">Favoritos</span></a>
-            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-violet-500/30 hover:border-violet-500 transition-colors cursor-pointer" onclick="window.location.href='user.html'">
-              <img alt="Perfil de usuario" class="w-full h-full object-cover" data-alt="Primer plano de un avatar minimalista moderno" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
-            </div>
-          </div>
+      const currentPage = window.location.pathname.split("/").pop();
+      const menuEl = document.getElementById("main-menu");
+
+      if (menuEl) {
+        menuEl.innerHTML = menuItems.map(item => {
+          const isActive = item.href === currentPage;
+          const base = "transition-colors";
+          const active = "text-violet-400 font-bold border-b-2 border-violet-500 pb-1";
+          const inactive = "text-neutral-400 hover:text-neutral-100";
+          return `
+            <a href="${item.href}" class="${isActive ? active : inactive + ' ' + base}">${item.name}</a>
+          `;
+        }).join("");
+      }
+    </script>
+
+    <div class="flex items-center gap-6">
+      <div class="hidden lg:flex items-center bg-surface-container-high rounded-full px-4 py-2 w-48 group focus-within:ring-1 focus-within:ring-primary/30 transition-all">
+        <span class="material-symbols-outlined text-violet-400 text-sm">search</span>
+        <input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50" placeholder="Buscar..." type="text"/>
+      </div>
+      <div class="relative">
+        <button class="flex items-center gap-2 rounded-full bg-surface-container-high px-3 py-2 text-xs font-semibold text-on-surface-variant hover:text-on-surface transition-colors" type="button" aria-haspopup="menu" aria-expanded="false" data-lang-toggle>
+          <img src="img/espana.png" alt="ES" class="w-4 h-4" />
+          <span class="material-symbols-outlined text-[16px]">expand_more</span>
+        </button>
+        <div class="absolute left-0 mt-2 hidden min-w-[145px] -translate-x-[5px] rounded-md bg-zinc-800 p-2 shadow-elevated border border-white/5" role="menu" data-lang-menu>
+  <button class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white" type="button" data-lang="es" role="menuitem">
+    <img src="img/espana.png" alt="ES" class="w-4 h-4" /><span class="uppercase tracking-widest">ES</span>
+  </button>
+  <button class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white" type="button" data-lang="en" role="menuitem">
+    <img src="img/reino-unido.png" alt="EN" class="w-4 h-4" /><span class="uppercase tracking-widest">EN</span>
+  </button>
+</div>
+      </div>
+
+<div class="flex items-center gap-4">
+        <a class="relative group hover:bg-neutral-800/50 rounded-full p-2 transition-all duration-300 scale-95 active:scale-90 flex items-center justify-center" href="user.html"><span class="material-symbols-outlined text-neutral-400 group-hover:text-violet-500 transition-colors">favorite</span><span class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-on-surface opacity-0 transition-opacity duration-200 group-hover:opacity-100">Favoritos</span></a>
+        <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-violet-500/30 hover:border-violet-500 transition-colors cursor-pointer" onclick="window.location.href='user.html'">
+          <img alt="Perfil de usuario" class="w-full h-full object-cover" data-alt="Primer plano de un avatar minimalista moderno" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
         </div>
       </div>
-    </nav>
+    </div>
+  </div>
+</nav>
 
     <main class="mx-auto max-w-7xl px-6 md:px-10 pt-28 pb-10">
       <div class="mb-8 flex items-center justify-between gap-4">
@@ -111,6 +184,11 @@
   <script src="i18n.js"></script>
   <script src="search.js"></script>
   <script src="detail-links.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.AniDexI18n) window.AniDexI18n.init();
+    });
+  </script>
   <script>
     (function () {
       var grid = document.getElementById('ranking-grid');
@@ -261,3 +339,4 @@
   </script>
 </body>
 </html>
+

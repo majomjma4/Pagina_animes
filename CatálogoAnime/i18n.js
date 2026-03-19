@@ -28,6 +28,7 @@
     ["anidex", "AniDex"],
     ["inicio", "Home"],
     ["series", "Animes"],
+    ["animes", "Animes"],
     ["populares", "Popular"],
     ["popularidad", "Popularity"],
     ["pel?culas", "Movies"],
@@ -204,10 +205,44 @@
     });
   }
 
-  async function applyLanguage(lang) {
+  function applyLanguage(lang) {
     const selected = LANGS[lang] ? lang : "es";
     if (selected === "es") applySpanish();
-    if (selected === "en") await applyEnglish();
+    if (selected === "en") {
+      textNodes.forEach((entry) => {
+        const trimmed = (entry.es || "").trim();
+        if (!trimmed) {
+          entry.node.textContent = entry.es;
+          return;
+        }
+        const key = normalize(trimmed).toLowerCase();
+        if (forcedMap.has(key)) {
+          entry.node.textContent = entry.es.replace(trimmed, forcedMap.get(key));
+        } else if (cache[key]) {
+          entry.node.textContent = entry.es.replace(trimmed, cache[key]);
+        } else {
+          entry.node.textContent = entry.es;
+        }
+      });
+      attrNodes.forEach((entry) => {
+        const trimmed = (entry.es || "").trim();
+        if (!trimmed) {
+          entry.el.setAttribute(entry.attr, entry.es);
+          return;
+        }
+        const key = normalize(trimmed).toLowerCase();
+        if (forcedMap.has(key)) {
+          entry.el.setAttribute(entry.attr, entry.es.replace(trimmed, forcedMap.get(key)));
+        } else if (cache[key]) {
+          entry.el.setAttribute(entry.attr, entry.es.replace(trimmed, cache[key]));
+        } else {
+          entry.el.setAttribute(entry.attr, entry.es);
+        }
+      });
+      setTimeout(() => {
+        applyEnglish();
+      }, 0);
+    }
     document.documentElement.lang = selected;
     localStorage.setItem(STORAGE_KEY, selected);
   }
@@ -215,33 +250,52 @@
   function init() {
     const toggle = document.querySelector("[data-lang-toggle]");
     const menu = document.querySelector("[data-lang-menu]");
-    if (!toggle || !menu) return;
 
     collectNodes(document.body);
     let currentLang = "es";
+    const saved = localStorage.getItem(STORAGE_KEY) || "es";
+    const current = LANGS[saved] ? saved : "es";
+    currentLang = current;
 
-    const icon = toggle.querySelector("img");
+    const icon = toggle ? toggle.querySelector("img") : null;
     const setFlag = (lang) => {
       if (!icon) return;
       icon.src = LANGS[lang].src;
       icon.alt = LANGS[lang].alt;
     };
 
-    const saved = localStorage.getItem(STORAGE_KEY) || "es";
-    const current = LANGS[saved] ? saved : "es";
-    currentLang = current;
     applyLanguage(currentLang);
     setFlag(current);
 
+    let isApplying = false;
+    let pending = null;
+    const scheduleApply = () => {
+      if (pending) return;
+      pending = setTimeout(async () => {
+        pending = null;
+        if (isApplying) return;
+        isApplying = true;
+        collectNodes(document.body);
+        await applyLanguage(currentLang);
+        isApplying = false;
+      }, 120);
+    };
+
+    const observer = new MutationObserver(() => {
+      if (isApplying) return;
+      scheduleApply();
+    });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+
     // Re-scan after initial render scripts populate dynamic menu/items.
-    setTimeout(() => {
-      collectNodes(document.body);
-      applyLanguage(currentLang);
-    }, 250);
-    setTimeout(() => {
-      collectNodes(document.body);
-      applyLanguage(currentLang);
-    }, 900);
+    setTimeout(scheduleApply, 250);
+    setTimeout(scheduleApply, 900);
+
+    if (!toggle || !menu) return;
 
     toggle.addEventListener("click", () => {
       const isOpen = !menu.classList.contains("hidden");
@@ -254,8 +308,7 @@
       if (!item) return;
       const selected = LANGS[item.dataset.lang] ? item.dataset.lang : "es";
       currentLang = selected;
-      collectNodes(document.body);
-      applyLanguage(currentLang);
+      scheduleApply();
       setFlag(selected);
       menu.classList.add("hidden");
       toggle.setAttribute("aria-expanded", "false");

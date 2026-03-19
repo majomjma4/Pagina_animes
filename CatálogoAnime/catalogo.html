@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="dark" lang="es">
 <head>
 <script data-ui-preload>document.documentElement.classList.add("preload-ui");</script>
@@ -7,7 +7,7 @@
 </style>
  <meta charset="UTF-8">
  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
- <title>AniDex - CatÃ¡logo</title>
+ <title>AniDex - Catálogo</title>
  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -135,7 +135,7 @@
       const menuItems = [
         { name: "Inicio", href: "index.html" },
         { name: "Animes", href: "series.html" },
-        { name: "PelÃ­culas", href: "catalogo.html" },
+        { name: "Películas", href: "catalogo.html" },
         { name: "Destacados", href: "destacados.html" },
         { name: "Ranking", href: "ranking.html" }
       ];
@@ -166,14 +166,14 @@
           <img src="img/espana.png" alt="ES" class="w-4 h-4" />
           <span class="material-symbols-outlined text-[16px]">expand_more</span>
         </button>
-        <div class="absolute right-0 mt-2 hidden min-w-[160px] rounded-xl bg-surface-container-high p-2 shadow-elevated" role="menu" data-lang-menu>
-          <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="es" role="menuitem">
-            <img src="img/espana.png" alt="ES" class="w-4 h-4" /><span class="uppercase tracking-widest">ES</span>
-          </button>
-          <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="en" role="menuitem">
-            <img src="img/reino-unido.png" alt="EN" class="w-4 h-4" /><span class="uppercase tracking-widest">EN</span>
-          </button>
-        </div>
+        <div class="absolute left-0 mt-2 hidden min-w-[145px] -translate-x-[5px] rounded-md bg-zinc-800 p-2 shadow-elevated border border-white/5" role="menu" data-lang-menu>
+  <button class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white" type="button" data-lang="es" role="menuitem">
+    <img src="img/espana.png" alt="ES" class="w-4 h-4" /><span class="uppercase tracking-widest">ES</span>
+  </button>
+  <button class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white" type="button" data-lang="en" role="menuitem">
+    <img src="img/reino-unido.png" alt="EN" class="w-4 h-4" /><span class="uppercase tracking-widest">EN</span>
+  </button>
+</div>
       </div>
 
 <div class="flex items-center gap-4">
@@ -201,9 +201,9 @@
  </div>
  </div>
  <div class="space-y-2">
- <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Géneros</label>
+ <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">G�neros</label>
  <div class="flex flex-wrap gap-2">
- <button class="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-on-primary" type="button">Acción</button>
+ <button class="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-on-primary" type="button">Acci�n</button>
  <button class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant" type="button">Fantas?a</button>
  <button class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant" type="button">Drama</button>
  <button class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant" type="button">Sci-Fi</button>
@@ -211,7 +211,7 @@
  </div>
  <div class="space-y-4">
  <div class="space-y-2">
- <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-year">Año</label>
+ <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-year">A�o</label>
  <select id="filter-year" class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface" aria-label="Filtrar por ao">
  <option>Todos</option>
  <option>2026</option>
@@ -232,7 +232,7 @@
  <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-status">Estado</label>
  <select id="filter-status" class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface" aria-label="Filtrar por estado">
  <option>Todos</option>
- <option>En emisión</option>
+ <option>En emisi�n</option>
  <option>Finalizado</option>
  </select>
  </div>
@@ -246,11 +246,11 @@
  </aside>
 
  <!-- Catalog Content -->
- <section class="lg:col-span-9" aria-label="Resultados de catÃ¡logo">
+ <section class="lg:col-span-9" aria-label="Resultados de catálogo">
  <header class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
  <div>
   <h1 class="font-headline text-4xl font-extrabold text-on-surface">Descubrimiento</h1>
-        <p class="text-on-surface-variant">Mostrando 20 tÃ­tulos seleccionados para ti</p>
+        <p class="text-on-surface-variant">Mostrando 20 títulos seleccionados para ti</p>
  </div>
  <div class="flex items-center gap-3 text-sm text-on-surface-variant">
  <span>Ordenar por:</span>
@@ -294,7 +294,7 @@
  <div class="hidden" data-state="empty">
  <div class="rounded-lg bg-surface-container-low p-10 text-center">
  <h2 class="text-2xl font-bold text-on-surface">Sin resultados</h2>
- <p class="mt-2 text-on-surface-variant">Prueba otros filtros para ver mÃ¡s tÃ­tulos disponibles.</p>
+ <p class="mt-2 text-on-surface-variant">Prueba otros filtros para ver más títulos disponibles.</p>
  <button class="mt-6 rounded-full bg-primary px-6 py-3 text-sm font-bold text-on-primary" type="button">Limpiar filtros</button>
  </div>
  </div>
@@ -302,7 +302,7 @@
  <div class="hidden" data-state="error">
  <div class="rounded-lg bg-error-container/30 p-10 text-center">
  <h2 class="text-2xl font-bold text-on-error-container">Ocurrio un error</h2>
- <p class="mt-2 text-on-error-container/80">No pudimos cargar el catÃ¡logo. Intentalo nuevamente</p>
+ <p class="mt-2 text-on-error-container/80">No pudimos cargar el catálogo. Intentalo nuevamente</p>
  <button class="mt-6 rounded-full bg-primary px-6 py-3 text-sm font-bold text-on-primary" type="button">Reintentar</button>
  </div>
  </div>
@@ -318,7 +318,7 @@
  </div>
  <div class="space-y-2 mt-2">
                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Romance</span>
- <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">FantasÃ­a</span></div>
+ <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Fantasía</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Your Name</h3>
  <p class="text-xs text-on-surface-variant">Estudio: CoMix Wave 2016</p>
  </div>
@@ -332,7 +332,7 @@
  <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface"> 125 min</span>
  </div>
  <div class="space-y-2 mt-2">
-                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">FantasÃ­a</span>
+                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Fantasía</span>
  <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Aventura</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Spirited Away</h3>
  <p class="text-xs text-on-surface-variant">Estudio: Studio Ghibli 2001</p>
@@ -363,7 +363,7 @@
  </div>
  <div class="space-y-2 mt-2">
                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Romance</span>
- <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">FantasÃ­a</span></div>
+ <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Fantasía</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Weathering With You</h3>
  <p class="text-xs text-on-surface-variant">Estudio: CoMix Wave 2019</p>
  </div>
@@ -377,7 +377,7 @@
  <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface"> 134 min</span>
  </div>
  <div class="space-y-2 mt-2">
-                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">AcciÃ³n</span>
+                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Acción</span>
  <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Aventura</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Princess Mononoke</h3>
  <p class="text-xs text-on-surface-variant">Estudio: Studio Ghibli 1997</p>
@@ -392,8 +392,8 @@
  <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface"> 117 min</span>
  </div>
  <div class="space-y-2 mt-2">
-                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">AcciÃ³n</span>
- <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">FantasÃ­a</span></div>
+                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Acción</span>
+ <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Fantasía</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Demon Slayer: Mugen Train</h3>
  <p class="text-xs text-on-surface-variant">Estudio: Ufotable 2020</p>
  </div>
@@ -407,7 +407,7 @@
  <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface"> 124 min</span>
  </div>
  <div class="space-y-2 mt-2">
-                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">AcciÃ³n</span>
+                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Acción</span>
  <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Sci-Fi</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Akira</h3>
  <p class="text-xs text-on-surface-variant">Estudio: TMS 1988</p>
@@ -437,7 +437,7 @@
  <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface"> 119 min</span>
  </div>
  <div class="space-y-2 mt-2">
-                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">FantasÃ­a</span>
+                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Fantasía</span>
  <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Romance</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Howl's Moving Castle</h3>
  <p class="text-xs text-on-surface-variant">Estudio: Studio Ghibli 2004</p>
@@ -453,7 +453,7 @@
  </div>
  <div class="space-y-2 mt-2">
                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Aventura</span>
- <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">FantasÃ­a</span></div>
+ <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Fantasía</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Castle in the Sky</h3>
  <p class="text-xs text-on-surface-variant">Estudio: Studio Ghibli 1986</p>
  </div>
@@ -483,7 +483,7 @@
  </div>
  <div class="space-y-2 mt-2">
                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Drama</span>
- <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">FantasÃ­a</span></div>
+ <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Fantasía</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Wolf Children</h3>
  <p class="text-xs text-on-surface-variant">Estudio: Studio Chizu 2012</p>
  </div>
@@ -497,7 +497,7 @@
  <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface"> 124 min</span>
  </div>
  <div class="space-y-2 mt-2">
-                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">FantasÃ­a</span>
+                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Fantasía</span>
  <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Drama</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">The Boy and the Heron</h3>
  <p class="text-xs text-on-surface-variant">Estudio: Studio Ghibli 2023</p>
@@ -542,7 +542,7 @@
  <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface"> 111 min</span>
  </div>
  <div class="space-y-2 mt-2">
-                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">AcciÃ³n</span>
+                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Acción</span>
  <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Sci-Fi</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Promare</h3>
  <p class="text-xs text-on-surface-variant">Estudio: Trigger 2019</p>
@@ -557,7 +557,7 @@
  <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface"> 102 min</span>
  </div>
  <div class="space-y-2 mt-2">
-                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">AcciÃ³n</span>
+                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Acción</span>
  <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Sci-Fi</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Redline</h3>
  <p class="text-xs text-on-surface-variant">Estudio: Madhouse 2009</p>
@@ -572,7 +572,7 @@
  <span class="absolute left-3 top-3 rounded-full bg-surface/80 px-3 py-1 text-xs font-bold text-on-surface"> 103 min</span>
  </div>
  <div class="space-y-2 mt-2">
-                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">FantasÃ­a</span>
+                  <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Fantasía</span>
  <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Comedia</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">Kiki's Delivery Service</h3>
  <p class="text-xs text-on-surface-variant">Estudio: Studio Ghibli 1989</p>
@@ -612,7 +612,7 @@
  </section>
 
  <div class="mt-12 flex justify-center">
- <button class="rounded-full border border-primary/30 bg-primary/10 px-8 py-4 text-sm font-bold text-primary transition-colors hover:bg-primary/20" type="button" aria-label="Cargar mÃ¡s resultados">Cargar mÃ¡s</button>
+ <button class="rounded-full border border-primary/30 bg-primary/10 px-8 py-4 text-sm font-bold text-primary transition-colors hover:bg-primary/20" type="button" aria-label="Cargar más resultados">Cargar más</button>
  </div>
  </section>
  </div>
@@ -626,10 +626,10 @@
 <p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jam?s creadas. Curado para el fan exigente.</p>
 </div>
 <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">PolÃ­tica de Privacidad</a>
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">TÃ©minos de Servicio</a>
+<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Política de Privacidad</a>
+<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Téminos de Servicio</a>
 <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Contacto</a>
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">DocumentaciÃ³n API</a>
+<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Documentación API</a>
 </div>
 <div class="mt-8 md:mt-0 text-neutral-500"> 2026 AniDex. Todos los derechos reservados.</div>
 </div>
@@ -646,12 +646,12 @@
     document.addEventListener("DOMContentLoaded", () => {
       // Fix mojibake and duplicated words in catalog page text
       const fixMap = {
-        "PelÃ­culas": "Películas",
-        "Peliculas": "Películas",
-        "FantasÃ­a": "Fantasía",
-        "Fantasia": "Fantasía",
-        "AcciÃ³n": "Acción",
-        "mÃ¡s": "más"
+        "Películas": "Pel�culas",
+        "Peliculas": "Pel�culas",
+        "Fantasía": "Fantas�a",
+        "Fantasia": "Fantas�a",
+        "Acción": "Acci�n",
+        "más": "m�s"
       };
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
       let node;
@@ -661,9 +661,9 @@
         Object.keys(fixMap).forEach((k) => {
           if (out.includes(k)) out = out.replaceAll(k, fixMap[k]);
         });
-        out = out.replace(/animepeliculas/gi, "Anime · Películas");
-        out = out.replace(/peliculas\\s*peliculas/gi, "Películas");
-        out = out.replace(/peliculas+/gi, "Películas");
+        out = out.replace(/animepeliculas/gi, "Anime � Pel�culas");
+        out = out.replace(/peliculas\\s*peliculas/gi, "Pel�culas");
+        out = out.replace(/peliculas+/gi, "Pel�culas");
         out = out.replace(/depeliculastacado/gi, "Destacado");
         if (out !== t) node.nodeValue = out;
       }
@@ -675,7 +675,7 @@
       if (window.AniDexTitleImages) window.AniDexTitleImages.init();
       if (window.AniDexSearch) window.AniDexSearch.init();
       if (window.AniDexFilters) window.AniDexFilters.init();
-      // Re-aplicar filtros después de i18n en catálogo
+      // Re-aplicar filtros despu�s de i18n en cat�logo
       setTimeout(() => {
         if (window.AniDexFilters) window.AniDexFilters.init();
       }, 1100);
@@ -689,7 +689,7 @@
         });
       }, 1200);
 
-    // En pÃ¡gina de pelÃ­culas: mostrar solo duraciÃ³n y abajo a la izquierda.
+    // En página de películas: mostrar solo duración y abajo a la izquierda.
     document.querySelectorAll("span.absolute.left-3.top-3").forEach((badge) => {
       const text = (badge.textContent || "").trim();
       const m = text.match(/\s+(.+)/i);

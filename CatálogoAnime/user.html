@@ -107,7 +107,7 @@
 
 <body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
   <!-- TopNavBar -->
-  <nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
+<nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
   <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
     <a class="text-2xl font-bold tracking-tighter text-neutral-100 flex items-center gap-2" href="index.html">
       <img src="img/icon.png" alt="AniDex" class="h-7 w-7 rounded-full transition-transform duration-200 active:scale-110" />
@@ -119,7 +119,7 @@
       const menuItems = [
         { name: "Inicio", href: "index.html" },
         { name: "Animes", href: "series.html" },
-        { name: "Pel√≠culas", href: "catalogo.html" },
+        { name: "Peliculas", href: "catalogo.html" },
         { name: "Destacados", href: "destacados.html" },
         { name: "Ranking", href: "ranking.html" }
       ];
@@ -150,20 +150,20 @@
           <img src="img/espana.png" alt="ES" class="w-4 h-4" />
           <span class="material-symbols-outlined text-[16px]">expand_more</span>
         </button>
-        <div class="absolute right-0 mt-2 hidden min-w-[160px] rounded-xl bg-surface-container-high p-2 shadow-elevated" role="menu" data-lang-menu>
-          <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="es" role="menuitem">
-            <img src="img/espana.png" alt="ES" class="w-4 h-4" /><span class="uppercase tracking-widest">ES</span>
-          </button>
-          <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="en" role="menuitem">
-            <img src="img/reino-unido.png" alt="EN" class="w-4 h-4" /><span class="uppercase tracking-widest">EN</span>
-          </button>
-        </div>
+        <div class="absolute left-0 mt-2 hidden min-w-[145px] -translate-x-[5px] rounded-md bg-zinc-800 p-2 shadow-elevated border border-white/5" role="menu" data-lang-menu>
+  <button class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white" type="button" data-lang="es" role="menuitem">
+    <img src="img/espana.png" alt="ES" class="w-4 h-4" /><span class="uppercase tracking-widest">ES</span>
+  </button>
+  <button class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white" type="button" data-lang="en" role="menuitem">
+    <img src="img/reino-unido.png" alt="EN" class="w-4 h-4" /><span class="uppercase tracking-widest">EN</span>
+  </button>
+</div>
       </div>
 
 <div class="flex items-center gap-4">
         <a class="relative group hover:bg-neutral-800/50 rounded-full p-2 transition-all duration-300 scale-95 active:scale-90 flex items-center justify-center" href="user.html"><span class="material-symbols-outlined text-neutral-400 group-hover:text-violet-500 transition-colors">favorite</span><span class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-on-surface opacity-0 transition-opacity duration-200 group-hover:opacity-100">Favoritos</span></a>
         <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-violet-500/30 hover:border-violet-500 transition-colors cursor-pointer" onclick="window.location.href='user.html'">
-          <img alt="Perfil de usuario" class="w-full h-full object-cover" data-profile-avatar data-alt="Primer plano de un avatar minimalista moderno" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
+          <img alt="Perfil de usuario" class="w-full h-full object-cover" data-alt="Primer plano de un avatar minimalista moderno" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
         </div>
       </div>
     </div>
@@ -196,7 +196,7 @@
               <span class="block text-primary font-bold text-2xl" data-count-pending>0</span>
               <span class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">ANIMES PENDIENTES</span>
             </button>
-            <!-- Estad√≠sticas de ‚Äúd√≠as/episodios vistos‚Äù removidas ya que no aplica a listas sin reproducci√≥n -->
+            <!-- EstadÌsticas de ìdÌas/episodios vistosî removidas ya que no aplica a listas sin reproducciÛn -->
           </div>
         </div>
         <div class="flex flex-col gap-3 items-center md:items-end">
@@ -269,7 +269,7 @@
             </div>
           </button>
           <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 transition-colors cursor-pointer relative" data-mal-id="32281" data-title="Kimi no Na wa." onclick="window.location.href='detail.html?mal_id=32281&q=Kimi%20no%20Na%20wa.'">
-            <span class="absolute top-2 right-2 rounded-full bg-fuchsia-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Pel√≠cula</span>
+            <span class="absolute top-2 right-2 rounded-full bg-fuchsia-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">PelÌcula</span>
             <img src="https://cdn.myanimelist.net/images/anime/5/87048.jpg" alt="Kimi no Na wa." class="w-12 h-16 object-cover rounded-md" />
             <div class="text-left">
               <p class="text-sm font-bold">Kimi no Na wa.</p>
@@ -285,7 +285,7 @@
             </div>
           </button>
           <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 transition-colors cursor-pointer relative" data-mal-id="12355" data-title="Ookami Kodomo no Ame to Yuki" onclick="window.location.href='detail.html?mal_id=12355&q=Ookami%20Kodomo%20no%20Ame%20to%20Yuki'">
-            <span class="absolute top-2 right-2 rounded-full bg-fuchsia-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Pel√≠cula</span>
+            <span class="absolute top-2 right-2 rounded-full bg-fuchsia-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">PelÌcula</span>
             <img src="https://cdn.myanimelist.net/images/anime/9/35721.jpg" alt="Wolf Children" class="w-12 h-16 object-cover rounded-md" />
             <div class="text-left">
               <p class="text-sm font-bold">Wolf Children</p>
@@ -335,8 +335,8 @@
           <input id="profile-name-input" class="w-full rounded-xl bg-surface-container-low border border-outline-variant px-4 py-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40" type="text" placeholder="Tu nombre" />
         </div>
         <div class="space-y-2">
-          <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Descripci√≥n</label>
-          <textarea id="profile-desc-input" class="w-full rounded-xl bg-surface-container-low border border-outline-variant px-4 py-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40 min-h-[120px]" placeholder="Escribe una breve descripci√≥n"></textarea>
+          <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">DescripciÛn</label>
+          <textarea id="profile-desc-input" class="w-full rounded-xl bg-surface-container-low border border-outline-variant px-4 py-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40 min-h-[120px]" placeholder="Escribe una breve descripciÛn"></textarea>
         </div>
         <div class="space-y-2">
           <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Color del recuadro</label>
@@ -409,10 +409,10 @@
 <p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jamas creadas. Curado para el fan exigente.</p>
 </div>
 <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Pol√≠tica de Privacidad</a>
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">T√©minos de Servicio</a>
+<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">PolÌtica de Privacidad</a>
+<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">TÈminos de Servicio</a>
 <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Contacto</a>
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Documentaci√≥n API</a>
+<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">DocumentaciÛn API</a>
 </div>
 <div class="mt-8 md:mt-0 text-neutral-500"> 2026 AniDex. Todos los derechos reservados.</div>
 </div>
@@ -669,6 +669,8 @@
 <script data-ui-unlock>document.documentElement.classList.remove("preload-ui");</script>
 </body>
 </html>
+
+
 
 
 
