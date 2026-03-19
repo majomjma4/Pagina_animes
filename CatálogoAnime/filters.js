@@ -462,6 +462,16 @@
       sortAndRepaint(visible);
       updateHeaderCount(visible.length);
       toggleEmptyState(visible.length);
+      const filtersActive =
+        state.search ||
+        state.genres.size > 0 ||
+        state.years.size > 0 ||
+        state.types.size > 0 ||
+        state.statuses.size > 0;
+      if (window.AniDexLoadMore) {
+        if (filtersActive) window.AniDexLoadMore.hide();
+        else window.AniDexLoadMore.show();
+      }
     }
 
     function canonicalType(v) {
