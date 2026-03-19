@@ -389,9 +389,12 @@
     navInputs.forEach(bindInput);
 
     const filterInput = document.getElementById("filter-search");
+    const isMoviesPage = window.location.pathname.toLowerCase().includes("catalogo");
     if (filterInput) {
       filterInput.dataset.noSuggest = "1";
-      filterInput.addEventListener("input", () => applyFilter(filterInput.value));
+      if (!isMoviesPage) {
+        filterInput.addEventListener("input", () => applyFilter(filterInput.value));
+      }
     }
 
     const params = new URLSearchParams(window.location.search);

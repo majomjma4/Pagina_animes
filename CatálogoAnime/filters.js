@@ -67,7 +67,7 @@
     "award winning": "Premiado"
   };
 
-  const STATUS_OPTIONS = ["Todos", "En emisión", "Finalizado", "Próximamente"];
+  const STATUS_OPTIONS = ["Todos", "Emisión", "Finalizado", "Próximamente"];
 
   function normalize(v) {
     return String(v || "")
@@ -131,6 +131,28 @@
     return Array.from(document.querySelectorAll("[data-anime-card]"));
   }
 
+  function readGenresFromCard(card) {
+    if (card.dataset.genres) {
+      return String(card.dataset.genres)
+        .split(",")
+        .map((g) => g.trim())
+        .filter(Boolean);
+    }
+    const fromBadges = Array.from(card.querySelectorAll(".flex.flex-wrap.gap-2 span"))
+      .map((n) => n.textContent || "")
+      .map((t) => t.trim())
+      .filter(Boolean);
+    if (fromBadges.length) return fromBadges;
+    const genreLine = Array.from(card.querySelectorAll("p"))
+      .map((p) => p.textContent || "")
+      .find((t) => normalize(t).includes("genero"));
+    if (genreLine) {
+      const after = genreLine.split(":")[1] || genreLine;
+      return after.split(",").map((g) => g.trim()).filter(Boolean);
+    }
+    return [];
+  }
+
   function applyRuntimeCardData(cards) {
     cards.forEach((card) => {
       if (!card.dataset.title) {
@@ -143,7 +165,7 @@
         if (y) card.dataset.year = y;
       }
       if (!card.dataset.genres) {
-        const gs = Array.from(card.querySelectorAll(".flex.flex-wrap.gap-2 span")).map((n) => canonicalGenre(n.textContent || "")).filter(Boolean);
+        const gs = readGenresFromCard(card).map((g) => canonicalGenre(g)).filter(Boolean);
         card.dataset.genres = gs.join(",");
       }
       if (!card.dataset.type) {
@@ -159,6 +181,21 @@
     const cards = gatherCards();
     if (!cards.length) return;
     applyRuntimeCardData(cards);
+    const available = {
+      genres: new Set(),
+      years: new Set(),
+      types: new Set(),
+      statuses: new Set()
+    };
+    cards.forEach((card) => {
+      readGenresFromCard(card).map((g) => canonicalGenre(g)).filter(Boolean).forEach((g) => available.genres.add(g));
+      const y = Number(card.dataset.year || 0);
+      if (y) available.years.add(y);
+      const t = canonicalType(card.dataset.type || "");
+      if (t) available.types.add(t);
+      const s = canonicalStatus(card.dataset.status || "");
+      if (s) available.statuses.add(s);
+    });
 
     const searchInput = document.getElementById("filter-search");
     if (!searchInput) return;
@@ -177,15 +214,17 @@
 
     const genreWrap = createWrap();
     const yearWrap = document.createElement("div");
-    yearWrap.className = "w-full grid grid-cols-6 gap-x-5 gap-y-2";
+    yearWrap.className = "w-full grid grid-cols-5 gap-x-5 gap-y-2";
     const typeWrap = createWrap();
     const statusWrap = createWrap();
     yearWrap.classList.add("pr-1");
 
     genreLabel?.parentElement?.appendChild(genreWrap);
     yearLabel?.parentElement?.appendChild(yearWrap);
-    if (!isMoviesPage) typeLabel?.parentElement?.appendChild(typeWrap);
-    statusLabel?.parentElement?.appendChild(statusWrap);
+    if (!isMoviesPage) {
+      typeLabel?.parentElement?.appendChild(typeWrap);
+      statusLabel?.parentElement?.appendChild(statusWrap);
+    }
 
     const oldGenreRow = genreLabel?.parentElement?.querySelector("div.flex.flex-wrap.gap-2");
     if (oldGenreRow) oldGenreRow.remove();
@@ -193,6 +232,10 @@
       const el = document.getElementById(id);
       if (el) el.remove();
     });
+    if (isMoviesPage) {
+      typeLabel?.parentElement?.remove();
+      statusLabel?.parentElement?.remove();
+    }
 
     Array.from(document.querySelectorAll("button")).forEach((btn) => {
       const t = normalize(btn.textContent);
@@ -233,7 +276,7 @@
       emptyBox.className = "hidden col-span-full rounded-xl border border-outline/30 bg-surface-container-low p-8 text-center";
       const emptyTitle = isMoviesPage
         ? "No se encontró esa película"
-        : "No se encontró ese anime";
+        : "No se encontraron animes que coincidan con tu filtro.";
       emptyBox.innerHTML = `
         <img src="https://media.giphy.com/media/52OAVA0xaq5hd8HbfY/giphy.gif" alt="Doraemon triste" class="mx-auto mb-4 h-36 w-36 object-cover rounded-lg" />
         <h3 class="text-xl font-bold text-on-surface">${emptyTitle}</h3>
@@ -244,7 +287,9 @@
 
     function renderGenreChips() {
       genreWrap.innerHTML = "";
-      const list = ["Todos", ...COMMON_GENRES_ES];
+      const list = isMoviesPage
+        ? ["Todos", ...COMMON_GENRES_ES]
+        : ["Todos", ...COMMON_GENRES_ES.filter((g) => available.genres.has(g))];
       list.forEach((name) => {
         const active = name === "Todos" ? state.genres.size === 0 : state.genres.has(name);
         genreWrap.appendChild(chip(name, active, () => {
@@ -310,9 +355,8 @@
       const q = normalize(state.search);
       cards.forEach((card) => {
         const title = normalize(card.dataset.title);
-        const genres = normalize(card.dataset.genres)
-          .split(",")
-          .map((g) => canonicalGenre(g.trim()))
+        const genres = readGenresFromCard(card)
+          .map((g) => canonicalGenre(g))
           .filter(Boolean);
         const year = Number(card.dataset.year || 0);
         const type = canonicalType(card.dataset.type || "");
@@ -343,9 +387,9 @@
       return v || "Anime";
     }
 
-    function canonicalStatus(v) {
-      const n = normalize(v);
-      if (n.includes("emision") || n.includes("airing")) return "En emisión";
+  function canonicalStatus(v) {
+    const n = normalize(v);
+    if (n.includes("emision") || n.includes("airing")) return "Emisión";
       if (n.includes("upcoming") || n.includes("proxim")) return "Próximamente";
       if (n.includes("final") || n.includes("finished")) return "Finalizado";
       return v || "Finalizado";
@@ -390,13 +434,11 @@
 
     renderGenreChips();
     renderYearChips();
-    if (isMoviesPage) {
-      state.types.clear();
-      if (typeLabel?.parentElement) typeLabel.parentElement.remove();
-    } else {
+    if (!isMoviesPage) {
       renderSimple(typeWrap, ["Todos", "Anime", "OVA"], "types");
+      const statusList = ["Todos", ...STATUS_OPTIONS.filter((s) => s !== "Todos" && available.statuses.has(s))];
+      renderSimple(statusWrap, statusList, "statuses");
     }
-    renderSimple(statusWrap, STATUS_OPTIONS, "statuses");
     applyFilters();
   }
 
