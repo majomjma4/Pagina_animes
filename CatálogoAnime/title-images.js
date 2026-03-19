@@ -155,6 +155,25 @@
     img.loading = "lazy";
   }
 
+  function setScore(card, item) {
+    const media = card.querySelector(".relative");
+    if (!media) return;
+    const scoreValue = typeof item?.score === "number" ? item.score.toFixed(1) : null;
+    if (!scoreValue) return;
+
+    let badge = media.querySelector(".anidex-score-badge");
+    if (!badge) {
+      badge = document.createElement("div");
+      badge.className =
+        "anidex-score-badge absolute top-3 right-3 bg-surface-container-lowest/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1";
+      badge.innerHTML =
+        "<span class=\"material-symbols-outlined text-[10px]\" style=\"font-variation-settings: 'FILL' 1;\">star</span><span></span>";
+      media.appendChild(badge);
+    }
+    const valueEl = badge.querySelector("span:last-child");
+    if (valueEl) valueEl.textContent = scoreValue;
+  }
+
   function setDataAttrs(card, item, type) {
     if (!card.hasAttribute("data-anime-card")) return;
     const genres = (item?.genres || []).map((g) => (g?.name || "").toLowerCase()).filter(Boolean);
@@ -172,6 +191,7 @@
       setTitle(card, item.title || "Anime");
       setMeta(card, item);
       setImage(card, item);
+      setScore(card, item);
       setDataAttrs(card, item, type);
     });
   }
@@ -231,8 +251,8 @@
   }
 
   async function applyIndexPage() {
-    const tvCards = cardsBySelector("div.flex-none.w-64.group.cursor-pointer");
-    const movieCards = cardsBySelector("div.flex-none.w-80.group.cursor-pointer");
+    const tvCards = cardsBySelector("#trending-row .flex-none.group.cursor-pointer");
+    const movieCards = cardsBySelector("#movies-row .flex-none.group.cursor-pointer");
 
     if (tvCards.length) {
       const tvItems = await fetchTop("tv", tvCards.length);
