@@ -88,6 +88,20 @@
     }
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .transparent-scrollbar {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.2) transparent;
+    }
+    .transparent-scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .transparent-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .transparent-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.2);
+      border-radius: 999px;
+    }
   </style>
   <link rel="icon" href="img/icon.png" />
 
@@ -107,7 +121,7 @@
         { name: "Animes", href: "series.html" },
         { name: "Películas", href: "catalogo.html" },
         { name: "Destacados", href: "destacados.html" },
-        { name: "Ranking", href: "#" }
+        { name: "Ranking", href: "ranking.html" }
       ];
 
       const currentPage = window.location.pathname.split("/").pop();
@@ -149,7 +163,7 @@
 <div class="flex items-center gap-4">
         <a class="relative group hover:bg-neutral-800/50 rounded-full p-2 transition-all duration-300 scale-95 active:scale-90 flex items-center justify-center" href="user.html"><span class="material-symbols-outlined text-neutral-400 group-hover:text-violet-500 transition-colors">favorite</span><span class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-on-surface opacity-0 transition-opacity duration-200 group-hover:opacity-100">Favoritos</span></a>
         <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-violet-500/30 hover:border-violet-500 transition-colors cursor-pointer" onclick="window.location.href='user.html'">
-          <img alt="Perfil de usuario" class="w-full h-full object-cover" data-alt="Primer plano de un avatar minimalista moderno" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
+          <img alt="Perfil de usuario" class="w-full h-full object-cover" data-profile-avatar data-alt="Primer plano de un avatar minimalista moderno" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
         </div>
       </div>
     </div>
@@ -159,12 +173,14 @@
   <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto space-y-12">
     <!-- Header: User Profile Card -->
     <section class="relative group">
-      <div class="bg-surface-container-low p-8 rounded-2xl shadow-sm flex flex-col md:flex-row items-center gap-8">
+      <div id="profile-card" class="bg-surface-container-low p-8 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.35)] border border-white/10 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden transition-all duration-300 hover:shadow-[0_30px_80px_rgba(0,0,0,0.45)] hover:scale-[1.01]">
+        <span class="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full bg-white/5 blur-3xl"></span>
+        <span class="pointer-events-none absolute -bottom-24 -left-24 h-56 w-56 rounded-full bg-white/5 blur-3xl"></span>
         <div class="relative w-32 h-32 rounded-full overflow-visible border-4 border-primary shadow-lg flex-shrink-0">
-          <img alt="Foto de perfil" class="w-full h-full object-cover rounded-full" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
-          <a class="absolute -bottom-2 -right-0 w-7 h-7 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-lg z-50" href="user.html" aria-label="Editar perfil">
+          <img alt="Foto de perfil" class="w-full h-full object-cover rounded-full" data-profile-avatar src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
+          <button class="absolute -bottom-2 -right-0 w-7 h-7 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-lg z-50" type="button" aria-label="Editar perfil" id="profile-avatar-edit">
             <span class="material-symbols-outlined text-[14px]">edit</span>
-          </a>
+          </button>
         </div>
         <div class="flex-1 space-y-4 text-center md:text-left">
           <div>
@@ -172,211 +188,216 @@
             <p class="text-on-surface-variant font-medium mt-3">Curando el mejor shonen desde 2018</p>
           </div>
           <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-2">
-            <div class="bg-surface-container-high px-6 py-3 rounded-xl">
-              <span class="block text-primary font-bold text-2xl">45</span>
-              <span class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">ANIME COMPLETADO</span>
-            </div>
-            <div class="bg-surface-container-high px-6 py-3 rounded-xl">
-              <span class="block text-primary font-bold text-2xl">12.5</span>
-              <span class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">D&Iacute;AS VISTOS</span>
-            </div>
-            <div class="bg-surface-container-high px-6 py-3 rounded-xl">
-              <span class="block text-primary font-bold text-2xl">1,240</span>
-              <span class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">EPISODIOS</span>
-            </div>
+            <button type="button" data-open-status="completed" class="bg-gradient-to-br from-emerald-500 to-teal-600 px-6 py-3 rounded-xl font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform cursor-pointer">
+              <span class="block text-primary font-bold text-2xl" data-count-completed>0</span>
+              <span class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">ANIMES COMPLETADOS</span>
+            </button>
+            <button type="button" data-open-status="pending" class="bg-gradient-to-br from-amber-500 to-orange-600 px-6 py-3 rounded-xl font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform cursor-pointer">
+              <span class="block text-primary font-bold text-2xl" data-count-pending>0</span>
+              <span class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">ANIMES PENDIENTES</span>
+            </button>
+            <!-- Estadísticas de “días/episodios vistos” removidas ya que no aplica a listas sin reproducción -->
           </div>
         </div>
         <div class="flex gap-3">
-          <a class="bg-gradient-to-br from-primary to-primary-container px-8 py-4 rounded-full font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform inline-block" href="user.html">EDITAR PERFIL</a>
+          <button class="bg-gradient-to-br from-primary to-primary-container px-8 py-4 rounded-full font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform inline-block" type="button" id="profile-edit-btn">EDITAR PERFIL</button>
         </div>
       </div>
     </section>
 
     <!-- Main Dashboard Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-      <!-- Statistics Section -->
-      <div class="lg:col-span-4 space-y-10">
-        <div class="space-y-6">
-          <h2 class="font-headline text-2xl font-bold px-2">Estad&iacute;sticas</h2>
-          <!-- Genre Breakdown -->
-          <div class="bg-surface-container-low p-6 rounded-lg space-y-6 shadow-sm">
-            <h3 class="text-sm font-semibold text-on-surface-variant uppercase tracking-widest">G&Eacute;NEROS TOP</h3>
-            <div class="space-y-4">
-              <div class="space-y-2">
-                <div class="flex justify-between text-sm font-medium">
-                  <span>Action</span>
-                  <span class="text-primary">78%</span>
-                </div>
-                <div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
-                  <div class="h-full bg-primary rounded-full w-[78%]"></div>
-                </div>
-              </div>
-              <div class="space-y-2">
-                <div class="flex justify-between text-sm font-medium">
-                  <span>Romance</span>
-                  <span class="text-primary">42%</span>
-                </div>
-                <div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
-                  <div class="h-full bg-primary rounded-full w-[42%]"></div>
-                </div>
-              </div>
-              <div class="space-y-2">
-                <div class="flex justify-between text-sm font-medium">
-                  <span>Cyberpunk</span>
-                  <span class="text-primary">35%</span>
-                </div>
-                <div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
-                  <div class="h-full bg-primary rounded-full w-[35%]"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Watching Status Bento -->
-        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-surface-container-high p-5 rounded-lg flex flex-col justify-between aspect-square">
-            <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">play_circle</span>
-            <div>
-              <span class="block text-2xl font-bold">12</span>
-              <span class="text-xs text-on-surface-variant font-medium">Viendo</span>
-            </div>
-          </div>
-          <div class="bg-surface-container-high p-5 rounded-lg flex flex-col justify-between aspect-square">
-            <span class="material-symbols-outlined text-tertiary-dim" style="font-variation-settings: 'FILL' 1;">bookmark</span>
-            <div>
-              <span class="block text-2xl font-bold">156</span>
-              <span class="text-xs text-on-surface-variant font-medium">Planeando</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Favorites & Activity Content -->
       <div class="lg:col-span-8 space-y-12">
-        <!-- History / Recent Activity -->
-        <section class="space-y-6">
-          <div class="flex justify-between items-end px-2">
-            <h2 class="font-headline text-2xl font-bold">Visto Recientemente</h2>
-            <button class="text-primary text-sm font-bold hover:underline">Ver todo</button>
-          </div>
-          <div class="space-y-3">
-            <!-- Activity Item 1 -->
-            <div class="bg-surface-container-low hover:bg-surface-container-high p-4 rounded-lg flex items-center gap-6 transition-all group cursor-pointer">
-              <div class="w-16 h-20 rounded-md overflow-hidden flex-shrink-0">
-                <img alt="Anime cover" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDgvOP8AxWyTlYWPns9djRpgaODveTSapwc0I-KlR_UjLa0YlV3NoETnFa34hBiyoUhkW_AuMLkkkCFhPeV_OgIqtWSWoNPbfoU6gt6yC1M-4MGqh5lKVl3JCMPZhKK3YDPS0ID0LTErgnVrQFr9_yyQ07TzOHt6v8ZCAtfdm-TmkOyF6sIQ_3ryxqZ5_VqXf6nwGOBd_uZO5r9hZrt-mz7M8dMbgUjzkxdtwWTKDFkKU_27K969wBYxtbuBVi_Im-1PbbhV6IN9ev"/>
-              </div>
-              <div class="flex-1 space-y-2">
-                <div class="flex justify-between items-start">
-                  <h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Neon Genesis Evolution</h4>
-                  <span class="text-xs text-on-surface-variant">2 horas atr&aacute;s</span>
-                </div>
-                <div class="space-y-1">
-                  <div class="flex justify-between text-xs font-semibold text-on-surface-variant">
-                    <span>Episodio 12 / 24</span>
-                    <span>50%</span>
-                  </div>
-                  <div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
-                    <div class="h-full bg-primary rounded-full w-1/2"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Activity Item 2 -->
-            <div class="bg-surface-container-low hover:bg-surface-container-high p-4 rounded-lg flex items-center gap-6 transition-all group cursor-pointer">
-              <div class="w-16 h-20 rounded-md overflow-hidden flex-shrink-0">
-                <img alt="Anime cover" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALQSATDu71wKVxy4D9fgGYKJHUoEvhqB9D5EvbqGWRnTQEh9NSG76vCrKT4u4EcyMPBuXq_jQl4meFjs1ODlqSOP2wkduCSC7Mtqv7Fum4wCe6rJkm6IaKs1ZCdTUmQuvsLwwr3W1pj4vWQgvBGED1HPJdb19tou9KqZ2fB6jj3e-CPx8OC2nbBRJ_tGnuk7lmj_nDuuqbcOC7z3s7JAvHtgqkURkNTGVtWcgFFzA7D3YTmrqhLeDWc2mnHuSPGnMireNUrx1WyUuc"/>
-              </div>
-              <div class="flex-1 space-y-2">
-                <div class="flex justify-between items-start">
-                  <h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Silent Whisperer</h4>
-                  <span class="text-xs text-on-surface-variant">Ayer</span>
-                </div>
-                <div class="space-y-1">
-                  <div class="flex justify-between text-xs font-semibold text-on-surface-variant">
-                    <span>Episodio 08 / 12</span>
-                    <span>66%</span>
-                  </div>
-                  <div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
-                    <div class="h-full bg-primary rounded-full w-2/3"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <!-- Visto Recientemente removed -->
 
         <section class="space-y-6">
           <div class="flex justify-between items-end px-2">
             <h2 class="font-headline text-2xl font-bold">Mi Lista</h2>
-            <button class="text-primary text-sm font-bold hover:underline">Ver todo</button>
+            <div class="flex items-center gap-2">
+              <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-left="my-list-grid" aria-label="Desplazar a la izquierda">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-right="my-list-grid" aria-label="Desplazar a la derecha">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+              <button class="text-primary text-sm font-bold hover:underline" type="button" data-open-list="my-list">Ver todo</button>
+            </div>
           </div>
-          <div id="my-list-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+          <div id="my-list-grid" class="flex gap-4 overflow-x-auto no-scrollbar overflow-visible py-1"></div>
         </section>
 
         <!-- Favorites Grid -->
         <section class="space-y-6">
           <div class="flex justify-between items-end px-2">
-            <h2 class="font-headline text-2xl font-bold">T&iacute;tulos Favoritos</h2>
-            <button class="text-primary text-sm font-bold hover:underline">Gestionar Cuadr&iacute;cula</button>
-          </div>
-          <div id="favorites-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            <div class="group cursor-pointer">
-              <div class="aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high relative mb-2">
-                <img alt="Anime" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAn0OEsho7LAKrPj_HsJXrIMp5JFdumiEMGp5qbWmB-5S__1gVi79fVO5ca1K1fWc5IDxRwy86T_60PE9stPpOiZxNrGApkkrgwdaGJT3X5gc7t4braCrb4P4RnlSMdbASMgs8om1BnbpM-sG83CmWum4sKilERHUwti-3kMX4jczM_4SjlUc2Hx0kAjXs4UgmxbFKzsNSu0JqA81stuKaQoj8CDeIZkhbO8eVehl2qUduiWtIQxKCNTebeKfuwuVHcCa9Y7Zsf5Wr"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span class="text-white text-xs font-bold uppercase tracking-tighter">Action &bull; Sci-Fi</span>
-                </div>
-                <div class="absolute top-2 right-2 p-1.5 glass-effect bg-black/40 rounded-full">
-                  <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
-                </div>
-              </div>
-              <h5 class="text-sm font-bold truncate px-1">Cyber Runner</h5>
-              <p class="text-xs text-on-surface-variant px-1">Studio Trigger</p>
-            </div>
-            <div class="group cursor-pointer">
-              <div class="aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high relative mb-2">
-                <img alt="Anime" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrGtlPJiLf1w1bCN3qee_-h67M9zFnnYJooxsRjUqFk36Cflm62oIbwgEQ8oyXmQqqn5z5Os8iZn524ordd_Gx5Jnzx-IueXcOdA1vMAO9uoFc41sun2Lhz15iHH6QAwOj9g_3AgNtQJQnichFmXnqKdYnoDh_CodUcVjrhP3zPTAOmbxTXguJBI1IYon2kGy6vYPcmiTSli_zl2Rqe6q0_UUs4MBEjQSMW57l5UcYpVf7sWIG0wrfoAc_A1JgBu7ImOW2ETEc8AmN"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span class="text-white text-xs font-bold uppercase tracking-tighter">Fantasy &bull; Adventure</span>
-                </div>
-                <div class="absolute top-2 right-2 p-1.5 glass-effect bg-black/40 rounded-full">
-                  <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
-                </div>
-              </div>
-              <h5 class="text-sm font-bold truncate px-1">Sword of Astra</h5>
-              <p class="text-xs text-on-surface-variant px-1">Wit Studio</p>
-            </div>
-            <div class="group cursor-pointer">
-              <div class="aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high relative mb-2">
-                <img alt="Anime" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6iP0tSbi8N8Yms0XdU9DxQQBiFO7T8Hv7s7fabf14We0N9GMoISWiGGcyB4Fdj6ViIkf7QbSkiIcSzD8jb_9p0zlycf837TB4PoHQ6SJOFv_A0rjsHzB0kk74TBYF4xxv2I-f5Sdr_xyKyjICCEfDIohxwNgEGVhDsWvYjI_3OWa3XGFvPy2ZoQCGn0q8cuRpFtIn-hJuqiUI64hul_ScApjfNVBq5qsO4ajng4wpGpTAHBqpQA9GsPIYJWliwXsJMdZjfaVkfJej"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span class="text-white text-xs font-bold uppercase tracking-tighter">Drama &bull; Seinen</span>
-                </div>
-                <div class="absolute top-2 right-2 p-1.5 glass-effect bg-black/40 rounded-full">
-                  <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
-                </div>
-              </div>
-              <h5 class="text-sm font-bold truncate px-1">Tokyo Rhythms</h5>
-              <p class="text-xs text-on-surface-variant px-1">MAPPA</p>
-            </div>
-            <div class="group cursor-pointer">
-              <div class="aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high relative mb-2">
-                <img alt="Anime" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq1pqqjMcSMxxW248ACjrm4A1UHBXcx6VGz_pJBW36cQFYDJQm3NoAtjKU3ulOyBe9c4v1imtPgeE7GGmoWL7zV1yDDMWW0eP-eVTYIGO_uzSYP_iBbo9kOgGKDAC6BXPnt0GGXGPgOutbH2pta-_DXmTg9MBwU8c0EDXrUPS4OsTtW0J7wlWJkQgPp8lpLCSq01Gc8j0PZm35r6OzdIgXps-UTY_NhYEEN-ZBx0DVEOI0iBf-DThkYroiGwTBALBewK_jxdA84M9M"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span class="text-white text-xs font-bold uppercase tracking-tighter">Historical &bull; Supernatural</span>
-                </div>
-                <div class="absolute top-2 right-2 p-1.5 glass-effect bg-black/40 rounded-full">
-                  <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
-                </div>
-              </div>
-              <h5 class="text-sm font-bold truncate px-1">Ghost of Edo</h5>
-              <p class="text-xs text-on-surface-variant px-1">Ufotable</p>
+            <h2 class="font-headline text-2xl font-bold">Favoritos</h2>
+            <div class="flex items-center gap-2">
+              <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-left="favorites-grid" aria-label="Desplazar a la izquierda">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-right="favorites-grid" aria-label="Desplazar a la derecha">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+              <button class="text-primary text-sm font-bold hover:underline" type="button" data-open-list="favorites">Ver todo</button>
             </div>
           </div>
+          <div id="favorites-grid" class="flex gap-4 overflow-x-auto no-scrollbar overflow-visible py-1"></div>
         </section>
       </div>
+<!-- Right Rail: Recomendados -->
+      <aside class="lg:col-span-4 space-y-4 bg-surface-container-low rounded-2xl p-4">
+        <div class="flex items-center justify-between px-2">
+          <h2 class="font-headline text-xl font-bold">Recomendados</h2>
+        </div>
+        <div class="space-y-3">
+          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 transition-colors cursor-pointer relative" data-mal-id="5114" data-title="Fullmetal Alchemist: Brotherhood" onclick="window.location.href='detail.html?mal_id=5114&q=Fullmetal%20Alchemist%3A%20Brotherhood'">
+            <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
+            <img src="https://cdn.myanimelist.net/images/anime/1223/96541.jpg" alt="Fullmetal Alchemist: Brotherhood" class="w-12 h-16 object-cover rounded-md" />
+            <div class="text-left">
+              <p class="text-sm font-bold">Fullmetal Alchemist: Brotherhood</p>
+              <p class="text-xs text-on-surface-variant">Accion - Aventura</p>
+            </div>
+          </button>
+          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 transition-colors cursor-pointer relative" data-mal-id="9253" data-title="Steins;Gate" onclick="window.location.href='detail.html?mal_id=9253&q=Steins%3BGate'">
+            <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
+            <img src="https://cdn.myanimelist.net/images/anime/5/73199.jpg" alt="Steins;Gate" class="w-12 h-16 object-cover rounded-md" />
+            <div class="text-left">
+              <p class="text-sm font-bold">Steins;Gate</p>
+              <p class="text-xs text-on-surface-variant">Sci-Fi - Suspenso</p>
+            </div>
+          </button>
+          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 transition-colors cursor-pointer relative" data-mal-id="32281" data-title="Kimi no Na wa." onclick="window.location.href='detail.html?mal_id=32281&q=Kimi%20no%20Na%20wa.'">
+            <span class="absolute top-2 right-2 rounded-full bg-fuchsia-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Película</span>
+            <img src="https://cdn.myanimelist.net/images/anime/5/87048.jpg" alt="Kimi no Na wa." class="w-12 h-16 object-cover rounded-md" />
+            <div class="text-left">
+              <p class="text-sm font-bold">Kimi no Na wa.</p>
+              <p class="text-xs text-on-surface-variant">Romance - Fantasia</p>
+            </div>
+          </button>
+          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 transition-colors cursor-pointer relative" data-mal-id="16498" data-title="Shingeki no Kyojin" onclick="window.location.href='detail.html?mal_id=16498&q=Shingeki%20no%20Kyojin'">
+            <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
+            <img src="https://cdn.myanimelist.net/images/anime/10/47347.jpg" alt="Shingeki no Kyojin" class="w-12 h-16 object-cover rounded-md" />
+            <div class="text-left">
+              <p class="text-sm font-bold">Attack on Titan</p>
+              <p class="text-xs text-on-surface-variant">Accion - Drama</p>
+            </div>
+          </button>
+          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 transition-colors cursor-pointer relative" data-mal-id="12355" data-title="Ookami Kodomo no Ame to Yuki" onclick="window.location.href='detail.html?mal_id=12355&q=Ookami%20Kodomo%20no%20Ame%20to%20Yuki'">
+            <span class="absolute top-2 right-2 rounded-full bg-fuchsia-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Película</span>
+            <img src="https://cdn.myanimelist.net/images/anime/9/35721.jpg" alt="Wolf Children" class="w-12 h-16 object-cover rounded-md" />
+            <div class="text-left">
+              <p class="text-sm font-bold">Wolf Children</p>
+              <p class="text-xs text-on-surface-variant">Drama - Fantasia</p>
+            </div>
+          </button>
+          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 transition-colors cursor-pointer relative" data-mal-id="40591" data-title="Kaguya-sama: Love is War" onclick="window.location.href='detail.html?mal_id=40591&q=Kaguya-sama%3A%20Love%20is%20War'">
+            <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
+            <img src="https://cdn.myanimelist.net/images/anime/1295/106551.jpg" alt="Kaguya-sama: Love is War" class="w-12 h-16 object-cover rounded-md" />
+            <div class="text-left">
+              <p class="text-sm font-bold">Kaguya-sama: Love is War</p>
+              <p class="text-xs text-on-surface-variant">Romance - Comedia</p>
+            </div>
+          </button>
+        </div>
+        <a class="mt-4 inline-flex w-full items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-600 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white shadow-lg hover:scale-105 active:scale-95 transition-transform" href="destacados.html">Ver m&aacute;s</a>
+      </aside>
     </div>
   </main>
+
+  <!-- Avatar Picker Modal -->
+  <div id="avatar-modal" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-avatar-close></div>
+    <div class="relative mx-auto mt-28 w-[92%] max-w-3xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-headline text-xl font-bold">Elige tu nuevo avatar</h3>
+        <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-avatar-close aria-label="Cerrar">x</button>
+      </div>
+      <p class="text-sm text-on-surface-variant mb-4">Selecciona una imagen para tu perfil.</p>
+      <div class="max-h-[60vh] overflow-y-auto pr-2 transparent-scrollbar">
+        <div id="avatar-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Profile Modal -->
+  <div id="profile-modal" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-profile-close></div>
+    <div class="relative mx-auto mt-28 w-[92%] max-w-2xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-headline text-xl font-bold">Editar perfil</h3>
+        <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-profile-close aria-label="Cerrar">x</button>
+      </div>
+        <div class="space-y-4">
+        <div class="space-y-2">
+          <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Nombre de usuario</label>
+          <input id="profile-name-input" class="w-full rounded-xl bg-surface-container-low border border-outline-variant px-4 py-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40" type="text" placeholder="Tu nombre" />
+        </div>
+        <div class="space-y-2">
+          <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Descripción</label>
+          <textarea id="profile-desc-input" class="w-full rounded-xl bg-surface-container-low border border-outline-variant px-4 py-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40 min-h-[120px]" placeholder="Escribe una breve descripción"></textarea>
+        </div>
+        <div class="space-y-2">
+          <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Color del recuadro</label>
+          <div id="profile-color-options" class="flex flex-wrap gap-3">
+            <button type="button" data-color-class="bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800" class="w-9 h-9 rounded-full bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 border border-zinc-700 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(255,255,255,0.18)]"></button>
+            <button type="button" data-color-class="bg-gradient-to-br from-violet-900/50 via-indigo-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-violet-900/50 via-indigo-900/40 to-slate-900/30 border border-violet-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)]"></button>
+            <button type="button" data-color-class="bg-gradient-to-br from-fuchsia-900/50 via-rose-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-fuchsia-900/50 via-rose-900/40 to-slate-900/30 border border-rose-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(244,114,182,0.35)]"></button>
+            <button type="button" data-color-class="bg-gradient-to-br from-emerald-900/50 via-teal-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-900/50 via-teal-900/40 to-slate-900/30 border border-emerald-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(52,211,153,0.35)]"></button>
+            <button type="button" data-color-class="bg-gradient-to-br from-sky-900/50 via-cyan-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-sky-900/50 via-cyan-900/40 to-slate-900/30 border border-sky-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(56,189,248,0.35)]"></button>
+            <button type="button" data-color-class="bg-gradient-to-br from-amber-900/50 via-orange-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-amber-900/50 via-orange-900/40 to-slate-900/30 border border-amber-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(251,191,36,0.35)]"></button>
+            <button type="button" data-color-class="bg-gradient-to-br from-lime-900/50 via-green-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-lime-900/50 via-green-900/40 to-slate-900/30 border border-lime-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(163,230,53,0.35)]"></button>
+            <button type="button" data-color-class="bg-gradient-to-br from-red-900/50 via-orange-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-red-900/50 via-orange-900/40 to-slate-900/30 border border-red-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(248,113,113,0.35)]"></button>
+            <button type="button" data-color-class="bg-gradient-to-br from-blue-900/50 via-indigo-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-900/50 via-indigo-900/40 to-slate-900/30 border border-blue-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(96,165,250,0.35)]"></button>
+            <button type="button" data-color-class="bg-gradient-to-br from-purple-900/50 via-pink-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-900/50 via-pink-900/40 to-slate-900/30 border border-pink-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(236,72,153,0.35)]"></button>
+          </div>
+        </div>
+        <div class="flex justify-end gap-3 pt-2">
+          <button class="rounded-full bg-surface-container-low px-4 py-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-on-surface" type="button" data-profile-close>Cancelar</button>
+          <button id="profile-save-btn" class="rounded-full bg-primary text-on-primary px-6 py-2 text-xs font-bold uppercase tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform" type="button">Guardar</button>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <!-- Full Lists Modal -->
+  <div id="lists-modal" class="fixed inset-0 z-[70] hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-lists-close></div>
+    <div class="relative mx-auto mt-20 w-[92%] max-w-6xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-headline text-2xl font-bold" id="lists-modal-title">Mi Lista</h3>
+        <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-lists-close aria-label="Cerrar">x</button>
+      </div>
+      <div id="lists-modal-body" class="max-h-[70vh] overflow-y-auto overflow-x-hidden pr-2 transparent-scrollbar">
+        <div id="my-list-modal" class="space-y-4 hidden">
+          <div id="my-list-grid-full" data-show-all="1" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+        </div>
+        <div id="favorites-modal" class="space-y-4 hidden">
+          <div id="favorites-grid-full" data-show-all="1" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status Modal -->
+  <div id="status-modal" class="fixed inset-0 z-[70] hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-status-close></div>
+    <div class="relative mx-auto mt-20 w-[92%] max-w-6xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-headline text-2xl font-bold" id="status-modal-title">Completados</h3>
+        <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-status-close aria-label="Cerrar">x</button>
+      </div>
+      <div id="status-modal-body" class="max-h-[70vh] overflow-y-auto overflow-x-hidden pr-2 transparent-scrollbar">
+        <div id="completed-section" class="space-y-4 hidden">
+          <div id="completed-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+        </div>
+        <div id="pending-section" class="space-y-4 hidden">
+          <div id="pending-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-900 font-['Inter'] text-sm tracking-wide">
@@ -406,8 +427,242 @@
     if (window.AniDexSearch) window.AniDexSearch.init();
     if (window.AniDexDetailLinks) window.AniDexDetailLinks.init();
     if (window.AniDexFavorites) window.AniDexFavorites.init();
-    if (window.AniDexDetailLinks) window.AniDexDetailLinks.init();
   });
+</script>
+<script>
+  (function () {
+    const editBtn = document.getElementById("profile-avatar-edit");
+    const modal = document.getElementById("avatar-modal");
+    const grid = document.getElementById("avatar-grid");
+    const avatarImg = document.querySelector("img[alt='Foto de perfil']");
+
+    if (!editBtn || !modal || !grid || !avatarImg) return;
+
+    const avatars = [
+      "https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"
+    ];
+
+    const openModal = () => {
+      modal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    };
+    const closeModal = () => {
+      modal.classList.add("hidden");
+      document.body.style.overflow = "";
+    };
+
+    const renderAvatars = () => {
+      grid.innerHTML = avatars.map((src) => `
+        <button type="button" class="group relative aspect-square rounded-xl overflow-hidden bg-surface-container-low hover:bg-surface-container-high transition-colors" data-avatar-src="${src}">
+          <img src="${src}" alt="Avatar" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+        </button>
+      `).join("");
+    };
+    renderAvatars();
+
+    // Cargar avatares desde Jikan (personajes populares)
+    fetch("https://api.jikan.moe/v4/characters?order_by=favorites&sort=desc&limit=24", { cache: "no-store" })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((json) => {
+        const list = (json && json.data) ? json.data : [];
+        list.forEach((it) => {
+          const img = it?.images?.webp?.image_url || it?.images?.jpg?.image_url;
+          if (img) avatars.push(img);
+        });
+        renderAvatars();
+      })
+      .catch(() => {});
+
+    const syncAvatars = (src) => {
+      if (!src) return;
+      avatarImg.src = src;
+      document.querySelectorAll("img[data-profile-avatar]").forEach((img) => {
+        img.src = src;
+      });
+      try { localStorage.setItem("anidex_profile_avatar", src); } catch (e) {}
+    };
+
+    const saved = (() => { try { return localStorage.getItem("anidex_profile_avatar"); } catch (e) { return null; } })();
+    if (saved) syncAvatars(saved);
+
+    grid.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-avatar-src]");
+      if (!btn) return;
+      const src = btn.getAttribute("data-avatar-src");
+      if (src) syncAvatars(src);
+      closeModal();
+    });
+
+    editBtn.addEventListener("click", openModal);
+    modal.querySelectorAll("[data-avatar-close]").forEach((el) => el.addEventListener("click", closeModal));
+  })();
+</script>
+<script>
+  (function () {
+    const modal = document.getElementById("lists-modal");
+    const title = document.getElementById("lists-modal-title");
+    const myWrap = document.getElementById("my-list-modal");
+    const favWrap = document.getElementById("favorites-modal");
+    if (!modal || !title || !myWrap || !favWrap) return;
+
+    const openModal = (which) => {
+      if (which === "my-list") {
+        title.textContent = "Mi Lista";
+        myWrap.classList.remove("hidden");
+        favWrap.classList.add("hidden");
+      } else {
+        title.textContent = "Favoritos";
+        favWrap.classList.remove("hidden");
+        myWrap.classList.add("hidden");
+      }
+      modal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    };
+    const closeModal = () => {
+      modal.classList.add("hidden");
+      document.body.style.overflow = "";
+    };
+
+    document.querySelectorAll("[data-open-list]").forEach((btn) => {
+      btn.addEventListener("click", () => openModal(btn.getAttribute("data-open-list")));
+    });
+    modal.querySelectorAll("[data-lists-close]").forEach((el) => el.addEventListener("click", closeModal));
+  })();
+</script>
+<script>
+  (function () {
+    const modal = document.getElementById("status-modal");
+    const title = document.getElementById("status-modal-title");
+    const completed = document.getElementById("completed-section");
+    const pending = document.getElementById("pending-section");
+    if (!modal || !title || !completed || !pending) return;
+
+    const openModal = (which) => {
+      if (which === "completed") {
+        title.textContent = "Completados";
+        completed.classList.remove("hidden");
+        pending.classList.add("hidden");
+      } else {
+        title.textContent = "Pendientes";
+        pending.classList.remove("hidden");
+        completed.classList.add("hidden");
+      }
+      modal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    };
+    const closeModal = () => {
+      modal.classList.add("hidden");
+      document.body.style.overflow = "";
+    };
+
+    document.querySelectorAll("[data-open-status]").forEach((btn) => {
+      btn.addEventListener("click", () => openModal(btn.getAttribute("data-open-status")));
+    });
+    modal.querySelectorAll("[data-status-close]").forEach((el) => el.addEventListener("click", closeModal));
+  })();
+</script>
+<script>
+  (function () {
+    const bindScroll = (btn, dir) => {
+      const id = btn.getAttribute(dir === "left" ? "data-scroll-left" : "data-scroll-right");
+      const target = id ? document.getElementById(id) : null;
+      if (!target) return;
+      btn.addEventListener("click", () => {
+        target.scrollBy({ left: dir === "left" ? -360 : 360, behavior: "smooth" });
+      });
+    };
+    document.querySelectorAll("[data-scroll-left]").forEach((btn) => bindScroll(btn, "left"));
+    document.querySelectorAll("[data-scroll-right]").forEach((btn) => bindScroll(btn, "right"));
+  })();
+</script>
+<script>
+  (function () {
+    const editBtn = document.getElementById("profile-edit-btn");
+    const modal = document.getElementById("profile-modal");
+    const closeEls = modal ? modal.querySelectorAll("[data-profile-close]") : [];
+    const nameInput = document.getElementById("profile-name-input");
+    const descInput = document.getElementById("profile-desc-input");
+    const saveBtn = document.getElementById("profile-save-btn");
+    const nameEl = document.querySelector("h1.font-headline");
+    const descEl = document.querySelector("p.text-on-surface-variant.font-medium");
+    const cardEl = document.getElementById("profile-card");
+    const colorOptions = document.getElementById("profile-color-options");
+    const colorClasses = [
+      "bg-gradient-to-br",
+      "from-zinc-950", "from-zinc-900", "via-zinc-900", "to-zinc-800",
+      "from-violet-900/50", "via-indigo-900/40", "to-slate-900/30",
+      "from-fuchsia-900/50", "via-rose-900/40",
+      "from-emerald-900/50", "via-teal-900/40",
+      "from-sky-900/50", "via-cyan-900/40",
+      "from-amber-900/50", "via-orange-900/40",
+      "from-lime-900/50", "via-green-900/40",
+      "from-red-900/50",
+      "from-blue-900/50",
+      "from-purple-900/50", "via-pink-900/40"
+    ];
+
+    if (!editBtn || !modal || !nameInput || !descInput || !saveBtn || !nameEl || !descEl) return;
+
+    const loadProfile = () => {
+      try {
+        const savedName = localStorage.getItem("anidex_profile_name");
+        const savedDesc = localStorage.getItem("anidex_profile_desc");
+        const savedColor = localStorage.getItem("anidex_profile_color");
+        if (savedName) nameEl.textContent = savedName;
+        if (savedDesc) descEl.textContent = savedDesc;
+        if (savedColor && cardEl) {
+          colorClasses.forEach((c) => cardEl.classList.remove(c));
+          savedColor.split(" ").forEach((c) => cardEl.classList.add(c));
+          if (colorOptions) {
+            colorOptions.querySelectorAll("[data-color-class]").forEach((b) => b.classList.remove("ring-2", "ring-violet-400"));
+            const selected = colorOptions.querySelector(`[data-color-class="${savedColor}"]`);
+            if (selected) selected.classList.add("ring-2", "ring-violet-400");
+          }
+        }
+      } catch (e) {}
+    };
+
+    const openModal = () => {
+      nameInput.value = nameEl.textContent.trim();
+      descInput.value = descEl.textContent.trim();
+      modal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    };
+    const closeModal = () => {
+      modal.classList.add("hidden");
+      document.body.style.overflow = "";
+    };
+
+    saveBtn.addEventListener("click", () => {
+      const newName = nameInput.value.trim() || "AnimeFan99";
+      const newDesc = descInput.value.trim() || "Curando el mejor shonen desde 2018";
+      nameEl.textContent = newName;
+      descEl.textContent = newDesc;
+      try {
+        localStorage.setItem("anidex_profile_name", newName);
+        localStorage.setItem("anidex_profile_desc", newDesc);
+      } catch (e) {}
+      closeModal();
+    });
+
+    if (colorOptions && cardEl) {
+      colorOptions.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-color-class]");
+        if (!btn) return;
+        const colorClass = btn.getAttribute("data-color-class");
+        if (!colorClass) return;
+        colorClasses.forEach((c) => cardEl.classList.remove(c));
+        colorClass.split(" ").forEach((c) => cardEl.classList.add(c));
+        colorOptions.querySelectorAll("[data-color-class]").forEach((b) => b.classList.remove("ring-2", "ring-violet-400"));
+        btn.classList.add("ring-2", "ring-violet-400");
+        try { localStorage.setItem("anidex_profile_color", colorClass); } catch (e) {}
+      });
+    }
+
+    editBtn.addEventListener("click", openModal);
+    closeEls.forEach((el) => el.addEventListener("click", closeModal));
+    loadProfile();
+  })();
 </script>
 <script data-ui-unlock>document.documentElement.classList.remove("preload-ui");</script>
 </body>

@@ -321,7 +321,11 @@
       btn.dataset.itemTitle = preferredTitle;
       btn.dataset.itemImage = src || "";
       btn.dataset.itemType = (full.type || "").toLowerCase() === "movie" ? "Pelicula" : "Anime";
+      btn.dataset.itemId = String(selectedId || "");
     });
+    document.body.dataset.detailTitle = preferredTitle;
+    document.body.dataset.detailImage = src || "";
+    document.body.dataset.detailType = (full.type || "").toLowerCase() === "movie" ? "Pelicula" : "Anime";
     if (window.AniDexFavorites) window.AniDexFavorites.refresh();
 
     // Recomendados: si es película, mostrar películas; si no, series.
