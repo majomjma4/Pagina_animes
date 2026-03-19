@@ -224,6 +224,21 @@
       if (typeLabel) typeLabel.textContent = "Tipo";
       if (statusLabel) statusLabel.textContent = "Estado";
     }
+    if (isMoviesPage) {
+      // Move duration badge to bottom-left and remove "Pelicula" label.
+      cards.forEach((card) => {
+        const badge = card.querySelector("span.absolute.left-3.top-3, span.absolute.left-3.bottom-3");
+        if (!badge) return;
+        const txt = (badge.textContent || "")
+          .replace(/pel[ií]?cula\\s*/i, "")
+          .replace(/pel\\?cula\\s*/i, "")
+          .replace(/\s{2,}/g, " ")
+          .trim();
+        if (txt) badge.textContent = txt;
+        badge.classList.remove("top-3");
+        badge.classList.add("bottom-3");
+      });
+    }
 
     const genreWrap = createWrap();
     genreWrap.classList.add("anidex-genre-wrap");

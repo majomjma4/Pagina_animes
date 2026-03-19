@@ -69,103 +69,218 @@
     <div class="mb-8 flex items-center justify-between gap-4">
       <div>
         <h1 class="font-['Manrope'] text-3xl md:text-4xl font-extrabold tracking-tight">Más Destacados</h1>
-        <p class="text-zinc-400 mt-2">Series y películas en una sola sección.</p>
+        <p class="text-zinc-400 mt-2">Animes y películas mas populares.</p>
       </div>
-      <a href="index.html" class="rounded-full bg-zinc-800 px-4 py-2 text-sm font-semibold hover:bg-zinc-700 transition-colors">Volver</a>
+      <div class="flex items-center gap-2">
+        <label class="text-xs uppercase tracking-widest text-zinc-400" for="featured-type">Tipo</label>
+        <select id="featured-type" class="rounded-full bg-zinc-900 border border-zinc-800 px-4 py-2 text-sm text-zinc-100">
+          <option value="all">Todos</option>
+          <option value="anime">Anime</option>
+          <option value="movie">Película</option>
+        </select>
+      </div>
     </div>
 
     <section>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <article class="group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
-          <div class="relative aspect-[2/3]">
-            <img class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/1015/138006l.jpg" alt="Sousou no Frieren" />
-            <span class="absolute top-3 left-3 rounded-full bg-violet-500/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">Serie</span>
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold">Sousou no Frieren</h3>
-            <p class="text-xs text-zinc-400 mt-1">Fantasía, Aventura</p>
-          </div>
-        </article>
-
-        <article class="group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
-          <div class="relative aspect-[2/3]">
-            <img class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/1337/99013l.jpg" alt="Kimetsu no Yaiba" />
-            <span class="absolute top-3 left-3 rounded-full bg-violet-500/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">Serie</span>
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold">Kimetsu no Yaiba</h3>
-            <p class="text-xs text-zinc-400 mt-1">Acción, Sobrenatural</p>
-          </div>
-        </article>
-
-        <article class="group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
-          <div class="relative aspect-[2/3]">
-            <img class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/1598/118702l.jpg" alt="Suzume" />
-            <span class="absolute top-3 left-3 rounded-full bg-cyan-500/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">Película</span>
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold">Suzume</h3>
-            <p class="text-xs text-zinc-400 mt-1">Drama, Fantasía</p>
-          </div>
-        </article>
-
-        <article class="group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
-          <div class="relative aspect-[2/3]">
-            <img class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/5/87048l.jpg" alt="Kimi no Na wa" />
-            <span class="absolute top-3 left-3 rounded-full bg-cyan-500/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">Película</span>
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold">Tu Nombre.</h3>
-            <p class="text-xs text-zinc-400 mt-1">Romance, Drama</p>
-          </div>
-        </article>
-
-        <article class="group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
-          <div class="relative aspect-[2/3]">
-            <img class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/1813/138022l.jpg" alt="Solo Leveling" />
-            <span class="absolute top-3 left-3 rounded-full bg-violet-500/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">Serie</span>
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold">Solo Leveling</h3>
-            <p class="text-xs text-zinc-400 mt-1">Acción, Fantasía</p>
-          </div>
-        </article>
-
-        <article class="group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
-          <div class="relative aspect-[2/3]">
-            <img class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/1708/140350l.jpg" alt="Kusuriya no Hitorigoto" />
-            <span class="absolute top-3 left-3 rounded-full bg-violet-500/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">Serie</span>
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold">The Apothecary Diaries</h3>
-            <p class="text-xs text-zinc-400 mt-1">Drama, Misterio</p>
-          </div>
-        </article>
-
-        <article class="group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
-          <div class="relative aspect-[2/3]">
-            <img class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/5/75810l.jpg" alt="El Viaje de Chihiro" />
-            <span class="absolute top-3 left-3 rounded-full bg-cyan-500/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">Película</span>
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold">El Viaje de Chihiro</h3>
-            <p class="text-xs text-zinc-400 mt-1">Aventura, Fantasía</p>
-          </div>
-        </article>
-
-        <article class="group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
-          <div class="relative aspect-[2/3]">
-            <img class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/6/79597l.jpg" alt="Akira" />
-            <span class="absolute top-3 left-3 rounded-full bg-cyan-500/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">Película</span>
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold">Akira</h3>
-            <p class="text-xs text-zinc-400 mt-1">Acción, Sci-Fi</p>
-          </div>
-        </article>
-      </div>
+      <div id="featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
     </section>
-  </main>
+    <script>
+      (function () {
+        const select = document.getElementById("featured-type");
+        const grid = document.getElementById("featured-grid");
+        if (!grid) return;
+
+        const API = "https://api.jikan.moe/v4/top/anime";
+        const norm = (v) => (v || "").toString().toLowerCase().replace(/\s+/g, " " ).trim();
+        const fixText = (s) => {
+          return (s || "")
+            .replace(/PEL\\?CULA/gi, "PELÍCULA")
+            .replace(/Pel\\?cula/gi, "Película")
+            .replace(/Pelicula/gi, "Película");
+        };
+
+        const setBadge = (media, score) => {
+          if (!media) return;
+          let badge = media.querySelector(".anidex-score-badge");
+          if (!badge) {
+            badge = document.createElement("div");
+            badge.className = "anidex-score-badge absolute top-3 right-3 bg-black/70 px-2 py-1 rounded text-xs font-bold text-white flex items-center gap-1";
+            badge.innerHTML = "<span class=\"text-[14px] leading-none\">★</span><span>--</span>";
+            media.appendChild(badge);
+          }
+          const valueEl = badge.querySelector("span:last-child");
+          if (valueEl) valueEl.textContent = score || "--";
+        };
+
+        const renderCard = (it) => {
+          const article = document.createElement("article");
+          article.className = "group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800";
+          const imgSrc = it?.images?.webp?.large_image_url || it?.images?.jpg?.large_image_url || it?.images?.jpg?.image_url || "";
+          const title = it?.title || "Anime";
+          const genres = (it?.genres || []).map((g) => g?.name).filter(Boolean).slice(0, 2).join(", " );
+          const genresText = genres || "Sin categorías";
+          const type = norm(it?.type).includes("movie") ? "movie" : "anime";
+          article.dataset.featuredType = type;
+          article.innerHTML = `
+            <div class="relative aspect-[2/3]">
+              <img class="w-full h-full object-cover" src="${imgSrc}" alt="${title}" />
+              <span class="absolute top-3 left-3 rounded-full bg-violet-500/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">${type === "movie" ? "Película" : "Anime"}</span>
+            </div>
+            <div class="p-4">
+              <h3 class="text-lg font-bold">${fixText(title)}</h3>
+              <p class="text-xs text-zinc-400 mt-1">${fixText(genresText)}</p>
+            </div>
+          `;
+          const media = article.querySelector(".relative");
+          const score = typeof it?.score === "number" ? it.score.toFixed(1) : "";
+          setBadge(media, score);
+          return article;
+        };
+
+        const applyFilter = () => {
+          const value = select ? select.value : "all";
+          Array.from(grid.querySelectorAll("article")).forEach((card) => {
+            const t = card.dataset.featuredType || "anime";
+            const show = value === "all" || value === t;
+            card.style.display = show ? "" : "none";
+          });
+        };
+
+        if (select) select.addEventListener("change", applyFilter);
+
+        const loadFeatured = async () => {
+          grid.innerHTML = "<p class=\"text-zinc-400\">Cargando destacados...</p>";
+          try {
+            const [resAnime, resMovie] = await Promise.all([
+              fetch(`${API}?filter=bypopularity&limit=20`),
+              fetch(`${API}?filter=bypopularity&type=movie&limit=20`)
+            ]);
+            if (!resAnime.ok || !resMovie.ok) {
+              grid.innerHTML = "<p class=\"text-red-400\">No se pudieron cargar destacados.</p>";
+              return false;
+            }
+            const jsonAnime = await resAnime.json();
+            const jsonMovie = await resMovie.json();
+            const combined = [...(jsonAnime?.data || []), ...(jsonMovie?.data || [])];
+            const seen = new Set();
+            const items = [];
+            combined.forEach((it) => {
+              const key = norm(it?.title) || norm(it?.title_english);
+              if (!key || seen.has(key)) return;
+              seen.add(key);
+              items.push(it);
+            });
+            // Ensure must-have titles + 30 more from API
+            const mustTitles = [
+              "Solo Leveling",
+              "The Apothecary Diaries",
+              "Kusuriya no Hitorigoto",
+              "Undead Unluck",
+              "Haikyuu!! Final",
+              "Haikyuu!! Movie: Gomi Suteba no Kessen"
+            ];
+            const mustById = [54492, 55408];
+            const fetchByTitle = async (title) => {
+              const res = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(title)}&limit=5&order_by=popularity&sort=asc`);
+              if (!res.ok) return null;
+              const json = await res.json();
+              const list = json?.data || [];
+              const key = norm(title);
+              let best = null;
+              let bestScore = -1;
+              list.forEach((it) => {
+                const keys = [
+                  it?.title,
+                  it?.title_english,
+                  it?.title_japanese,
+                  ...(it?.titles || []).map((x) => x?.title)
+                ].filter(Boolean).map(norm);
+                let score = 0;
+                keys.forEach((k) => {
+                  if (k === key) score = Math.max(score, 100);
+                  else if (k.includes(key) || key.includes(k)) score = Math.max(score, 80);
+                });
+                if (score > bestScore) {
+                  bestScore = score;
+                  best = it;
+                }
+              });
+              return best;
+            };
+            const mustItems = [];
+            for (const id of mustById) {
+              const res = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
+              if (res.ok) {
+                const json = await res.json();
+                if (json?.data) mustItems.push(json.data);
+              }
+            }
+            for (const t of mustTitles) {
+              const it = await fetchByTitle(t);
+              if (it) mustItems.push(it);
+            }
+            const merged = [];
+            const seenAll = new Set();
+            mustItems.forEach((it) => {
+              const key = norm(it?.title) || norm(it?.title_english);
+              if (!key || seenAll.has(key)) return;
+              seenAll.add(key);
+              merged.push(it);
+            });
+            items.forEach((it) => {
+              const key = norm(it?.title) || norm(it?.title_english);
+              if (!key || seenAll.has(key)) return;
+              seenAll.add(key);
+              if (merged.length < 34) merged.push(it);
+            });
+            const blacklist = [
+              "Kusuriya no Hitorigoto 3rd Season Part 2",
+              "Saikyou no Shokugyou wa Yuusha demo Kenja demo Naku Kanteishi (Kari) Rashii desu yo?",
+              "100 Manten☆Pax Salomena"
+            ].map(norm);
+            const finalItems = merged.filter((it) => {
+              const key = norm(it?.title) || norm(it?.title_english);
+              return key && !blacklist.includes(key);
+            });
+            // Mix anime and movies with slight randomness
+            const animes = finalItems.filter((it) => !norm(it?.type).includes("movie"));
+            const movies = finalItems.filter((it) => norm(it?.type).includes("movie"));
+            const interleaved = [];
+            while (animes.length || movies.length) {
+              const takeMovie = Math.random() < 0.45;
+              if (takeMovie && movies.length) interleaved.push(movies.shift());
+              else if (animes.length) interleaved.push(animes.shift());
+              else if (movies.length) interleaved.push(movies.shift());
+            }
+            if (!finalItems.length) {
+              grid.innerHTML = "<p class=\"text-zinc-400\">Sin resultados.</p>";
+              return false;
+            }
+            grid.innerHTML = "";
+            interleaved.forEach((it) => {
+              grid.appendChild(renderCard(it));
+            });
+            applyFilter();
+            return true;
+          } catch (e) {
+            grid.innerHTML = "<p class=\"text-red-400\">Error al cargar destacados.</p>";
+            return false;
+          }
+        };
+
+        (async () => {
+          const ok = await loadFeatured();
+          if (!ok) {
+            // Retry once after a short delay (API rate limits)
+            setTimeout(loadFeatured, 800);
+          }
+        })();
+      })();
+    </script>
+    <div class="mt-12 flex justify-center">
+      <a href="index.html" class="rounded-full bg-violet-500/90 px-8 py-4 text-sm font-bold text-white hover:bg-violet-500 transition-colors">Volver al inicio</a>
+    </div>
+    </main>
   <footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-900 font-['Inter'] text-sm tracking-wide">
     <div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-7xl mx-auto">
       <div class="flex flex-col gap-4 mb-8 md:mb-0">
