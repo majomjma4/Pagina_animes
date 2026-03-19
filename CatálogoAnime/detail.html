@@ -193,7 +193,7 @@
 <span class="px-4 py-1.5 bg-surface-container-high text-on-surface-variant text-sm rounded-full border border-outline-variant/10">Aventura</span>
 </div>
 <div class="flex flex-wrap gap-4 pt-2">
-<a class="px-8 py-3.5 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold rounded-full shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2" href="user.html"><span class="material-symbols-outlined">favorite</span> A?adir a Favoritos</a>
+<a data-add-my-list class="px-8 py-3.5 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold rounded-full shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2" href="user.html"><span class="material-symbols-outlined">add</span><span data-add-label>Añadir a Mi Lista</span></a>
 <button class="px-8 py-3.5 bg-transparent border border-outline-variant text-on-surface font-bold rounded-full hover:bg-surface-container-high transition-all flex items-center gap-2"><span class="material-symbols-outlined">bookmark</span> Guardar en Lista de Seguimiento</button>
 </div>
 </div>
@@ -338,10 +338,14 @@
 </footer>
 <script src="i18n.js"></script>
 <script src="title-images.js"></script>
+<script src="search.js"></script>
+<script src="favorites.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     if (window.AniDexI18n) window.AniDexI18n.init();
     if (window.AniDexTitleImages) window.AniDexTitleImages.init();
+    if (window.AniDexSearch) window.AniDexSearch.init();
+    if (window.AniDexFavorites) window.AniDexFavorites.init();
   });
 </script>
 <script data-ui-unlock>document.documentElement.classList.remove("preload-ui");</script>

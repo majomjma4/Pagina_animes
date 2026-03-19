@@ -182,8 +182,8 @@
                     Después de que el grupo de héroes derrotara al Rey Demonio, restauraron la paz en la tierra y regresaron a sus vidas separadas. Para la maga elfa Frieren, décadas pasan en un abrir y cerrar de ojos.
                 </p>
 <div class="flex flex-wrap gap-4">
-<button class="bg-gradient-to-br from-primary to-primary-container px-8 py-4 rounded-full text-on-primary font-bold tracking-tight hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shadow-lg shadow-primary-container/20" onclick="window.location.href='detail.html'"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span> VER AHORA</button>
-<button class="bg-surface-container-high/60 backdrop-blur-md px-8 py-4 rounded-full text-on-surface font-bold border border-outline-variant/20 hover:bg-surface-container-high transition-all flex items-center gap-2" onclick="window.location.href='user.html'"><span class="material-symbols-outlined">add</span> MI LISTA</button>
+<button id="hero-watch" class="bg-gradient-to-br from-primary to-primary-container px-8 py-4 rounded-full text-on-primary font-bold tracking-tight hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shadow-lg shadow-primary-container/20"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span> VER AHORA</button>
+<button id="hero-my-list" data-add-my-list data-dynamic-title="0" class="bg-surface-container-high/60 backdrop-blur-md px-8 py-4 rounded-full text-on-surface font-bold border border-outline-variant/20 hover:bg-surface-container-high transition-all flex items-center gap-2"><span class="material-symbols-outlined">playlist_add</span><span data-add-label>MI LISTA</span></button>
 </div>
 <div class="mt-8 flex items-center gap-3">
   <button id="hero-prev" class="rounded-full bg-surface-container-high/70 px-4 py-2 text-xs font-bold hover:bg-surface-container-high transition-colors" type="button">‹</button>
@@ -472,6 +472,8 @@
 </footer>
 <script src="i18n.js"></script>
 <script src="title-images.js"></script>
+<script src="search.js"></script>
+<script src="favorites.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const heroImage = document.getElementById("hero-image");
@@ -481,6 +483,8 @@
     const dots = document.getElementById("hero-dots");
     const prevBtn = document.getElementById("hero-prev");
     const nextBtn = document.getElementById("hero-next");
+    const heroWatchBtn = document.getElementById("hero-watch");
+    const heroMyListBtn = document.getElementById("hero-my-list");
     let heroItems = [];
     let heroIndex = 0;
     let heroTimer = null;
@@ -561,6 +565,18 @@
       heroMeta.textContent = `${item?.episodes || "?"} Episodios`;
       heroDescription.textContent = "Cargando sinopsis...";
       heroDescription.textContent = await shortSpanishSummary(item?.synopsis || "");
+      if (heroWatchBtn) {
+        heroWatchBtn.onclick = () => {
+          const q = encodeURIComponent(item?.title || "anime");
+          window.location.href = `detail.html?q=${q}`;
+        };
+      }
+      if (heroMyListBtn) {
+        heroMyListBtn.dataset.itemTitle = item?.title || "";
+        heroMyListBtn.dataset.itemImage = bg || "";
+        heroMyListBtn.dataset.itemType = "Anime";
+        if (window.AniDexFavorites) window.AniDexFavorites.refresh();
+      }
       Array.from(dots.children).forEach((dot, i) => {
         dot.className =
           i === heroIndex
@@ -613,6 +629,8 @@
 
     if (window.AniDexI18n) window.AniDexI18n.init();
     if (window.AniDexTitleImages) window.AniDexTitleImages.init();
+    if (window.AniDexSearch) window.AniDexSearch.init();
+    if (window.AniDexFavorites) window.AniDexFavorites.init();
   });
 </script>
 <script data-ui-unlock>document.documentElement.classList.remove("preload-ui");</script>

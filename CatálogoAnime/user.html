@@ -305,13 +305,21 @@
           </div>
         </section>
 
+        <section class="space-y-6">
+          <div class="flex justify-between items-end px-2">
+            <h2 class="font-headline text-2xl font-bold">Mi Lista</h2>
+            <button class="text-primary text-sm font-bold hover:underline">Ver todo</button>
+          </div>
+          <div id="my-list-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+        </section>
+
         <!-- Favorites Grid -->
         <section class="space-y-6">
           <div class="flex justify-between items-end px-2">
             <h2 class="font-headline text-2xl font-bold">T&iacute;tulos Favoritos</h2>
             <button class="text-primary text-sm font-bold hover:underline">Gestionar Cuadr&iacute;cula</button>
           </div>
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <div id="favorites-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             <div class="group cursor-pointer">
               <div class="aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high relative mb-2">
                 <img alt="Anime" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAn0OEsho7LAKrPj_HsJXrIMp5JFdumiEMGp5qbWmB-5S__1gVi79fVO5ca1K1fWc5IDxRwy86T_60PE9stPpOiZxNrGApkkrgwdaGJT3X5gc7t4braCrb4P4RnlSMdbASMgs8om1BnbpM-sG83CmWum4sKilERHUwti-3kMX4jczM_4SjlUc2Hx0kAjXs4UgmxbFKzsNSu0JqA81stuKaQoj8CDeIZkhbO8eVehl2qUduiWtIQxKCNTebeKfuwuVHcCa9Y7Zsf5Wr"/>
@@ -388,10 +396,14 @@
 </footer>
 <script src="i18n.js"></script>
 <script src="title-images.js"></script>
+<script src="search.js"></script>
+<script src="favorites.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     if (window.AniDexI18n) window.AniDexI18n.init();
     if (window.AniDexTitleImages) window.AniDexTitleImages.init();
+    if (window.AniDexSearch) window.AniDexSearch.init();
+    if (window.AniDexFavorites) window.AniDexFavorites.init();
   });
 </script>
 <script data-ui-unlock>document.documentElement.classList.remove("preload-ui");</script>
