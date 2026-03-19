@@ -84,6 +84,70 @@
     });
   };
 
+  const syncStatusEverywhere = (item, status) => {
+    [KEY_MY_LIST, KEY_FAVORITES].forEach((key) => {
+      const listNow = readKey(key).map((x) => {
+        if (norm(x.title) !== norm(item.title)) return x;
+        return { ...x, status };
+      });
+      writeKey(key, listNow);
+    });
+    upsertStatus(item, status);
+    updateStatusCounters();
+  };
+
+  const DETAIL_ACTIVE_CLASSES = {
+    completed: ["bg-emerald-500/90", "text-white", "border-emerald-400/80"],
+    pending: ["bg-amber-400/90", "text-black", "border-amber-300/80"]
+  };
+  const DETAIL_INACTIVE_CLASSES = ["bg-transparent", "text-on-surface-variant", "border-outline-variant"];
+
+  const applyDetailStatusState = (btn, currentStatus) => {
+    const kind = btn.getAttribute("data-detail-status");
+    if (!kind) return;
+    btn.classList.remove(
+      ...DETAIL_ACTIVE_CLASSES.completed,
+      ...DETAIL_ACTIVE_CLASSES.pending
+    );
+    btn.classList.add(...DETAIL_INACTIVE_CLASSES);
+    const label = btn.querySelector("[data-detail-status-label]");
+    if (currentStatus === kind) {
+      btn.classList.remove(...DETAIL_INACTIVE_CLASSES);
+      btn.classList.add(...DETAIL_ACTIVE_CLASSES[kind]);
+      if (label) {
+        label.textContent =
+          kind === "completed" ? "Eliminar de Completados" : "Eliminar de Pendientes";
+      }
+    } else if (label) {
+      label.textContent = kind === "completed" ? "Completado" : "Pendiente";
+    }
+  };
+
+  const refreshDetailStatusButtons = () => {
+    const buttons = document.querySelectorAll("[data-detail-status]");
+    if (!buttons.length) return;
+    const title = getButtonTitle(buttons[0]) || detectFromPage()?.title || "";
+    const current = getStatusForTitle(title);
+    buttons.forEach((btn) => applyDetailStatusState(btn, current));
+  };
+
+  const bindDetailStatusButtons = () => {
+    document.querySelectorAll("[data-detail-status]").forEach((btn) => {
+      if (btn.dataset.boundDetailStatus === "1") return;
+      btn.dataset.boundDetailStatus = "1";
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const item = getButtonItem(btn);
+        if (!item.title) return;
+        const kind = btn.getAttribute("data-detail-status");
+        const current = getStatusForTitle(item.title);
+        const next = current === kind ? "" : kind;
+        syncStatusEverywhere(item, next);
+        refreshDetailStatusButtons();
+      });
+    });
+  };
+
   const detectFromPage = () => {
     const path = (location.pathname || "").toLowerCase();
     if (path.includes("detail")) {
@@ -240,16 +304,12 @@
       const pendingBtnClass = isPending
         ? "bg-amber-400/80 text-black"
         : "bg-black/40";
-      const completedTip = isCompleted ? "Completado" : "Completo";
-      const pendingTip = isPending ? "Pendiente" : "Pendiente";
-      const removeTip = isCompleted
-        ? "Eliminar de Completados"
-        : isPending
-          ? "Eliminar de Pendientes"
-          : "Eliminar de Mi Lista";
+      const completedTip = isCompleted ? "Eliminar de Completados" : "Completar";
+      const pendingTip = isPending ? "Eliminar de Pendientes" : "Pendiente";
+      const removeTip = "Eliminar de Mi Lista";
       return `
-      <div class="cursor-pointer overflow-visible relative z-0 hover:z-50 w-36 shrink-0" data-detail-title="${it.title}" data-detail-id="${it.mal_id || ""}" data-detail-img="${it.image || ""}">
-        <div class="aspect-[2/3] rounded-lg relative mb-2 z-0 isolate">
+      <div class="group cursor-pointer overflow-visible relative z-0 hover:z-50 w-36 shrink-0 transition-transform duration-300 hover:scale-[1.04]" data-detail-title="${it.title}" data-detail-id="${it.mal_id || ""}" data-detail-img="${it.image || ""}">
+        <div class="aspect-[2/3] rounded-lg relative mb-2 z-0 isolate transition-all duration-300 ring-1 ring-white/10 group-hover:ring-violet-400/70 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.45)]">
           <div class="absolute inset-0 rounded-lg overflow-hidden bg-surface-container-high z-0 pointer-events-none">
             <img alt="${it.title}" class="w-full h-full object-cover" src="${it.image || ""}"/>
           </div>
@@ -259,13 +319,13 @@
             <span class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-widest text-white opacity-0 transition-opacity duration-150 group-hover/remove:opacity-100 z-50">${removeTip}</span>
           </button>
           <div class="absolute bottom-2 right-2 flex flex-col gap-2 items-end">
-            <button type="button" data-set-status="completed" data-title="${it.title}" class="group relative p-1.5 glass-effect ${completedBtnClass} rounded-full z-30">
+            <button type="button" data-set-status="completed" data-title="${it.title}" class="group/comp relative p-1.5 glass-effect ${completedBtnClass} rounded-full z-30">
               <span class="material-symbols-outlined text-green-400 text-sm">check_circle</span>
-              <span class="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-widest text-white opacity-0 transition-opacity duration-150 group-hover:opacity-100 z-50">${completedTip}</span>
+              <span class="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-widest text-white opacity-0 transition-opacity duration-150 group-hover/comp:opacity-100 z-50">${completedTip}</span>
             </button>
-            <button type="button" data-set-status="pending" data-title="${it.title}" class="group relative p-1.5 glass-effect ${pendingBtnClass} rounded-full z-30">
+            <button type="button" data-set-status="pending" data-title="${it.title}" class="group/pend relative p-1.5 glass-effect ${pendingBtnClass} rounded-full z-30">
               <span class="material-symbols-outlined text-amber-300 text-sm">schedule</span>
-              <span class="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-widest text-white opacity-0 transition-opacity duration-150 group-hover:opacity-100 z-50">${pendingTip}</span>
+              <span class="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-widest text-white opacity-0 transition-opacity duration-150 group-hover/pend:opacity-100 z-50">${pendingTip}</span>
             </button>
           </div>
         </div>
@@ -364,16 +424,12 @@
       const pendingBtnClass = isPending
         ? "bg-amber-400/80 text-black"
         : "bg-black/40";
-      const completedTip = isCompleted ? "Completado" : "Completo";
-      const pendingTip = isPending ? "Pendiente" : "Pendiente";
-      const removeTip = isCompleted
-        ? "Eliminar de Completados"
-        : isPending
-          ? "Eliminar de Pendientes"
-          : "Eliminar de Favoritos";
+      const completedTip = isCompleted ? "Eliminar de Completados" : "Completar";
+      const pendingTip = isPending ? "Eliminar de Pendientes" : "Pendiente";
+      const removeTip = "Eliminar de Favoritos";
       return `
-      <div class="cursor-pointer overflow-visible relative z-0 hover:z-50 w-36 shrink-0" data-detail-title="${it.title}" data-detail-id="${it.mal_id || ""}" data-detail-img="${it.image || ""}">
-        <div class="aspect-[2/3] relative mb-2 z-0 isolate">
+      <div class="group cursor-pointer overflow-visible relative z-0 hover:z-50 w-36 shrink-0 transition-transform duration-300 hover:scale-[1.04]" data-detail-title="${it.title}" data-detail-id="${it.mal_id || ""}" data-detail-img="${it.image || ""}">
+        <div class="aspect-[2/3] rounded-lg relative mb-2 z-0 isolate transition-all duration-300 ring-1 ring-white/10 group-hover:ring-violet-400/70 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.45)]">
           <div class="absolute inset-0 rounded-lg overflow-hidden bg-surface-container-high z-0 pointer-events-none">
             <img alt="${it.title}" class="w-full h-full object-cover" src="${it.image || ""}"/>
           </div>
@@ -479,8 +535,8 @@
       return;
     }
     grid.innerHTML = list.map((it) => `
-      <div class="cursor-pointer overflow-visible relative z-0 hover:z-50 w-36 shrink-0" data-detail-title="${it.title}" data-detail-id="${it.mal_id || ""}" data-detail-img="${it.image || ""}">
-        <div class="aspect-[2/3] rounded-lg relative mb-2 z-0 isolate">
+      <div class="group cursor-pointer overflow-visible relative z-0 hover:z-50 w-36 shrink-0 transition-transform duration-300 hover:scale-[1.04]" data-detail-title="${it.title}" data-detail-id="${it.mal_id || ""}" data-detail-img="${it.image || ""}">
+        <div class="aspect-[2/3] rounded-lg relative mb-2 z-0 isolate transition-all duration-300 ring-1 ring-white/10 group-hover:ring-violet-400/70 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.45)]">
           <div class="absolute inset-0 rounded-lg overflow-hidden bg-surface-container-high z-0 pointer-events-none">
             <img alt="${it.title}" class="w-full h-full object-cover" src="${it.image || ""}"/>
           </div>
@@ -540,6 +596,7 @@
       migrateStatusFromLists();
       bindMyListButtons();
       bindFavoriteButtons();
+      bindDetailStatusButtons();
       renderUserMyList();
       renderUserFavorites();
       renderStatusSections();
@@ -547,11 +604,13 @@
       setTimeout(() => {
         document.querySelectorAll("[data-add-my-list]").forEach(refreshMyListButtonState);
         document.querySelectorAll("[data-add-favorite]").forEach(refreshFavoriteButtonState);
+        refreshDetailStatusButtons();
       }, 700);
     },
     refresh() {
       document.querySelectorAll("[data-add-my-list]").forEach(refreshMyListButtonState);
       document.querySelectorAll("[data-add-favorite]").forEach(refreshFavoriteButtonState);
+      refreshDetailStatusButtons();
     }
   };
 })();

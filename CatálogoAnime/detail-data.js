@@ -209,6 +209,9 @@
     const src = imgOf(full);
     if (poster && src) poster.src = src;
     if (bg && src) bg.src = src;
+    document.body.dataset.detailTitle = preferredTitle;
+    document.body.dataset.detailImage = src || "";
+    document.body.dataset.detailType = full?.type === "Movie" ? "Película" : "Anime";
 
     const syn = document.querySelector("h2 + p");
     if (syn) syn.textContent = (await translateToEs(full.synopsis)) || "Sinopsis no disponible.";
