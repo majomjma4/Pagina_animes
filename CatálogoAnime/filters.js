@@ -164,6 +164,9 @@
         const y = meta.match(/(19|20)\d{2}/)?.[0];
         if (y) card.dataset.year = y;
       }
+      if (card.dataset.year && !card.dataset.yearOriginal) {
+        card.dataset.yearOriginal = card.dataset.year;
+      }
       if (!card.dataset.genres) {
         const gs = readGenresFromCard(card).map((g) => canonicalGenre(g)).filter(Boolean);
         card.dataset.genres = gs.join(",");
@@ -206,24 +209,63 @@
       searchInput.className = "w-full bg-transparent border-none focus:ring-0 text-sm placeholder:text-on-surface-variant/60";
     }
 
-    const genreLabel = Array.from(document.querySelectorAll("label")).find((l) => normalize(l.textContent).includes("genero"));
+    const labels = Array.from(document.querySelectorAll("label"));
+    let genreLabel = labels.find((l) => normalize(l.textContent).includes("genero"));
+    if (!genreLabel) genreLabel = labels.find((l) => normalize(l.textContent).includes("gen"));
+    const genreHeading = Array.from(document.querySelectorAll("*"))
+      .find((el) => el.tagName !== "SCRIPT" && el.tagName !== "STYLE" && normalize(el.textContent).trim() === "generos");
     const yearLabel = document.querySelector("label[for='filter-year']");
     const typeLabel = document.querySelector("label[for='filter-type']");
     const statusLabel = document.querySelector("label[for='filter-status']");
     const isMoviesPage = window.location.pathname.toLowerCase().includes("catalogo");
+    if (isMoviesPage) {
+      if (genreLabel) genreLabel.textContent = "Géneros";
+      if (yearLabel) yearLabel.textContent = "Año";
+      if (typeLabel) typeLabel.textContent = "Tipo";
+      if (statusLabel) statusLabel.textContent = "Estado";
+    }
 
     const genreWrap = createWrap();
+    genreWrap.classList.add("anidex-genre-wrap");
     const yearWrap = document.createElement("div");
-    yearWrap.className = "w-full grid grid-cols-5 gap-x-5 gap-y-2";
+    yearWrap.className = "w-full grid grid-cols-5 gap-x-5 gap-y-2 anidex-year-wrap";
     const typeWrap = createWrap();
+    typeWrap.classList.add("anidex-type-wrap");
     const statusWrap = createWrap();
+    statusWrap.classList.add("anidex-status-wrap");
     yearWrap.classList.add("pr-1");
 
-    genreLabel?.parentElement?.appendChild(genreWrap);
-    yearLabel?.parentElement?.appendChild(yearWrap);
+    const filterPanel = document.querySelector("section[aria-label='Filtros']");
+    const genreHost = isMoviesPage
+      ? (genreLabel?.parentElement
+        || genreHeading?.parentElement
+        || filterPanel?.querySelector(".space-y-2:nth-of-type(2)")
+        || filterPanel?.querySelector(".space-y-2"))
+      : (genreLabel?.parentElement || genreHeading?.parentElement);
+    if (genreHost) {
+      if (isMoviesPage) {
+        const oldButtons = genreHost.querySelector(".flex.flex-wrap.gap-2");
+        if (oldButtons) oldButtons.remove();
+      }
+      genreHost.querySelectorAll(".anidex-genre-wrap").forEach((n) => n.remove());
+      genreHost.appendChild(genreWrap);
+    }
+    if (yearLabel?.parentElement) {
+      yearLabel.parentElement.querySelectorAll(".anidex-year-wrap").forEach((n) => n.remove());
+      yearLabel.parentElement.appendChild(yearWrap);
+    }
     if (!isMoviesPage) {
-      typeLabel?.parentElement?.appendChild(typeWrap);
-      statusLabel?.parentElement?.appendChild(statusWrap);
+      if (typeLabel?.parentElement) {
+        typeLabel.parentElement.querySelectorAll(".anidex-type-wrap").forEach((n) => n.remove());
+        typeLabel.parentElement.appendChild(typeWrap);
+      }
+      if (statusLabel?.parentElement) {
+        statusLabel.parentElement.querySelectorAll(".anidex-status-wrap").forEach((n) => n.remove());
+        statusLabel.parentElement.appendChild(statusWrap);
+      }
+    } else {
+      typeLabel?.parentElement?.remove();
+      statusLabel?.parentElement?.remove();
     }
 
     const oldGenreRow = genreLabel?.parentElement?.querySelector("div.flex.flex-wrap.gap-2");
@@ -232,10 +274,6 @@
       const el = document.getElementById(id);
       if (el) el.remove();
     });
-    if (isMoviesPage) {
-      typeLabel?.parentElement?.remove();
-      statusLabel?.parentElement?.remove();
-    }
 
     Array.from(document.querySelectorAll("button")).forEach((btn) => {
       const t = normalize(btn.textContent);
@@ -247,16 +285,22 @@
     if (sortHost) {
       const oldButton = sortHost.querySelector("button");
       if (oldButton) oldButton.remove();
-      sortSelect = document.createElement("select");
-      sortSelect.className = "rounded-lg bg-surface-container-high px-3 py-2 text-sm text-on-surface border border-outline/40";
-      sortSelect.innerHTML = [
-        ["popularity_desc", "Popularidad"],
-        ["year_desc", "Año (más nuevo)"],
-        ["year_asc", "Año (más antiguo)"],
-        ["title_asc", "Título (A-Z)"],
-        ["title_desc", "Título (Z-A)"]
-      ].map(([v, l]) => `<option value="${v}">${l}</option>`).join("");
-      sortHost.appendChild(sortSelect);
+      const existingSelect = sortHost.querySelector("select");
+      if (existingSelect) {
+        sortSelect = existingSelect;
+      } else {
+        sortSelect = document.createElement("select");
+        sortSelect.className = "rounded-lg bg-surface-container-high px-3 py-2 text-sm text-on-surface border border-outline/40";
+        sortSelect.innerHTML = [
+          ["popularity_desc", "Popularidad"],
+          ["year_desc", "Año (más nuevo)"],
+          ["year_asc", "Año (más antiguo)"],
+          ["title_asc", "Título (A-Z)"],
+          ["title_desc", "Título (Z-A)"]
+        ].map(([v, l]) => `<option value="${v}">${l}</option>`).join("");
+        sortHost.appendChild(sortSelect);
+      }
+      if (sortSelect) sortSelect.dataset.sortSelect = "1";
     }
 
     const state = {
@@ -269,13 +313,24 @@
     };
     const grid = cards[0]?.parentElement || null;
     let emptyBox = null;
+    cards.forEach((card) => {
+      const p = card.querySelector("p");
+      const y = card.dataset.year || "";
+      if (!p || !y) return;
+      if (card.querySelector("[data-card-year]")) return;
+      const yearEl = document.createElement("span");
+      yearEl.dataset.cardYear = "1";
+      yearEl.className = "block text-xs text-on-surface-variant/80 mt-0.5";
+      yearEl.textContent = y;
+      p.insertAdjacentElement("afterend", yearEl);
+    });
 
     function ensureEmptyBox() {
       if (emptyBox || !grid) return;
       emptyBox = document.createElement("div");
       emptyBox.className = "hidden col-span-full rounded-xl border border-outline/30 bg-surface-container-low p-8 text-center";
       const emptyTitle = isMoviesPage
-        ? "No se encontró esa película"
+        ? "No se encontraron peliculas que coincidan con tu filtro."
         : "No se encontraron animes que coincidan con tu filtro.";
       emptyBox.innerHTML = `
         <img src="https://media.giphy.com/media/52OAVA0xaq5hd8HbfY/giphy.gif" alt="Doraemon triste" class="mx-auto mb-4 h-36 w-36 object-cover rounded-lg" />
@@ -287,9 +342,7 @@
 
     function renderGenreChips() {
       genreWrap.innerHTML = "";
-      const list = isMoviesPage
-        ? ["Todos", ...COMMON_GENRES_ES]
-        : ["Todos", ...COMMON_GENRES_ES.filter((g) => available.genres.has(g))];
+      const list = ["Todos", ...COMMON_GENRES_ES];
       list.forEach((name) => {
         const active = name === "Todos" ? state.genres.size === 0 : state.genres.has(name);
         genreWrap.appendChild(chip(name, active, () => {
@@ -351,13 +404,47 @@
       return Number.isFinite(chipScore) ? chipScore : 0;
     }
 
+    function syncCardYears(cardsList) {
+      cardsList.forEach((card) => {
+        const y = card.dataset.year || card.dataset.yearOriginal || "";
+        const yearEls = Array.from(card.querySelectorAll("[data-card-year]"));
+        if (yearEls.length > 1) yearEls.slice(1).forEach((el) => el.remove());
+        const yearEl = yearEls[0] || null;
+        if (!y) {
+          if (yearEl) yearEl.remove();
+          return;
+        }
+        const p = card.querySelector("p");
+        if (p) {
+          const txt = p.textContent || "";
+          const cleaned = txt.replace(/\b(19|20)\d{2}\b/g, "").replace(/\s{2,}/g, " ").trim();
+          if (cleaned !== txt) p.textContent = cleaned;
+        }
+        let out = yearEl;
+        if (!out && p) {
+          out = document.createElement("span");
+          out.dataset.cardYear = "1";
+          out.className = "block text-xs text-on-surface-variant/80 mt-0.5";
+          p.insertAdjacentElement("afterend", out);
+        }
+        if (out) out.textContent = String(y);
+      });
+    }
+
     function applyFilters() {
+      const currentCards = gatherCards();
+      syncCardYears(currentCards);
       const q = normalize(state.search);
-      cards.forEach((card) => {
+      currentCards.forEach((card) => {
         const title = normalize(card.dataset.title);
         const genres = readGenresFromCard(card)
           .map((g) => canonicalGenre(g))
           .filter(Boolean);
+        if (!card.dataset.year) {
+          const yNode = card.querySelector("[data-card-year]");
+          const yMatch = yNode?.textContent?.match(/(19|20)\d{2}/);
+          if (yMatch) card.dataset.year = yMatch[0];
+        }
         const year = Number(card.dataset.year || 0);
         const type = canonicalType(card.dataset.type || "");
         const status = canonicalStatus(card.dataset.status || "");
@@ -371,7 +458,7 @@
         card.style.display = matchText && matchGenres && matchYear && matchType && matchStatus ? "" : "none";
       });
 
-      const visible = cards.filter((c) => c.style.display !== "none");
+      const visible = currentCards.filter((c) => c.style.display !== "none");
       sortAndRepaint(visible);
       updateHeaderCount(visible.length);
       toggleEmptyState(visible.length);
@@ -396,7 +483,8 @@
     }
 
     function sortAndRepaint(visible) {
-      if (!grid) return;
+      const host = grid || document.querySelector("[data-anime-card]")?.parentElement;
+      if (!host) return;
       const sorted = [...visible];
       switch (state.sort) {
         case "year_desc": sorted.sort((a, b) => Number(b.dataset.year || 0) - Number(a.dataset.year || 0)); break;
@@ -405,13 +493,14 @@
         case "title_desc": sorted.sort((a, b) => normalize(b.dataset.title).localeCompare(normalize(a.dataset.title))); break;
         default: sorted.sort((a, b) => getPopularity(b) - getPopularity(a)); break;
       }
-      sorted.forEach((c) => grid.appendChild(c));
+      sorted.forEach((c) => host.appendChild(c));
     }
 
     function toggleEmptyState(count) {
       ensureEmptyBox();
       if (!emptyBox) return;
       emptyBox.classList.toggle("hidden", count > 0);
+      emptyBox.style.display = count > 0 ? "none" : "";
     }
 
     function updateHeaderCount(count) {
@@ -426,18 +515,37 @@
     });
 
     if (sortSelect) {
+      state.sort = sortSelect.value || state.sort;
       sortSelect.addEventListener("change", () => {
         state.sort = sortSelect.value;
         applyFilters();
       });
     }
+    if (!window.__aniSortDelegate) {
+      document.addEventListener("change", (e) => {
+        const t = e.target;
+        if (t && t.tagName === "SELECT" && t.dataset && t.dataset.sortSelect === "1") {
+          if (window.__aniSortHandler) window.__aniSortHandler(t.value);
+        }
+      });
+      window.__aniSortDelegate = true;
+    }
+    window.__aniSortHandler = (value) => {
+      state.sort = value;
+      applyFilters();
+    };
 
     renderGenreChips();
+    if (genreHost && !genreHost.contains(genreWrap)) genreHost.appendChild(genreWrap);
     renderYearChips();
     if (!isMoviesPage) {
-      renderSimple(typeWrap, ["Todos", "Anime", "OVA"], "types");
+      const typeList = ["Todos", "Anime", "OVA"];
+      renderSimple(typeWrap, typeList, "types");
       const statusList = ["Todos", ...STATUS_OPTIONS.filter((s) => s !== "Todos" && available.statuses.has(s))];
       renderSimple(statusWrap, statusList, "statuses");
+    } else {
+      state.types.clear();
+      state.statuses.clear();
     }
     applyFilters();
   }

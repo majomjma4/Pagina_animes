@@ -190,7 +190,7 @@
  <div class="grid grid-cols-1 gap-10 lg:grid-cols-12">
  <!-- Sidebar Component -->
  <aside class="lg:col-span-3">
-          <section class="sticky top-20 rounded-lg bg-surface-container-low p-6 filter-panel" aria-label="Filtros">
+          <section class="sticky top-28 rounded-lg bg-surface-container-low p-6 filter-panel" aria-label="Filtros">
  <h2 class="font-headline text-xl font-bold text-on-surface">Filtros</h2>
  <div class="space-y-6">
  <div class="space-y-2">
@@ -201,18 +201,18 @@
  </div>
  </div>
  <div class="space-y-2">
- <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">GÃ©neros</label>
+ <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Géneros</label>
  <div class="flex flex-wrap gap-2">
- <button class="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-on-primary" type="button">AcciÃ³n</button>
- <button class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant" type="button">FantasÃ­a</button>
- <button data-genre="drama" class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-primary" type="button">Drama</button>
- <button data-genre="sci-fi" class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-primary" type="button">Sci-Fi</button>
+ <button class="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-on-primary" type="button">Acción</button>
+ <button class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant" type="button">Fantas?a</button>
+ <button class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant" type="button">Drama</button>
+ <button class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant" type="button">Sci-Fi</button>
  </div>
  </div>
  <div class="space-y-4">
  <div class="space-y-2">
- <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-year">AÃ±o</label>
- <select id="filter-year" class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface" aria-label="Filtrar por aÃ±o">
+ <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-year">Año</label>
+ <select id="filter-year" class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface" aria-label="Filtrar por ao">
  <option>Todos</option>
  <option>2026</option>
  <option>2023</option>
@@ -223,7 +223,7 @@
  <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-type">Tipo</label>
  <select id="filter-type" class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface" aria-label="Filtrar por tipo">
  <option>Todos</option>
- <option>Anime</option>
+ <option>Serie</option>
  <option>Pelicula</option>
  <option>OVA</option>
  </select>
@@ -232,14 +232,14 @@
  <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-status">Estado</label>
  <select id="filter-status" class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface" aria-label="Filtrar por estado">
  <option>Todos</option>
- <option>En emisiÃ³n</option>
+ <option>En emisión</option>
  <option>Finalizado</option>
  </select>
  </div>
  </div>
  <div class="flex gap-3">
- <button id="filter-reset" class="flex-1 rounded-full bg-surface-container-high py-3 text-sm font-semibold text-on-surface" type="button">Reiniciar</button>
- <button id="filter-apply" class="flex-1 rounded-full bg-primary py-3 text-sm font-bold text-on-primary" type="button">Aplicar</button>
+ <button class="flex-1 rounded-full bg-surface-container-high py-3 text-sm font-semibold text-on-surface" type="button">Reiniciar</button>
+ <button class="flex-1 rounded-full bg-primary py-3 text-sm font-bold text-on-primary" type="button">Aplicar</button>
  </div>
  </div>
  </section>
@@ -249,7 +249,7 @@
  <section class="lg:col-span-9" aria-label="Resultados de catÃ¡logo">
  <header class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
  <div>
- <h1 class="font-headline text-4xl font-extrabold text-on-surface">Descubrimiento</h1>
+  <h1 class="font-headline text-4xl font-extrabold text-on-surface">Descubrimiento</h1>
         <p class="text-on-surface-variant">Mostrando 20 tÃ­tulos seleccionados para ti</p>
  </div>
  <div class="flex items-center gap-3 text-sm text-on-surface-variant">
@@ -637,17 +637,52 @@
  </div>
 
 <script src="i18n.js"></script>
-<script src="title-images.js"></script>
-<script src="search.js"></script>
-<script src="filters.js"></script>
+  <script src="title-images.js?v=2"></script>
+  <script src="search.js?v=2"></script>
+  <script src="filters.js?v=2"></script>
 <script src="detail-links.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    if (window.AniDexI18n) window.AniDexI18n.init();
-    if (window.AniDexTitleImages) window.AniDexTitleImages.init();
-    if (window.AniDexSearch) window.AniDexSearch.init();
-    if (window.AniDexFilters) window.AniDexFilters.init();
-    if (window.AniDexDetailLinks) window.AniDexDetailLinks.init();
+    document.addEventListener("DOMContentLoaded", () => {
+      // Fix mojibake in catalog page text
+      const fixMap = {
+        "PelÃ­culas": "Películas",
+        "Peliculas": "Películas",
+        "FantasÃ­a": "Fantasía",
+        "Fantasia": "Fantasía",
+        "AcciÃ³n": "Acción",
+        "mÃ¡s": "más"
+      };
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      let node;
+      while ((node = walker.nextNode())) {
+        const t = node.nodeValue || "";
+        let out = t;
+        Object.keys(fixMap).forEach((k) => {
+          if (out.includes(k)) out = out.replaceAll(k, fixMap[k]);
+        });
+        if (out !== t) node.nodeValue = out;
+      }
+      // Preserve original poster src for catalog cards (avoid scripts wiping it)
+      document.querySelectorAll("[data-anime-card] img").forEach((img) => {
+        if (!img.dataset.src) img.dataset.src = img.getAttribute("src") || "";
+      });
+      if (window.AniDexI18n) window.AniDexI18n.init();
+      if (window.AniDexTitleImages) window.AniDexTitleImages.init();
+      if (window.AniDexSearch) window.AniDexSearch.init();
+      if (window.AniDexFilters) window.AniDexFilters.init();
+      // Re-aplicar filtros después de i18n en catálogo
+      setTimeout(() => {
+        if (window.AniDexFilters) window.AniDexFilters.init();
+      }, 1100);
+      if (window.AniDexDetailLinks) window.AniDexDetailLinks.init();
+      // Restore posters if any script cleared src
+      setTimeout(() => {
+        document.querySelectorAll("[data-anime-card] img").forEach((img) => {
+          const src = img.getAttribute("src") || "";
+          if (!src && img.dataset.src) img.setAttribute("src", img.dataset.src);
+          if (src && img.naturalWidth === 0 && img.dataset.src) img.setAttribute("src", img.dataset.src);
+        });
+      }, 1200);
 
     // En pÃ¡gina de pelÃ­culas: mostrar solo duraciÃ³n y abajo a la izquierda.
     document.querySelectorAll("span.absolute.left-3.top-3").forEach((badge) => {

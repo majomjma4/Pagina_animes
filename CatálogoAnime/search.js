@@ -59,6 +59,11 @@
     item?.images?.jpg?.image_url ||
     "";
 
+  const YEAR_OVERRIDES = {
+    "jujutsu kaisen 0 movie": 2021,
+    "jujutsu kaisen 0": 2021
+  };
+
   const fetchRelatedByQuery = async (term, mediaType) => {
     const q = (term || "").trim();
     if (!q) return [];
@@ -112,9 +117,34 @@
       if (p) {
         const genres = (item?.genres || []).map((g) => g?.name).filter(Boolean).slice(0, 2).join(", ");
         if (genres) p.textContent = `Géneros: ${genres}`;
+        const y = card.dataset.year || "";
+        if (y && !/(19|20)\\d{2}/.test(p.textContent || "")) {
+          const sep = pageForType(mediaType) === "catalogo.html" ? " · " : " ";
+          p.textContent = `${p.textContent}${sep}${y}`.trim();
+        }
       }
       card.setAttribute("data-title", (item?.title || "").toLowerCase());
       card.setAttribute("data-type", pageForType(mediaType) === "catalogo.html" ? "Pelicula" : "Anime");
+      const key = normalize(item?.title || item?.title_english || "");
+      const year = YEAR_OVERRIDES[key] || item?.year || item?.aired?.prop?.from?.year || "";
+      if (year) {
+        card.setAttribute("data-year", String(year));
+        card.setAttribute("data-year-original", String(year));
+      } else {
+        card.removeAttribute("data-year");
+        card.removeAttribute("data-year-original");
+      }
+      const yearEl = card.querySelector("[data-card-year]");
+      if (yearEl) {
+        yearEl.textContent = year ? String(year) : "";
+        if (!year) yearEl.remove();
+      } else if (year && p) {
+        const span = document.createElement("span");
+        span.dataset.cardYear = "1";
+        span.className = "block text-xs text-on-surface-variant/80 mt-0.5";
+        span.textContent = String(year);
+        p.insertAdjacentElement("afterend", span);
+      }
     });
     if (query) {
       const target = document.querySelector("h1, h2");
@@ -389,12 +419,9 @@
     navInputs.forEach(bindInput);
 
     const filterInput = document.getElementById("filter-search");
-    const isMoviesPage = window.location.pathname.toLowerCase().includes("catalogo");
     if (filterInput) {
       filterInput.dataset.noSuggest = "1";
-      if (!isMoviesPage) {
-        filterInput.addEventListener("input", () => applyFilter(filterInput.value));
-      }
+      filterInput.addEventListener("input", () => applyFilter(filterInput.value));
     }
 
     const params = new URLSearchParams(window.location.search);

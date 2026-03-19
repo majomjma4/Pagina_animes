@@ -265,7 +265,14 @@
     const cards = cardsBySelector("[data-anime-card]");
     if (!cards.length) return;
     const items = await fetchTop("movie", cards.length);
-    applyItemsToCards(cards, items, "movie");
+    if (!items.length) return;
+    // Only replace posters (and score badge), keep local titles/meta/minutes.
+    cards.forEach((card, idx) => {
+      const item = items[idx];
+      if (!item) return;
+      setImage(card, item);
+      setScore(card, item);
+    });
   }
 
   async function applyIndexPage() {
