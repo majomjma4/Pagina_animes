@@ -26,7 +26,7 @@
           { name: "Animes", href: "series.html" },
           { name: "Películas", href: "catalogo.html" },
           { name: "Destacados", href: "destacados.html" },
-          { name: "Ranking", href: "#" }
+          { name: "Ranking", href: "ranking.html" }
         ];
         const currentPage = window.location.pathname.split("/").pop();
         const menuEl = document.getElementById("main-menu");
@@ -114,7 +114,9 @@
 
         const renderCard = (it) => {
           const article = document.createElement("article");
-          article.className = "group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800";
+          article.className = "group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 cursor-pointer";
+          if (it?.mal_id) article.setAttribute("data-mal-id", String(it.mal_id));
+          article.setAttribute("onclick", "window.location.href='detail.html'");
           const imgSrc = it?.images?.webp?.large_image_url || it?.images?.jpg?.large_image_url || it?.images?.jpg?.image_url || "";
           const title = it?.title || "Anime";
           const genres = (it?.genres || []).map((g) => g?.name).filter(Boolean).slice(0, 2).join(", " );
@@ -285,7 +287,7 @@
     <div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-7xl mx-auto">
       <div class="flex flex-col gap-4 mb-8 md:mb-0">
         <a class="text-lg font-bold text-neutral-100 flex items-center gap-2" href="index.html"><img src="img/icon.png" alt="AniDex" class="h-6 w-6 rounded-full transition-transform duration-200 active:scale-110" /><span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span></a>
-        <p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jam?s creadas. Curado para el fan exigente.</p>
+        <p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jamás creadas. Curado para el fan exigente.</p>
       </div>
       <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
         <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Política de Privacidad</a>
@@ -293,7 +295,7 @@
         <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Contacto</a>
         <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Documentación API</a>
       </div>
-      <div class="mt-8 md:mt-0 text-neutral-500"> 2026 AniDex. Todos los derechos reservados.</div>
+      <div class="mt-8 md:mt-0 text-neutral-500"> 2024 AniDex. Todos los derechos reservados.</div>
     </div>
   </footer>
   <script src="i18n.js"></script>

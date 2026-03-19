@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AniDex - Ranking</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+  <link rel="icon" href="img/icon.png" />
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-['Inter']">
+  <div class="min-h-screen">
+    <nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
+      <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
+        <a class="text-2xl font-bold tracking-tighter text-neutral-100 flex items-center gap-2" href="index.html">
+          <img src="img/icon.png" alt="AniDex" class="h-7 w-7 rounded-full transition-transform duration-200 active:scale-110" />
+          <span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8" id="main-menu"></div>
+        <script>
+          const menuItems = [
+            { name: "Inicio", href: "index.html" },
+            { name: "Animes", href: "series.html" },
+            { name: "Películas", href: "catalogo.html" },
+            { name: "Destacados", href: "destacados.html" },
+            { name: "Ranking", href: "ranking.html" }
+          ];
+          const currentPage = window.location.pathname.split("/").pop();
+          const menuEl = document.getElementById("main-menu");
+          if (menuEl) {
+            menuEl.innerHTML = menuItems.map(item => {
+              const isActive = item.href === currentPage;
+              const base = "transition-colors";
+              const active = "text-violet-400 font-bold border-b-2 border-violet-500 pb-1";
+              const inactive = "text-neutral-400 hover:text-neutral-100";
+              return `<a href="${item.href}" class="${isActive ? active : inactive + ' ' + base}">${item.name}</a>`;
+            }).join("");
+          }
+        </script>
+
+        <div class="flex items-center gap-6">
+          <div class="hidden lg:flex items-center bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-2 w-48 group transition-all">
+            <span class="material-symbols-outlined text-violet-400 text-sm">search</span>
+            <input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-zinc-400" placeholder="Buscar..." type="text"/>
+          </div>
+          <div class="relative">
+            <button class="flex items-center gap-2 rounded-full bg-zinc-900/80 border border-zinc-800 px-3 py-2 text-xs font-semibold text-zinc-300 hover:text-zinc-100 transition-colors" type="button" aria-haspopup="menu" aria-expanded="false" data-lang-toggle>
+              <img src="img/espana.png" alt="ES" class="w-4 h-4" />
+              <span class="material-symbols-outlined text-[16px]">expand_more</span>
+            </button>
+            <div class="absolute right-0 mt-2 hidden min-w-[160px] rounded-xl bg-surface-container-high p-2 shadow-elevated" role="menu" data-lang-menu>
+              <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="es" role="menuitem">
+                <img src="img/espana.png" alt="ES" class="w-4 h-4" /><span class="uppercase tracking-widest">ES</span>
+              </button>
+              <button class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface" type="button" data-lang="en" role="menuitem">
+                <img src="img/reino-unido.png" alt="EN" class="w-4 h-4" /><span class="uppercase tracking-widest">EN</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <a class="relative group hover:bg-neutral-800/50 rounded-full p-2 transition-all duration-300 scale-95 active:scale-90 flex items-center justify-center" href="user.html"><span class="material-symbols-outlined text-neutral-400 group-hover:text-violet-500 transition-colors">favorite</span><span class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-on-surface opacity-0 transition-opacity duration-200 group-hover:opacity-100">Favoritos</span></a>
+            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-violet-500/30 hover:border-violet-500 transition-colors cursor-pointer" onclick="window.location.href='user.html'">
+              <img alt="Perfil de usuario" class="w-full h-full object-cover" data-alt="Primer plano de un avatar minimalista moderno" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="mx-auto max-w-7xl px-6 md:px-10 pt-28 pb-10">
+      <div class="mb-8 flex items-center justify-between gap-4">
+        <div>
+          <h1 class="font-['Manrope'] text-3xl md:text-4xl font-extrabold tracking-tight">Ranking Top 50</h1>
+          <p class="text-zinc-400 mt-2">Los 50 animes y películas mejor posicionados.</p>
+        </div>
+      </div>
+
+      <section>
+        <div id="ranking-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="rounded-xl border border-zinc-800 bg-zinc-900 p-6 text-zinc-400">Cargando ranking...</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-900 font-['Inter'] text-sm tracking-wide">
+      <div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-7xl mx-auto">
+        <div class="flex flex-col gap-4 mb-8 md:mb-0">
+          <a class="text-lg font-bold text-neutral-100 flex items-center gap-2" href="index.html"><img src="img/icon.png" alt="AniDex" class="h-6 w-6 rounded-full transition-transform duration-200 active:scale-110" /><span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span></a>
+          <p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jamás creadas. Curado para el fan exigente.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Política de Privacidad</a>
+          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Términos de Servicio</a>
+          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Contacto</a>
+          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Documentación API</a>
+        </div>
+        <div class="mt-8 md:mt-0 text-neutral-500"> 2024 AniDex. Todos los derechos reservados.</div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="search.js"></script>
+  <script src="detail-links.js"></script>
+  <script>
+    (function () {
+      var grid = document.getElementById('ranking-grid');
+      if (!grid) return;
+
+      function setBadge(media, score) {
+        if (!media) return;
+        var badge = media.querySelector('.anidex-score-badge');
+        if (!badge) {
+          badge = document.createElement('div');
+          badge.className = 'anidex-score-badge absolute top-3 right-3 bg-black/70 px-2 py-1 rounded text-xs font-bold text-white flex items-center gap-1';
+        badge.innerHTML = '<span class="text-[16px] leading-none">★</span><span>--</span>';
+          media.appendChild(badge);
+        }
+        var valueEl = badge.querySelector('span:last-child');
+        if (valueEl) valueEl.textContent = score || '--';
+      }
+
+      function formatGenres(list) {
+        var items = (list || []).map(function (g) { return g && g.name; }).filter(Boolean).slice(0, 2);
+        return items.length ? items.join(', ') : 'Sin categorías';
+      }
+
+      function renderCard(it, idx) {
+        var imgSrc = (it && it.images && it.images.webp && it.images.webp.large_image_url) ||
+          (it && it.images && it.images.jpg && it.images.jpg.large_image_url) ||
+          (it && it.images && it.images.jpg && it.images.jpg.image_url) || '';
+        var title = (it && (it.title_english || it.title)) || 'Anime';
+        var genres = formatGenres(it && it.genres);
+        var type = (it && it.type) || 'TV';
+        var year = (it && (it.year || (it.aired && it.aired.prop && it.aired.prop.from && it.aired.prop.from.year))) || 'N/A';
+        var score = (it && typeof it.score === 'number') ? it.score.toFixed(1) : '--';
+
+        var article = document.createElement('article');
+        article.className = 'group rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-[0_18px_40px_rgba(0,0,0,0.35)] hover:-translate-y-1 hover:border-violet-500/40 transition-all sm:flex sm:gap-6 cursor-pointer';
+        if (it && it.mal_id) article.setAttribute('data-mal-id', String(it.mal_id));
+        article.setAttribute('data-title', title);
+        article.setAttribute('data-anime-card', '1');
+        article.onclick = function () {
+          var url = 'detail.html';
+          if (it && it.mal_id) {
+            url += '?mal_id=' + encodeURIComponent(String(it.mal_id));
+            if (title) url += '&q=' + encodeURIComponent(title);
+          } else if (title) {
+            url += '?q=' + encodeURIComponent(title);
+          }
+          window.location.href = url;
+        };
+        if (idx < 3) {
+          article.className = 'group rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-900 to-amber-900/30 border border-amber-400/40 shadow-[0_24px_60px_rgba(251,191,36,0.15)] hover:-translate-y-1 hover:border-amber-300/70 transition-all sm:flex sm:gap-6';
+        } else if (idx < 10) {
+          article.className = 'group rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-900 to-violet-900/20 border border-violet-400/30 shadow-[0_20px_50px_rgba(139,92,246,0.12)] hover:-translate-y-1 hover:border-violet-300/60 transition-all sm:flex sm:gap-6';
+        }
+
+        var media = document.createElement('div');
+        media.className = 'relative';
+        var imgWrap = document.createElement('div');
+        imgWrap.className = 'relative aspect-[2/3] sm:aspect-auto sm:h-56 sm:w-40 overflow-hidden';
+        var img = document.createElement('img');
+        img.className = 'w-full h-full object-cover';
+        img.loading = 'lazy';
+        img.src = imgSrc;
+        img.alt = title;
+        imgWrap.appendChild(img);
+
+        var rank = document.createElement('span');
+        rank.className = 'absolute top-3 left-3 rounded-full bg-violet-500/90 px-3 py-1 text-[12px] font-bold uppercase tracking-widest';
+        if (idx < 3) {
+          rank.className = 'absolute top-3 left-3 rounded-full bg-amber-400 text-black px-5 py-2 text-[14px] font-extrabold uppercase tracking-widest shadow-[0_0_20px_rgba(251,191,36,0.6)]';
+        } else if (idx < 10) {
+          rank.className = 'absolute top-3 left-3 rounded-full bg-violet-400/90 text-black px-4 py-1.5 text-[12px] font-bold uppercase tracking-widest';
+        }
+        rank.textContent = '#' + (idx + 1);
+
+        var typeBadge = document.createElement('span');
+        typeBadge.className = 'absolute bottom-3 left-3 rounded-full bg-violet-500 border border-violet-400 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]';
+        typeBadge.textContent = (type && type.toLowerCase().includes('movie')) ? 'Película' : 'Anime';
+
+        media.appendChild(imgWrap);
+        media.appendChild(rank);
+        media.appendChild(typeBadge);
+
+        var body = document.createElement('div');
+        body.className = 'p-5 sm:p-6';
+        var h3 = document.createElement('h3');
+        h3.className = 'text-lg font-bold leading-snug';
+        h3.textContent = title;
+        var p = document.createElement('p');
+        p.className = 'text-xs text-zinc-400 mt-1';
+        p.textContent = genres;
+        var meta = document.createElement('div');
+        meta.className = 'mt-3 flex flex-wrap gap-2 text-xs text-zinc-200';
+        var spanType = document.createElement('span');
+        spanType.className = 'rounded-full bg-zinc-800/80 px-3 py-1';
+        spanType.textContent = 'Tipo: ' + type;
+        var spanYear = document.createElement('span');
+        spanYear.className = 'rounded-full bg-zinc-800/80 px-3 py-1';
+        spanYear.textContent = 'Año: ' + year;
+        meta.appendChild(spanType);
+        meta.appendChild(spanYear);
+
+        body.appendChild(h3);
+        body.appendChild(p);
+        body.appendChild(meta);
+
+        article.appendChild(media);
+        article.appendChild(body);
+        setBadge(media, score);
+        return article;
+      }
+
+      function fetchJson(url) {
+        return fetch(url, { cache: 'no-store' })
+          .then(function (res) { return res && res.ok ? res.json() : null; })
+          .then(function (json) { return json && Array.isArray(json.data) ? json.data : null; });
+      }
+
+      function loadRanking() {
+        grid.innerHTML = '<p class="text-zinc-400">Cargando ranking...</p>';
+        return fetchJson('https://api.jikan.moe/v4/top/anime?limit=50')
+          .then(function (items) {
+            if (items && items.length) return items.slice(0, 50);
+            return Promise.all([
+              fetchJson('https://api.jikan.moe/v4/top/anime?page=1&limit=25'),
+              fetchJson('https://api.jikan.moe/v4/top/anime?page=2&limit=25')
+            ]).then(function (parts) {
+              var merged = [].concat(parts[0] || [], parts[1] || []);
+              return merged.slice(0, 50);
+            });
+          });
+      }
+
+      loadRanking()
+        .then(function (items) {
+          if (!items || !items.length) {
+            grid.innerHTML = '<p class="text-red-400">No se pudo cargar el ranking.</p>';
+            return;
+          }
+          grid.innerHTML = '';
+          items.forEach(function (it, idx) {
+            grid.appendChild(renderCard(it, idx));
+          });
+        })
+        .catch(function () {
+          grid.innerHTML = '<p class="text-red-400">No se pudo cargar el ranking.</p>';
+        });
+    })();
+  </script>
+</body>
+</html>
