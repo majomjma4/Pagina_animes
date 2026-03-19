@@ -135,6 +135,7 @@
 
   const bindInput = (input) => {
     if (!input || input.dataset.searchBound === "1") return;
+    if (input.dataset.noSuggest === "1") return;
     input.dataset.searchBound = "1";
     let box = null;
     let timer = null;
@@ -383,12 +384,13 @@
   };
 
   const init = () => {
-    const navInputs = Array.from(document.querySelectorAll('input[placeholder*="Buscar"]'));
+    const navInputs = Array.from(document.querySelectorAll('input[placeholder*="Buscar"]'))
+      .filter((el) => el.id !== "filter-search");
     navInputs.forEach(bindInput);
 
     const filterInput = document.getElementById("filter-search");
     if (filterInput) {
-      bindInput(filterInput);
+      filterInput.dataset.noSuggest = "1";
       filterInput.addEventListener("input", () => applyFilter(filterInput.value));
     }
 
