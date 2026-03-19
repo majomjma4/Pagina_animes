@@ -129,7 +129,7 @@
   };
   const pageForType = (mediaType) => {
     const t = normalize(mediaType);
-    if (t.includes("movie") || t.includes("pelicula")) return "catalogo.html";
+    if (t.includes("movie") || t.includes("pel?cula")) return "catalogo.html";
     return "series.html";
   };
 

@@ -56,7 +56,7 @@
       item?.title,
       item?.title_english,
       item?.title_japanese,
-      ...(item?.titles || []).map((t) => t?.title)
+      ...(item?.titles || []).map((t) => t.title)
     ].filter(Boolean);
   }
 
@@ -155,6 +155,18 @@
     img.loading = "lazy";
   }
 
+  function setBadge(card, item, type) {
+    const badge = card.querySelector("span.absolute.left-3.top-3, span.absolute.left-3.bottom-3");
+    if (!badge) return;
+    if (type === "movie") {
+      const mins = (item?.duration || "").match(/\d+\s*min/i)?.[0] || (item?.duration || "");
+      if (mins) badge.textContent = mins.trim();
+      return;
+    }
+    const eps = item?.episodes;
+    if (eps) badge.textContent = `${eps} ep`;
+  }
+
   function setScore(card, item) {
     const media = card.querySelector(".relative");
     if (!media) return;
@@ -175,6 +187,11 @@
   }
 
   function setDataAttrs(card, item, type) {
+    if (item?.mal_id) {
+      card.setAttribute("data-mal-id", String(item.mal_id));
+      const link = card.matches("a") ? card : card.querySelector("a");
+      if (link) link.setAttribute("data-mal-id", String(item.mal_id));
+    }
     if (!card.hasAttribute("data-anime-card")) return;
     const genres = (item?.genres || []).map((g) => (g?.name || "").toLowerCase()).filter(Boolean);
     card.setAttribute("data-title", (item?.title || "").toLowerCase());
@@ -191,6 +208,7 @@
       setTitle(card, item.title || "Anime");
       setMeta(card, item);
       setImage(card, item);
+      setBadge(card, item, type);
       setScore(card, item);
       setDataAttrs(card, item, type);
     });

@@ -249,7 +249,7 @@
  <header class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
  <div>
  <h1 class="font-headline text-4xl font-extrabold text-on-surface">Descubrimiento</h1>
-        <p class="text-on-surface-variant">Mostrando 20 titulos seleccionados para ti</p>
+        <p class="text-on-surface-variant">Mostrando 20 títulos seleccionados para ti</p>
  </div>
  <div class="flex items-center gap-3 text-sm text-on-surface-variant">
  <span>Ordenar por:</span>
@@ -293,7 +293,7 @@
  <div class="hidden" data-state="empty">
  <div class="rounded-lg bg-surface-container-low p-10 text-center">
  <h2 class="text-2xl font-bold text-on-surface">Sin resultados</h2>
- <p class="mt-2 text-on-surface-variant">Prueba otros filtros para ver más titulos disponibles.</p>
+ <p class="mt-2 text-on-surface-variant">Prueba otros filtros para ver más títulos disponibles.</p>
  <button class="mt-6 rounded-full bg-primary px-6 py-3 text-sm font-bold text-on-primary" type="button">Limpiar filtros</button>
  </div>
  </div>
@@ -637,6 +637,7 @@
 <script src="i18n.js"></script>
 <script src="title-images.js"></script>
 <script src="search.js"></script>
+<script src="detail-links.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     // Ajuste global de etiquetas: Series -> Animes, Serie -> Anime
@@ -651,7 +652,34 @@
       node.nodeValue = node.nodeValue
         .replaceAll("Series", "Animes")
         .replaceAll("Serie", "Anime");
+      const fixes = [
+        ["Accion", "Acción"],
+        ["Fantasia", "Fantasía"],
+        ["emision", "emisión"],
+        ["titulos", "títulos"],
+        ["Tambien", "También"],
+        ["tambien", "también"],
+        ["Generos", "Géneros"],
+        ["Informacion", "Información"],
+        ["Duracion", "Duración"],
+        ["Anio", "Año"]
+      ];
+      fixes.forEach(([bad, good]) => {
+        node.nodeValue = node.nodeValue.replaceAll(bad, good);
+      });
+      node.nodeValue = node.nodeValue.replace(/Serie\s+([0-9+]+)\s+eps/g, "$1 ep");
     });
+
+    // En animes: badge abajo izquierda y solo episodios
+    document.querySelectorAll("span.absolute.left-3.top-3").forEach((badge) => {
+      const txt = (badge.textContent || "").trim();
+      const m = txt.match(/([0-9+]+)\s*ep/i) || txt.match(/Serie\s+([0-9+]+)\s+eps/i);
+      if (!m) return;
+      badge.textContent = `${m[1]} ep`;
+      badge.classList.remove("top-3");
+      badge.classList.add("bottom-3");
+    });
+
     document.querySelectorAll("[data-type='Serie']").forEach((el) => {
       el.setAttribute("data-type", "Anime");
     });
@@ -665,6 +693,7 @@
     if (window.AniDexI18n) window.AniDexI18n.init();
     if (window.AniDexTitleImages) window.AniDexTitleImages.init();
     if (window.AniDexSearch) window.AniDexSearch.init();
+    if (window.AniDexDetailLinks) window.AniDexDetailLinks.init();
   });
 </script>
 <script data-ui-unlock>document.documentElement.classList.remove("preload-ui");</script>
