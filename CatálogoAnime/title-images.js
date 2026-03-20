@@ -241,7 +241,9 @@
       const title = titleEl?.textContent?.replace(/\s+/g, " ").trim();
       if (!title) continue;
       const fixedId = INDEX_FIXED_BY_TITLE[title];
+      if (fixedId) card.setAttribute("data-mal-id", String(fixedId));
       const item = fixedId ? await fetchByMalId(fixedId) : await searchByTitleCanonical(title);
+      if (!fixedId && item?.mal_id) card.setAttribute("data-mal-id", String(item.mal_id));
       const src = trailerOrImageOf(item);
       if (src) {
         img.src = src;

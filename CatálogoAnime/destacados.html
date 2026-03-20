@@ -114,7 +114,7 @@
 
         const renderCard = (it) => {
           const article = document.createElement("article");
-          article.className = "group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 cursor-pointer";
+          article.className = "group rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 cursor-pointer transition-transform duration-300 ease-[cubic-bezier(0.2,0,0,1)] hover:scale-[1.02] hover:shadow-[0_18px_40px_rgba(0,0,0,0.45)]";
           if (it?.mal_id) article.setAttribute("data-mal-id", String(it.mal_id));
           article.setAttribute("onclick", "window.location.href='detail.html'");
           const imgSrc = it?.images?.webp?.large_image_url || it?.images?.jpg?.large_image_url || it?.images?.jpg?.image_url || "";
@@ -125,7 +125,7 @@
           article.dataset.featuredType = type;
           article.innerHTML = `
             <div class="relative aspect-[2/3]">
-              <img class="w-full h-full object-cover" src="${imgSrc}" alt="${title}" />
+              <img class="w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04]" src="${imgSrc}" alt="${title}" />
               <span class="absolute top-3 left-3 rounded-full bg-violet-500/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">${type === "movie" ? "Película" : "Anime"}</span>
             </div>
             <div class="p-4">

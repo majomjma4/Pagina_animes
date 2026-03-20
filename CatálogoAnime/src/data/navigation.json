@@ -1,7 +1,0 @@
-﻿[
-  { "label": "Explorar", "path": "/" },
-  { "label": "Series", "path": "/series" },
-  { "label": "Películas", "path": "/peliculas" },
-  { "label": "Populares", "path": "/populares" },
-  { "label": "Catálogo", "path": "/catalogo" }
-]

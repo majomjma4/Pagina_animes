@@ -201,18 +201,18 @@
  </div>
  </div>
  <div class="space-y-2">
- <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Géneros</label>
+ <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Gï¿½neros</label>
  <div class="flex flex-wrap gap-2">
- <button class="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-on-primary" type="button">Acción</button>
- <button class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant" type="button">Fantas?a</button>
+ <button class="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-on-primary" type="button">Acciï¿½n</button>
+ <button class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant" type="button">FantasÃ­a</button>
  <button class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant" type="button">Drama</button>
  <button class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant" type="button">Sci-Fi</button>
  </div>
  </div>
  <div class="space-y-4">
  <div class="space-y-2">
- <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-year">Año</label>
- <select id="filter-year" class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface" aria-label="Filtrar por ao">
+ <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-year">Aï¿½o</label>
+ <select id="filter-year" class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface" aria-label="Filtrar por aÃ±o">
  <option>Todos</option>
  <option>2026</option>
  <option>2023</option>
@@ -232,7 +232,7 @@
  <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-status">Estado</label>
  <select id="filter-status" class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface" aria-label="Filtrar por estado">
  <option>Todos</option>
- <option>En emisión</option>
+ <option>En emisiï¿½n</option>
  <option>Finalizado</option>
  </select>
  </div>
@@ -301,8 +301,8 @@
 
  <div class="hidden" data-state="error">
  <div class="rounded-lg bg-error-container/30 p-10 text-center">
- <h2 class="text-2xl font-bold text-on-error-container">Ocurrio un error</h2>
- <p class="mt-2 text-on-error-container/80">No pudimos cargar el catÃ¡logo. Intentalo nuevamente</p>
+ <h2 class="text-2xl font-bold text-on-error-container">Ocurri? un error</h2>
+ <p class="mt-2 text-on-error-container/80">No pudimos cargar el catÃ¡logo. Int?ntalo nuevamente</p>
  <button class="mt-6 rounded-full bg-primary px-6 py-3 text-sm font-bold text-on-primary" type="button">Reintentar</button>
  </div>
  </div>
@@ -588,7 +588,7 @@
  </div>
  <div class="space-y-2 mt-2">
                   <div class="flex flex-wrap gap-2"><span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Drama</span>
- <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Historico</span></div>
+ <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/15 px-3 py-1 rounded-full">Hist?rico</span></div>
  <h3 class="font-headline text-lg font-bold text-on-surface">The Wind Rises</h3>
  <p class="text-xs text-on-surface-variant">Estudio: Studio Ghibli 2013</p>
  </div>
@@ -623,7 +623,7 @@
 <div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-48xl mx-auto">
 <div class="flex flex-col gap-4 mb-8 md:mb-0">
 <a class="text-lg font-bold text-neutral-100 flex items-center gap-2" href="index.html"><img src="img/icon.png" alt="AniDex" class="h-6 w-6 rounded-full transition-transform duration-200 active:scale-110" /><span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span></a>
-<p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jam?s creadas. Curado para el fan exigente.</p>
+<p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jamÃ¡s creadas. Curado para el fan exigente.</p>
 </div>
 <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
 <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">PolÃ­tica de Privacidad</a>
@@ -646,12 +646,12 @@
     document.addEventListener("DOMContentLoaded", () => {
       // Fix mojibake and duplicated words in catalog page text
       const fixMap = {
-        "PelÃ­culas": "Películas",
-        "Peliculas": "Películas",
-        "FantasÃ­a": "Fantasía",
-        "Fantasia": "Fantasía",
-        "AcciÃ³n": "Acción",
-        "mÃ¡s": "más"
+        "PelÃ­culas": "PelÃ­culas",
+        "Peliculas": "PelÃ­culas",
+        "FantasÃ­a": "FantasÃ­a",
+        "Fantasia": "FantasÃ­a",
+        "AcciÃ³n": "AcciÃ³n",
+        "mÃ¡s": "mÃ¡s"
       };
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
       let node;
@@ -661,9 +661,9 @@
         Object.keys(fixMap).forEach((k) => {
           if (out.includes(k)) out = out.replaceAll(k, fixMap[k]);
         });
-        out = out.replace(/animepeliculas/gi, "Anime · Películas");
-        out = out.replace(/peliculas\\s*peliculas/gi, "Películas");
-        out = out.replace(/peliculas+/gi, "Películas");
+        out = out.replace(/animepeliculas/gi, "Anime ï¿½ Pelï¿½culas");
+        out = out.replace(/peliculas\\s*peliculas/gi, "Pelï¿½culas");
+        out = out.replace(/peliculas+/gi, "Pelï¿½culas");
         out = out.replace(/depeliculastacado/gi, "Destacado");
         if (out !== t) node.nodeValue = out;
       }
@@ -675,7 +675,7 @@
       if (window.AniDexTitleImages) window.AniDexTitleImages.init();
       if (window.AniDexSearch) window.AniDexSearch.init();
       if (window.AniDexFilters) window.AniDexFilters.init();
-      // Re-aplicar filtros después de i18n en catálogo
+      // Re-aplicar filtros despuï¿½s de i18n en catï¿½logo
       setTimeout(() => {
         if (window.AniDexFilters) window.AniDexFilters.init();
       }, 1100);
