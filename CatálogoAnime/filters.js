@@ -341,16 +341,31 @@
     });
 
     function ensureEmptyBox() {
-      if (emptyBox || !grid) return;
+      if (emptyBox) return;
+      const existing = document.querySelector("[data-state='empty']");
+      if (existing) {
+        emptyBox = existing;
+        const host = existing.querySelector(".rounded-lg") || existing;
+        if (host && !host.querySelector("[data-empty-gif]")) {
+          const img = document.createElement("img");
+          img.src = "https://media.giphy.com/media/52OAVA0xaq5hd8HbfY/giphy.gif";
+          img.alt = "Doraemon triste";
+          img.dataset.emptyGif = "1";
+          img.className = "mx-auto mb-4 h-36 w-36 object-cover rounded-lg";
+          const anchor = host.querySelector("h2,h3") || host.firstChild;
+          host.insertBefore(img, anchor);
+        }
+        return;
+      }
+      if (!grid) return;
       emptyBox = document.createElement("div");
       emptyBox.className = "hidden col-span-full rounded-xl border border-outline/30 bg-surface-container-low p-8 text-center";
-      const emptyTitle = isMoviesPage
-        ? "No se encontraron peliculas que coincidan con tu filtro."
-        : "No se encontraron animes que coincidan con tu filtro.";
+      const emptyTitle = "Sin resultados";
+      const emptyBody = "Prueba otros filtros para ver más títulos disponibles.";
       emptyBox.innerHTML = `
         <img src="https://media.giphy.com/media/52OAVA0xaq5hd8HbfY/giphy.gif" alt="Doraemon triste" class="mx-auto mb-4 h-36 w-36 object-cover rounded-lg" />
         <h3 class="text-xl font-bold text-on-surface">${emptyTitle}</h3>
-        <p class="mt-2 text-sm text-on-surface-variant">Prueba con otro nombre, género, año o tipo.</p>
+        <p class="mt-2 text-sm text-on-surface-variant">${emptyBody}</p>
       `;
       grid.appendChild(emptyBox);
     }

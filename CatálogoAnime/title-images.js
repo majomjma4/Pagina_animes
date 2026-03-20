@@ -1,6 +1,7 @@
 (() => {
   const API_BASE = "https://api.jikan.moe/v4/top/anime";
   const cache = {};
+  const DEFAULT_FALLBACK = "img/fondoanime.png";
   const INDEX_TITLE_ALIASES = {
     "Frieren: Más allá del final del viaje": "Frieren: Beyond Journey's End",
     "Solo Leveling": "Solo Leveling",
@@ -23,6 +24,31 @@
       item?.images?.jpg?.image_url ||
       ""
     );
+  }
+
+  function applyImageFallback(img) {
+    if (!img) return;
+    if (img.dataset.fallbackApplied) delete img.dataset.fallbackApplied;
+    if (!img.dataset.originalSrc) img.dataset.originalSrc = img.getAttribute("src") || "";
+    if (!img.dataset.fallback) img.dataset.fallback = DEFAULT_FALLBACK;
+    if (!img.loading) img.loading = "lazy";
+    img.decoding = "async";
+    if (!img.referrerPolicy) img.referrerPolicy = "no-referrer";
+
+    if (!img.dataset.fallbackBound) {
+      const onError = () => {
+        if (img.dataset.fallbackApplied === "1") return;
+        img.dataset.fallbackApplied = "1";
+        const fallback = img.dataset.fallback || img.dataset.originalSrc || DEFAULT_FALLBACK;
+        if (fallback && img.src !== fallback) img.src = fallback;
+      };
+      img.addEventListener("error", onError);
+      img.dataset.fallbackBound = "1";
+    }
+  }
+
+  function primeImageFallbacks(scope = document) {
+    Array.from(scope.querySelectorAll("img[data-fallback]")).forEach(applyImageFallback);
   }
 
   async function searchByTitle(title) {
@@ -141,8 +167,9 @@
     const p = card.querySelector("p");
     if (!p) return;
     const studio = item?.studios?.[0]?.name || "N/A";
-    const year = item?.year ? ` ${item.year}` : "";
-    p.textContent = `Studio: ${studio}${year}`;
+    const hasYearSlot = card.hasAttribute("data-year") || card.querySelector("[data-card-year]");
+    const year = !hasYearSlot && item?.year ? ` ${item.year}` : "";
+    p.textContent = `Estudio: ${studio}${year}`;
   }
 
   function setImage(card, item) {
@@ -153,6 +180,7 @@
     if (src) img.src = src;
     img.alt = title;
     img.loading = "lazy";
+    applyImageFallback(img);
   }
 
   function setBadge(card, item, type) {
@@ -196,7 +224,10 @@
     const genres = (item?.genres || []).map((g) => (g?.name || "").toLowerCase()).filter(Boolean);
     card.setAttribute("data-title", (item?.title || "").toLowerCase());
     card.setAttribute("data-genres", genres.join(","));
-    card.setAttribute("data-year", String(item?.year || ""));
+    const year = item?.year ? String(item.year) : "";
+    card.setAttribute("data-year", year);
+    const yearEl = card.querySelector("[data-card-year]");
+    if (yearEl && year) yearEl.textContent = year;
     card.setAttribute("data-type", type === "movie" ? "Pelicula" : "Anime");
     card.setAttribute("data-status", "Finalizado");
   }
@@ -249,6 +280,7 @@
         img.src = src;
         img.alt = title;
       }
+      applyImageFallback(img);
     }
   }
 
@@ -310,6 +342,7 @@
     async init() {
       const path = (window.location.pathname || "").toLowerCase();
       try {
+        primeImageFallbacks();
         if (path.includes("series")) await applyAnimesPage();
         else if (path.includes("catalogo")) await applyCatalogPage();
         else if (path.includes("detail")) await applyDetailPage();
