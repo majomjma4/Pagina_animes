@@ -1,10 +1,10 @@
 (() => {
   const menuItems = [
-    { name: "Inicio", href: "index.html" },
-    { name: "Animes", href: "series.html" },
-    { name: "Películas", href: "catalogo.html" },
-    { name: "Destacados", href: "destacados.html" },
-    { name: "Ranking", href: "ranking.html" }
+    { name: "Inicio", href: "index.html", icon: "home" },
+    { name: "Animes", href: "series.html", icon: "live_tv" },
+    { name: "Películas", href: "catalogo.html", icon: "movie" },
+    { name: "Destacados", href: "destacados.html", icon: "star" },
+    { name: "Ranking", href: "ranking.html", icon: "leaderboard" }
   ];
 
   const readyCallbacks = [];
@@ -74,7 +74,14 @@
         const base = "transition-colors";
         const active = "text-violet-400 font-bold border-b-2 border-violet-500 pb-1";
         const inactive = "text-neutral-400 hover:text-neutral-100";
-        return `<a href="${item.href}" class="${isActive ? active : inactive + " " + base}">${item.name}</a>`;
+        const iconClass = isActive ? "nav-icon nav-icon--active" : "nav-icon";
+        const icon = item.icon
+          ? `<span class="material-symbols-outlined text-[18px] leading-none ${iconClass}">${item.icon}</span>`
+          : "";
+        const label = item.icon
+          ? `<span class="inline-flex items-center gap-2">${icon}<span class="nav-label">${item.name}</span></span>`
+          : item.name;
+        return `<a href="${item.href}" class="${isActive ? active : inactive + " " + base}">${label}</a>`;
       })
       .join("");
   }

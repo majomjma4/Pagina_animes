@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     padding: 0.35rem 0.8rem;
-    gap: 0.5rem;
+    gap: 0.8rem;
     border-radius: 9999px;
     background: transparent;
     border: none;
@@ -42,9 +42,9 @@
   }
 
   .logo-tagline {
-    margin-top: 0.15rem;
+    margin-top: 0.3rem;
     font-family: "Inter", "Manrope", system-ui, sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: none;
@@ -68,7 +68,7 @@
 
   .logo-badge.logo-badge--footer {
     padding: 0.25rem 0.65rem;
-    gap: 0.4rem;
+    gap: 0.6rem;
   }
 
   .logo-badge.logo-badge--footer .logo-text {
@@ -81,9 +81,35 @@
     border-radius: 14px;
   }
   .logo-badge.logo-badge--footer .logo-tagline {
-    font-size: 0.8rem;
+    font-size: 0.74rem;
   }
 
+
+  .nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-icon--active {
+    animation: navPulse 2.2s ease-in-out infinite;
+    filter: drop-shadow(0 0 6px rgba(0, 198, 255, 0.25));
+  }
+  @keyframes navPulse {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-1px) scale(1.08); }
+  }
+
+  @keyframes homeGlow {
+    0%, 100% { opacity: 1; filter: brightness(1); }
+    50% { opacity: 0.9; filter: brightness(1.2); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-icon--active {
+      animation: none;
+    }
+  }
 
   @keyframes logoShimmer {
     0% { background-position: 0% 50%; }
@@ -103,7 +129,7 @@
 <template id="layout-header">
   <nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
     <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
-      <a class="logo-badge" href="index.html" aria-label="MyNeko">
+      <a class="logo-badge -ml-10"   href="index.html" aria-label="MyNeko">
         <img src="img/icon3.png" alt="MyNeko" class="logo-icon" />
         <span class="logo-text-stack">
           <span class="logo-text">MyNeko</span>
@@ -113,7 +139,7 @@
 
       <div class="hidden md:flex items-center gap-8" id="main-menu"></div>
 
-      <div class="flex items-center gap-6">
+      <div class="flex items-center gap-6 ml-14 -mr-10">
         <div class="hidden lg:flex items-center bg-surface-container-high rounded-full px-4 py-2 w-48 group focus-within:ring-1 focus-within:ring-primary/30 transition-all">
           <span class="material-symbols-outlined text-violet-400 text-sm">search</span>
           <input
