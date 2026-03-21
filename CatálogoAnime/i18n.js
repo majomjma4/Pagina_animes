@@ -247,12 +247,29 @@
     localStorage.setItem(STORAGE_KEY, selected);
   }
 
+  let currentLang = "es";
+  let isApplying = false;
+  let pending = null;
+  let observerBound = false;
+  let langUiBound = false;
+
+  const scheduleApply = () => {
+    if (pending) return;
+    pending = setTimeout(async () => {
+      pending = null;
+      if (isApplying) return;
+      isApplying = true;
+      collectNodes(document.body);
+      await applyLanguage(currentLang);
+      isApplying = false;
+    }, 120);
+  };
+
   function init() {
     const toggle = document.querySelector("[data-lang-toggle]");
     const menu = document.querySelector("[data-lang-menu]");
 
     collectNodes(document.body);
-    let currentLang = "es";
     const saved = localStorage.getItem(STORAGE_KEY) || "es";
     const current = LANGS[saved] ? saved : "es";
     currentLang = current;
@@ -267,35 +284,25 @@
     applyLanguage(currentLang);
     setFlag(current);
 
-    let isApplying = false;
-    let pending = null;
-    const scheduleApply = () => {
-      if (pending) return;
-      pending = setTimeout(async () => {
-        pending = null;
+    if (!observerBound) {
+      observerBound = true;
+      const observer = new MutationObserver(() => {
         if (isApplying) return;
-        isApplying = true;
-        collectNodes(document.body);
-        await applyLanguage(currentLang);
-        isApplying = false;
-      }, 120);
-    };
+        scheduleApply();
+      });
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        characterData: true
+      });
 
-    const observer = new MutationObserver(() => {
-      if (isApplying) return;
-      scheduleApply();
-    });
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      characterData: true
-    });
+      // Re-scan after initial render scripts populate dynamic menu/items.
+      setTimeout(scheduleApply, 250);
+      setTimeout(scheduleApply, 900);
+    }
 
-    // Re-scan after initial render scripts populate dynamic menu/items.
-    setTimeout(scheduleApply, 250);
-    setTimeout(scheduleApply, 900);
-
-    if (!toggle || !menu) return;
+    if (!toggle || !menu || langUiBound) return;
+    langUiBound = true;
 
     toggle.addEventListener("click", () => {
       const isOpen = !menu.classList.contains("hidden");

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AniDex - Ingresar</title>
+    <title>MyNeko - Ingresar</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -87,21 +87,11 @@
       background-position: center;
     }
     </style>
-    <link rel="icon" href="img/icon.png" />
+    <link rel="icon" href="img/icon2.png" />
   </head>
   <body class="bg-background text-on-background font-body min-h-screen flex flex-col">
-    <nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
-      <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
-        <a class="text-2xl font-bold tracking-tighter text-neutral-100 flex items-center gap-2" href="index.html">
-          <img src="img/icon.png" alt="AniDex" class="h-7 w-7 rounded-full transition-transform duration-200 active:scale-110" />
-          <span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span>
-        </a>
-        <div class="flex items-center gap-4 text-sm font-semibold">
-          <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="index.html">Inicio</a>
-          <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="registro.html">Registrarte</a>
-        </div>
-      </div>
-    </nav>
+    <!-- Navbar Component -->
+    <div data-layout="header"></div>
 
     <main class="auth-bg flex-1 flex items-center justify-center px-6 py-28">
       <section class="w-full max-w-md bg-surface-container-low/70 glass-effect border border-white/10 rounded-2xl p-10 shadow-2xl">
@@ -141,22 +131,9 @@
       </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-900 font-['Inter'] text-sm tracking-wide">
-      <div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-7xl mx-auto">
-        <div class="flex flex-col gap-4 mb-8 md:mb-0">
-          <a class="text-lg font-bold text-neutral-100 flex items-center gap-2" href="index.html"><img src="img/icon.png" alt="AniDex" class="h-6 w-6 rounded-full transition-transform duration-200 active:scale-110" /><span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span></a>
-          <p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jam?s creadas. Curado para el fan exigente.</p>
-        </div>
-        <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
-          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Política de Privacidad</a>
-          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Téminos de Servicio</a>
-          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Contacto</a>
-          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Documentación API</a>
-        </div>
-        <div class="mt-8 md:mt-0 text-neutral-500"> 2024 AniDex. Todos los derechos reservados.</div>
-      </div>
-    </footer>
+    <!-- Footer Component -->
+    <div data-layout="footer"></div>
+    <script src="layout.js"></script>
     <div id="login-success" class="fixed inset-0 z-[80] hidden">
       <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
       <div class="relative mx-auto mt-[20vh] w-[92%] max-w-md rounded-2xl bg-surface-container-high/90 border border-violet-500/30 p-6 shadow-2xl text-center overflow-hidden">

@@ -11,7 +11,7 @@
     </style>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AniDex - Catálogo</title>
+    <title>MyNeko - Catálogo</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
@@ -128,223 +128,118 @@
       background-color: rgba(153, 153, 153, 0.5);
     }
     </style>
-    <link rel="icon" href="img/icon.png" />
+    <link rel="icon" href="img/icon2.png" />
   </head>
   <body class="bg-background text-on-background font-body selection:bg-[#AC85DB]/30 selection:text-[#996AD2]">
     <div class="min-h-screen">
       <!-- Navbar Component -->
-      <nav
-      class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300"
-      >
-      <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
-        <a class="text-2xl font-bold tracking-tighter text-neutral-100 flex items-center gap-2" href="index.html">
-          <img src="img/icon.png" alt="AniDex" class="h-7 w-7 rounded-full transition-transform duration-200 active:scale-110" />
-          <span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span>
-        </a>
+      <div data-layout="header"></div>
 
-        <div class="hidden md:flex items-center gap-8" id="main-menu"></div>
-        <script>
-          const menuItems = [
-            { name: "Inicio", href: "index.html" },
-            { name: "Animes", href: "series.html" },
-            { name: "Películas", href: "catalogo.html" },
-            { name: "Destacados", href: "destacados.html" },
-            { name: "Ranking", href: "ranking.html" }
-          ];
-
-          const currentPage = window.location.pathname.split("/").pop();
-          const menuEl = document.getElementById("main-menu");
-
-          if (menuEl) {
-            menuEl.innerHTML = menuItems.map(item => {
-              const isActive = item.href === currentPage;
-              const base = "transition-colors";
-              const active = "text-violet-400 font-bold border-b-2 border-violet-500 pb-1";
-              const inactive = "text-neutral-400 hover:text-neutral-100";
-              return `
-            <a href="${item.href}" class="${isActive ? active : inactive + ' ' + base}">${item.name}</a>
-          `;
-            }).join("");
-          }
-        </script>
-
-        <div class="flex items-center gap-6">
-          <div
-          class="hidden lg:flex items-center bg-surface-container-high rounded-full px-4 py-2 w-48 group focus-within:ring-1 focus-within:ring-primary/30 transition-all"
-          >
-          <span class="material-symbols-outlined text-violet-400 text-sm">search</span>
-          <input
-          class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50"
-          placeholder="Buscar..."
-          type="text"
-          />
-        </div>
-        <div class="relative">
-          <button
-          class="flex items-center gap-2 rounded-full bg-surface-container-high px-3 py-2 text-xs font-semibold text-on-surface-variant hover:text-on-surface transition-colors"
-          type="button"
-          aria-haspopup="menu"
-          aria-expanded="false"
-          data-lang-toggle
-          >
-          <img src="img/espana.png" alt="ES" class="w-4 h-4" />
-          <span class="material-symbols-outlined text-[16px]">expand_more</span>
-        </button>
-        <div
-        class="absolute left-0 mt-2 hidden min-w-[145px] -translate-x-[5px] rounded-md bg-zinc-800 p-2 shadow-elevated border border-white/5"
-        role="menu"
-        data-lang-menu
-        >
-        <button
-        class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white"
-        type="button"
-        data-lang="es"
-        role="menuitem"
-        >
-        <img src="img/espana.png" alt="ES" class="w-4 h-4" /><span class="uppercase tracking-widest">ES</span>
-      </button>
-      <button
-      class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white"
-      type="button"
-      data-lang="en"
-      role="menuitem"
-      >
-      <img src="img/reino-unido.png" alt="EN" class="w-4 h-4" /><span class="uppercase tracking-widest">EN</span>
-    </button>
-  </div>
-</div>
-
-<div class="flex items-center gap-4">
-  <a
-  class="relative group hover:bg-neutral-800/50 rounded-full p-2 transition-all duration-300 scale-95 active:scale-90 flex items-center justify-center"
-  href="user.html"
-  ><span class="material-symbols-outlined text-neutral-400 group-hover:text-violet-500 transition-colors">favorite</span
-    ><span
-    class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-on-surface opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-    >Favoritos</span
-    ></a
-    >
-    <div
-    class="w-10 h-10 rounded-full overflow-hidden border-2 border-violet-500/30 hover:border-violet-500 transition-colors cursor-pointer"
-    onclick="window.location.href='user.html'"
-    >
-    <img
-    alt="Perfil de usuario"
-    class="w-full h-full object-cover"
-    data-alt="Primer plano de un avatar minimalista moderno"
-    src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"
-    />
-  </div>
-</div>
-</div>
-</div>
-</nav>
-
-<main class="mx-auto max-w-screen-2xl px-6 pb-20 pt-28">
-  <div class="grid grid-cols-1 gap-10 lg:grid-cols-12">
-    <!-- Sidebar Component -->
-    <aside class="lg:col-span-3">
-      <section class="sticky top-28 rounded-lg bg-surface-container-low p-6 filter-panel" aria-label="Filtros">
-        <h2 class="font-headline text-xl font-bold text-on-surface">Filtros</h2>
-        <div class="space-y-6">
-          <div class="space-y-2">
-            <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-search"
-            >Buscar</label
-            >
-            <div class="flex items-center gap-2 rounded-xl bg-surface-container-high px-4 py-3">
-              <span class="material-symbols-outlined text-primary">search</span>
-              <input
-              id="filter-search"
-              class="w-full bg-transparent border-none focus:ring-0"
-              type="search"
-              placeholder="Ej: Frieren"
-              aria-label="Buscar anime"
-              />
+      <main class="mx-auto max-w-screen-2xl px-6 pb-20 pt-28">
+        <div class="grid grid-cols-1 gap-10 lg:grid-cols-12">
+          <!-- Sidebar Component -->
+          <aside class="lg:col-span-3">
+            <section class="sticky top-28 rounded-lg bg-surface-container-low p-6 filter-panel" aria-label="Filtros">
+              <h2 class="font-headline text-xl font-bold text-on-surface">Filtros</h2>
+              <div class="space-y-6">
+                <div class="space-y-2">
+                  <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-search"
+                  >Buscar</label
+                  >
+                  <div class="flex items-center gap-2 rounded-xl bg-surface-container-high px-4 py-3">
+                    <span class="material-symbols-outlined text-primary">search</span>
+                    <input
+                    id="filter-search"
+                    class="w-full bg-transparent border-none focus:ring-0"
+                    type="search"
+                    placeholder="Ej: Frieren"
+                    aria-label="Buscar anime"
+                    />
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Géneros</label>
+                  <div class="flex flex-wrap gap-2">
+                    <button class="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-on-primary" type="button">
+                      Acción
+                    </button>
+                    <button
+                    class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant"
+                    type="button"
+                    >
+                    Fantasía
+                  </button>
+                  <button
+                  class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant"
+                  type="button"
+                  >
+                  Drama
+                </button>
+                <button
+                class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant"
+                type="button"
+                >
+                Sci-Fi
+              </button>
             </div>
           </div>
-          <div class="space-y-2">
-            <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Géneros</label>
-            <div class="flex flex-wrap gap-2">
-              <button class="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-on-primary" type="button">
-                Acción
-              </button>
-              <button
-              class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant"
-              type="button"
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-year"
+              >Año</label
               >
-              Fantasía
-            </button>
-            <button
-            class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant"
-            type="button"
+              <select
+              id="filter-year"
+              class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface"
+              aria-label="Filtrar por año"
+              >
+              <option>Todos</option>
+              <option>2026</option>
+              <option>2023</option>
+              <option>2022</option>
+            </select>
+          </div>
+          <div class="space-y-2">
+            <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-type"
+            >Tipo</label
             >
-            Drama
-          </button>
-          <button
-          class="rounded-full bg-surface-container-high px-4 py-2 text-xs font-semibold text-on-surface-variant"
-          type="button"
+            <select
+            id="filter-type"
+            class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface"
+            aria-label="Filtrar por tipo"
+            >
+            <option>Todos</option>
+            <option>Serie</option>
+            <option></option>
+            <option>OVA</option>
+          </select>
+        </div>
+        <div class="space-y-2">
+          <label
+          class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant"
+          for="filter-status"
+          >Estado</label
           >
-          Sci-Fi
-        </button>
+          <select
+          id="filter-status"
+          class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface"
+          aria-label="Filtrar por estado"
+          >
+          <option>Todos</option>
+          <option>En emisión</option>
+          <option>Finalizado</option>
+        </select>
       </div>
     </div>
-    <div class="space-y-4">
-      <div class="space-y-2">
-        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-year"
-        >Año</label
-        >
-        <select
-        id="filter-year"
-        class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface"
-        aria-label="Filtrar por año"
-        >
-        <option>Todos</option>
-        <option>2026</option>
-        <option>2023</option>
-        <option>2022</option>
-      </select>
+    <div class="flex gap-3">
+      <button class="flex-1 rounded-full bg-surface-container-high py-3 text-sm font-semibold text-on-surface" type="button">
+        Reiniciar
+      </button>
+      <button class="flex-1 rounded-full bg-primary py-3 text-sm font-bold text-on-primary" type="button">
+        Aplicar
+      </button>
     </div>
-    <div class="space-y-2">
-      <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="filter-type"
-      >Tipo</label
-      >
-      <select
-      id="filter-type"
-      class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface"
-      aria-label="Filtrar por tipo"
-      >
-      <option>Todos</option>
-      <option>Serie</option>
-      <option></option>
-      <option>OVA</option>
-    </select>
   </div>
-  <div class="space-y-2">
-    <label
-    class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant"
-    for="filter-status"
-    >Estado</label
-    >
-    <select
-    id="filter-status"
-    class="w-full rounded-xl bg-surface-container-high px-4 py-3 text-on-surface"
-    aria-label="Filtrar por estado"
-    >
-    <option>Todos</option>
-    <option>En emisión</option>
-    <option>Finalizado</option>
-  </select>
-</div>
-</div>
-<div class="flex gap-3">
-  <button class="flex-1 rounded-full bg-surface-container-high py-3 text-sm font-semibold text-on-surface" type="button">
-    Reiniciar
-  </button>
-  <button class="flex-1 rounded-full bg-primary py-3 text-sm font-bold text-on-primary" type="button">
-    Aplicar
-  </button>
-</div>
-</div>
 </section>
 </aside>
 
@@ -729,37 +624,8 @@
 </main>
 
 <!-- Footer Component -->
-<footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-900 font-['Inter'] text-sm tracking-wide">
-  <div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-48xl mx-auto">
-    <div class="flex flex-col gap-4 mb-8 md:mb-0">
-      <a class="text-lg font-bold text-neutral-100 flex items-center gap-2" href="index.html"
-      ><img
-      src="img/icon.png"
-      alt="AniDex"
-      class="h-6 w-6 rounded-full transition-transform duration-200 active:scale-110"
-      /><span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span></a
-      >
-      <p class="text-neutral-500 max-w-xs leading-relaxed">
-        Descubre, sigue y mira las mejores obras maestras animadas jamás creadas. Curado para el fan exigente.
-      </p>
-    </div>
-    <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
-      <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#"
-      >Política de Privacidad</a
-      >
-      <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#"
-      >Téminos de Servicio</a
-      >
-      <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#"
-      >Contacto</a
-      >
-      <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#"
-      >Documentación API</a
-      >
-    </div>
-    <div class="mt-8 md:mt-0 text-neutral-500">2026 AniDex. Todos los derechos reservados.</div>
-  </div>
-</footer>
+<div data-layout="footer"></div>
+<script src="layout.js"></script>
 </div>
 
 <script src="i18n.js"></script>
