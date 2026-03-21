@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html class="dark" lang="es">
-<head>
-<script data-ui-preload>document.documentElement.classList.add("preload-ui");</script>
-<style>
+  <head>
+    <script data-ui-preload>document.documentElement.classList.add("preload-ui");</script>
+    <style>
   .preload-ui body { opacity: 0; }
-</style>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script id="tailwind-config">
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
@@ -77,8 +77,8 @@
         }
       }
     }
-  </script>
-  <style>
+    </script>
+    <style>
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
@@ -102,20 +102,20 @@
       background: rgba(255,255,255,0.2);
       border-radius: 999px;
     }
-  </style>
-  <link rel="icon" href="img/icon.png" />
-
-<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
-  <!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
-  <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
-    <a class="text-2xl font-bold tracking-tighter text-neutral-100 flex items-center gap-2" href="index.html">
-      <img src="img/icon.png" alt="AniDex" class="h-7 w-7 rounded-full transition-transform duration-200 active:scale-110" />
-      <span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span>
-    </a>
+    </style>
+    <link rel="icon" href="img/icon.png" />
+    
+    <body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+      <!-- TopNavBar -->
+      <nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
+        <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
+          <a class="text-2xl font-bold tracking-tighter text-neutral-100 flex items-center gap-2" href="index.html">
+            <img src="img/icon.png" alt="AniDex" class="h-7 w-7 rounded-full transition-transform duration-200 active:scale-110" />
+            <span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span>
+          </a>
 
-    <div class="hidden md:flex items-center gap-8" id="main-menu"></div>
-    <script>
+          <div class="hidden md:flex items-center gap-8" id="main-menu"></div>
+          <script>
       const menuItems = [
         { name: "Inicio", href: "index.html" },
         { name: "Animes", href: "series.html" },
@@ -138,291 +138,291 @@
           `;
         }).join("");
       }
-    </script>
+          </script>
 
-    <div class="flex items-center gap-6">
-      <div class="hidden lg:flex items-center bg-surface-container-high rounded-full px-4 py-2 w-48 group focus-within:ring-1 focus-within:ring-primary/30 transition-all">
-        <span class="material-symbols-outlined text-violet-400 text-sm">search</span>
-        <input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50" placeholder="Buscar..." type="text"/>
-      </div>
-      <div class="relative">
-        <button class="flex items-center gap-2 rounded-full bg-surface-container-high px-3 py-2 text-xs font-semibold text-on-surface-variant hover:text-on-surface transition-colors" type="button" aria-haspopup="menu" aria-expanded="false" data-lang-toggle>
-          <img src="img/espana.png" alt="ES" class="w-4 h-4" />
-          <span class="material-symbols-outlined text-[16px]">expand_more</span>
-        </button>
-        <div class="absolute left-0 mt-2 hidden min-w-[145px] -translate-x-[5px] rounded-md bg-zinc-800 p-2 shadow-elevated border border-white/5" role="menu" data-lang-menu>
-  <button class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white" type="button" data-lang="es" role="menuitem">
-    <img src="img/espana.png" alt="ES" class="w-4 h-4" /><span class="uppercase tracking-widest">ES</span>
-  </button>
-  <button class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white" type="button" data-lang="en" role="menuitem">
-    <img src="img/reino-unido.png" alt="EN" class="w-4 h-4" /><span class="uppercase tracking-widest">EN</span>
-  </button>
-</div>
-      </div>
-
-<div class="flex items-center gap-4">
-        <a class="relative group hover:bg-neutral-800/50 rounded-full p-2 transition-all duration-300 scale-95 active:scale-90 flex items-center justify-center" href="user.html"><span class="material-symbols-outlined text-neutral-400 group-hover:text-violet-500 transition-colors">favorite</span><span class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-on-surface opacity-0 transition-opacity duration-200 group-hover:opacity-100">Favoritos</span></a>
-        <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-violet-500/30 hover:border-violet-500 transition-colors cursor-pointer" onclick="window.location.href='user.html'">
-          <img alt="Perfil de usuario" class="w-full h-full object-cover" data-alt="Primer plano de un avatar minimalista moderno" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-
-  <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto space-y-12">
-    <!-- Header: User Profile Card -->
-    <section class="relative group">
-      <div id="profile-card" class="bg-surface-container-low p-8 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.35)] border border-white/10 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden transition-all duration-300 hover:shadow-[0_30px_80px_rgba(0,0,0,0.45)] hover:scale-[1.01]">
-        <span class="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full bg-white/5 blur-3xl"></span>
-        <span class="pointer-events-none absolute -bottom-24 -left-24 h-56 w-56 rounded-full bg-white/5 blur-3xl"></span>
-        <div class="relative w-32 h-32 rounded-full overflow-visible border-4 border-primary shadow-lg flex-shrink-0">
-          <img alt="Foto de perfil" class="w-full h-full object-cover rounded-full" data-profile-avatar src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
-          <button class="absolute -bottom-2 -right-0 w-7 h-7 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-lg z-50" type="button" aria-label="Editar perfil" id="profile-avatar-edit">
-            <span class="material-symbols-outlined text-[14px]">edit</span>
-          </button>
-        </div>
-        <div class="flex-1 space-y-4 text-center md:text-left">
-          <div>
-            <h1 class="font-headline text-4xl md:text-6xl font-extrabold tracking-tight text-on-surface">AnimeFan99</h1>
-            <p class="text-on-surface-variant font-medium mt-3">Curando el mejor shonen desde 2018</p>
-          </div>
-          <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-2">
-            <button type="button" data-open-status="completed" class="bg-gradient-to-br from-emerald-500 to-teal-600 px-6 py-3 rounded-xl font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform cursor-pointer">
-              <span class="block text-primary font-bold text-2xl" data-count-completed>0</span>
-              <span class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">ANIMES COMPLETADOS</span>
-            </button>
-            <button type="button" data-open-status="pending" class="bg-gradient-to-br from-amber-500 to-orange-600 px-6 py-3 rounded-xl font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform cursor-pointer">
-              <span class="block text-primary font-bold text-2xl" data-count-pending>0</span>
-              <span class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">ANIMES PENDIENTES</span>
-            </button>
-            <!-- Estad�sticas de �d�as/episodios vistos� removidas ya que no aplica a listas sin reproducci�n -->
-          </div>
-        </div>
-        <div class="flex flex-col gap-3 items-center md:items-end">
-          <button class="bg-gradient-to-br from-primary to-primary-container px-8 py-4 rounded-full font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform inline-block" type="button" id="profile-edit-btn">EDITAR PERFIL</button>
-          <a class="bg-gradient-to-br from-primary to-primary-container px-8 py-4 rounded-full font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform inline-block text-center" href="registro.html">REGISTRARTE</a>
-          <a class="bg-gradient-to-br from-primary to-primary-container px-8 py-4 rounded-full font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform inline-block text-center" href="ingresar.html">INGRESAR</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Main Dashboard Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-      <!-- Favorites & Activity Content -->
-      <div class="lg:col-span-8 space-y-12">
-        <!-- Visto Recientemente removed -->
-
-        <section class="space-y-6">
-          <div class="flex justify-between items-end px-2">
-            <h2 class="font-headline text-2xl font-bold">Mi Lista</h2>
-            <div class="flex items-center gap-2">
-              <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-left="my-list-grid" aria-label="Desplazar a la izquierda">
-                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+          <div class="flex items-center gap-6">
+            <div class="hidden lg:flex items-center bg-surface-container-high rounded-full px-4 py-2 w-48 group focus-within:ring-1 focus-within:ring-primary/30 transition-all">
+              <span class="material-symbols-outlined text-violet-400 text-sm">search</span>
+              <input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50" placeholder="Buscar..." type="text"/>
+            </div>
+            <div class="relative">
+              <button class="flex items-center gap-2 rounded-full bg-surface-container-high px-3 py-2 text-xs font-semibold text-on-surface-variant hover:text-on-surface transition-colors" type="button" aria-haspopup="menu" aria-expanded="false" data-lang-toggle>
+                <img src="img/espana.png" alt="ES" class="w-4 h-4" />
+                <span class="material-symbols-outlined text-[16px]">expand_more</span>
               </button>
-              <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-right="my-list-grid" aria-label="Desplazar a la derecha">
-                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
-              </button>
-              <button class="text-primary text-sm font-bold hover:underline" type="button" data-open-list="my-list">Ver todo</button>
+              <div class="absolute left-0 mt-2 hidden min-w-[145px] -translate-x-[5px] rounded-md bg-zinc-800 p-2 shadow-elevated border border-white/5" role="menu" data-lang-menu>
+                <button class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white" type="button" data-lang="es" role="menuitem">
+                  <img src="img/espana.png" alt="ES" class="w-4 h-4" /><span class="uppercase tracking-widest">ES</span>
+                </button>
+                <button class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white" type="button" data-lang="en" role="menuitem">
+                  <img src="img/reino-unido.png" alt="EN" class="w-4 h-4" /><span class="uppercase tracking-widest">EN</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <a class="relative group hover:bg-neutral-800/50 rounded-full p-2 transition-all duration-300 scale-95 active:scale-90 flex items-center justify-center" href="user.html"><span class="material-symbols-outlined text-neutral-400 group-hover:text-violet-500 transition-colors">favorite</span><span class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-on-surface opacity-0 transition-opacity duration-200 group-hover:opacity-100">Favoritos</span></a>
+              <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-violet-500/30 hover:border-violet-500 transition-colors cursor-pointer" onclick="window.location.href='user.html'">
+                <img alt="Perfil de usuario" class="w-full h-full object-cover" data-alt="Primer plano de un avatar minimalista moderno" src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
+              </div>
             </div>
           </div>
-          <div id="my-list-grid" class="flex gap-4 overflow-x-auto no-scrollbar overflow-visible py-1"></div>
+        </div>
+      </nav>
+
+      <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto space-y-12">
+        <!-- Header: User Profile Card -->
+        <section class="relative group">
+          <div id="profile-card" class="bg-surface-container-low p-8 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.35)] border border-white/10 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden transition-all duration-300 hover:shadow-[0_30px_80px_rgba(0,0,0,0.45)] hover:scale-[1.01]">
+            <span class="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full bg-white/5 blur-3xl"></span>
+            <span class="pointer-events-none absolute -bottom-24 -left-24 h-56 w-56 rounded-full bg-white/5 blur-3xl"></span>
+            <div class="relative w-32 h-32 rounded-full overflow-visible border-4 border-primary shadow-lg flex-shrink-0">
+              <img alt="Foto de perfil" class="w-full h-full object-cover rounded-full" data-profile-avatar src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"/>
+              <button class="absolute -bottom-2 -right-0 w-7 h-7 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-lg z-50" type="button" aria-label="Editar perfil" id="profile-avatar-edit">
+                <span class="material-symbols-outlined text-[14px]">edit</span>
+              </button>
+            </div>
+            <div class="flex-1 space-y-4 text-center md:text-left">
+              <div>
+                <h1 class="font-headline text-4xl md:text-6xl font-extrabold tracking-tight text-on-surface">AnimeFan99</h1>
+                <p class="text-on-surface-variant font-medium mt-3">Curando el mejor shonen desde 2018</p>
+              </div>
+              <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-2">
+                <button type="button" data-open-status="completed" class="bg-gradient-to-br from-emerald-500 to-teal-600 px-6 py-3 rounded-xl font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform cursor-pointer">
+                  <span class="block text-primary font-bold text-2xl" data-count-completed>0</span>
+                  <span class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">ANIMES COMPLETADOS</span>
+                </button>
+                <button type="button" data-open-status="pending" class="bg-gradient-to-br from-amber-500 to-orange-600 px-6 py-3 rounded-xl font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform cursor-pointer">
+                  <span class="block text-primary font-bold text-2xl" data-count-pending>0</span>
+                  <span class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">ANIMES PENDIENTES</span>
+                </button>
+                <!-- Estad�sticas de �d�as/episodios vistos� removidas ya que no aplica a listas sin reproducci�n -->
+              </div>
+            </div>
+            <div class="flex flex-col gap-3 items-center md:items-end">
+              <button class="bg-gradient-to-br from-primary to-primary-container px-8 py-4 rounded-full font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform inline-block" type="button" id="profile-edit-btn">EDITAR PERFIL</button>
+              <a class="bg-gradient-to-br from-primary to-primary-container px-8 py-4 rounded-full font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform inline-block text-center" href="registro.html">REGISTRARTE</a>
+              <a class="bg-gradient-to-br from-primary to-primary-container px-8 py-4 rounded-full font-label font-bold uppercase text-xs tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform inline-block text-center" href="ingresar.html">INGRESAR</a>
+            </div>
+          </div>
         </section>
 
-        <!-- Favorites Grid -->
-        <section class="space-y-6">
-          <div class="flex justify-between items-end px-2">
-            <h2 class="font-headline text-2xl font-bold">Favoritos</h2>
-            <div class="flex items-center gap-2">
-              <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-left="favorites-grid" aria-label="Desplazar a la izquierda">
-                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
-              </button>
-              <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-right="favorites-grid" aria-label="Desplazar a la derecha">
-                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
-              </button>
-              <button class="text-primary text-sm font-bold hover:underline" type="button" data-open-list="favorites">Ver todo</button>
-            </div>
+        <!-- Main Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <!-- Favorites & Activity Content -->
+          <div class="lg:col-span-8 space-y-12">
+            <!-- Visto Recientemente removed -->
+
+            <section class="space-y-6">
+              <div class="flex justify-between items-end px-2">
+                <h2 class="font-headline text-2xl font-bold">Mi Lista</h2>
+                <div class="flex items-center gap-2">
+                  <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-left="my-list-grid" aria-label="Desplazar a la izquierda">
+                    <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                  </button>
+                  <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-right="my-list-grid" aria-label="Desplazar a la derecha">
+                    <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                  </button>
+                  <button class="text-primary text-sm font-bold hover:underline" type="button" data-open-list="my-list">Ver todo</button>
+                </div>
+              </div>
+              <div id="my-list-grid" class="flex gap-4 overflow-x-auto no-scrollbar overflow-visible py-1"></div>
+            </section>
+
+            <!-- Favorites Grid -->
+            <section class="space-y-6">
+              <div class="flex justify-between items-end px-2">
+                <h2 class="font-headline text-2xl font-bold">Favoritos</h2>
+                <div class="flex items-center gap-2">
+                  <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-left="favorites-grid" aria-label="Desplazar a la izquierda">
+                    <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                  </button>
+                  <button class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors flex items-center justify-center" type="button" data-scroll-right="favorites-grid" aria-label="Desplazar a la derecha">
+                    <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                  </button>
+                  <button class="text-primary text-sm font-bold hover:underline" type="button" data-open-list="favorites">Ver todo</button>
+                </div>
+              </div>
+              <div id="favorites-grid" class="flex gap-4 overflow-x-auto no-scrollbar overflow-visible py-1"></div>
+            </section>
           </div>
-          <div id="favorites-grid" class="flex gap-4 overflow-x-auto no-scrollbar overflow-visible py-1"></div>
-        </section>
-      </div>
-<!-- Right Rail: Recomendados -->
-      <aside class="lg:col-span-4 space-y-4 bg-surface-container-low rounded-2xl p-4">
-        <div class="flex items-center justify-between px-2">
-          <h2 class="font-headline text-xl font-bold">Recomendados</h2>
+          <!-- Right Rail: Recomendados -->
+          <aside class="lg:col-span-4 space-y-4 bg-surface-container-low rounded-2xl p-4">
+            <div class="flex items-center justify-between px-2">
+              <h2 class="font-headline text-xl font-bold">Recomendados</h2>
+            </div>
+            <div class="space-y-3">
+              <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="5114" data-title="Fullmetal Alchemist: Brotherhood" onclick="window.location.href='detail.html?mal_id=5114&q=Fullmetal%20Alchemist%3A%20Brotherhood'">
+                <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
+                <img src="https://cdn.myanimelist.net/images/anime/1223/96541.jpg" alt="Fullmetal Alchemist: Brotherhood" class="w-12 h-16 object-cover rounded-md" />
+                <div class="text-left">
+                  <p class="text-sm font-bold">Fullmetal Alchemist: Brotherhood</p>
+                  <p class="text-xs text-on-surface-variant">Accion - Aventura</p>
+                </div>
+              </button>
+              <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="9253" data-title="Steins;Gate" onclick="window.location.href='detail.html?mal_id=9253&q=Steins%3BGate'">
+                <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
+                <img src="https://cdn.myanimelist.net/images/anime/5/73199.jpg" alt="Steins;Gate" class="w-12 h-16 object-cover rounded-md" />
+                <div class="text-left">
+                  <p class="text-sm font-bold">Steins;Gate</p>
+                  <p class="text-xs text-on-surface-variant">Sci-Fi - Suspenso</p>
+                </div>
+              </button>
+              <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="32281" data-title="Kimi no Na wa." onclick="window.location.href='detail.html?mal_id=32281&q=Kimi%20no%20Na%20wa.'">
+                <span class="absolute top-2 right-2 rounded-full bg-fuchsia-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Pelicula</span>
+                <img src="https://cdn.myanimelist.net/images/anime/5/87048.jpg" alt="Kimi no Na wa." class="w-12 h-16 object-cover rounded-md" />
+                <div class="text-left">
+                  <p class="text-sm font-bold">Kimi no Na wa.</p>
+                  <p class="text-xs text-on-surface-variant">Romance - Fantasia</p>
+                </div>
+              </button>
+              <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="16498" data-title="Shingeki no Kyojin" onclick="window.location.href='detail.html?mal_id=16498&q=Shingeki%20no%20Kyojin'">
+                <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
+                <img src="https://cdn.myanimelist.net/images/anime/10/47347.jpg" alt="Shingeki no Kyojin" class="w-12 h-16 object-cover rounded-md" />
+                <div class="text-left">
+                  <p class="text-sm font-bold">Attack on Titan</p>
+                  <p class="text-xs text-on-surface-variant">Accion - Drama</p>
+                </div>
+              </button>
+              <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="12355" data-title="Ookami Kodomo no Ame to Yuki" onclick="window.location.href='detail.html?mal_id=12355&q=Ookami%20Kodomo%20no%20Ame%20to%20Yuki'">
+                <span class="absolute top-2 right-2 rounded-full bg-fuchsia-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Pelicula</span>
+                <img src="https://cdn.myanimelist.net/images/anime/9/35721.jpg" alt="Wolf Children" class="w-12 h-16 object-cover rounded-md" />
+                <div class="text-left">
+                  <p class="text-sm font-bold">Wolf Children</p>
+                  <p class="text-xs text-on-surface-variant">Drama - Fantasia</p>
+                </div>
+              </button>
+              <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="40591" data-title="Kaguya-sama: Love is War" onclick="window.location.href='detail.html?mal_id=40591&q=Kaguya-sama%3A%20Love%20is%20War'">
+                <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
+                <img src="https://cdn.myanimelist.net/images/anime/1295/106551.jpg" alt="Kaguya-sama: Love is War" class="w-12 h-16 object-cover rounded-md" />
+                <div class="text-left">
+                  <p class="text-sm font-bold">Kaguya-sama: Love is War</p>
+                  <p class="text-xs text-on-surface-variant">Romance - Comedia</p>
+                </div>
+              </button>
+            </div>
+            <a class="mt-4 inline-flex w-full items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-600 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white shadow-lg hover:scale-105 active:scale-95 transition-transform" href="destacados.html">Ver m&aacute;s</a>
+          </aside>
         </div>
-        <div class="space-y-3">
-          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="5114" data-title="Fullmetal Alchemist: Brotherhood" onclick="window.location.href='detail.html?mal_id=5114&q=Fullmetal%20Alchemist%3A%20Brotherhood'">
-            <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
-            <img src="https://cdn.myanimelist.net/images/anime/1223/96541.jpg" alt="Fullmetal Alchemist: Brotherhood" class="w-12 h-16 object-cover rounded-md" />
-            <div class="text-left">
-              <p class="text-sm font-bold">Fullmetal Alchemist: Brotherhood</p>
-              <p class="text-xs text-on-surface-variant">Accion - Aventura</p>
-            </div>
-          </button>
-          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="9253" data-title="Steins;Gate" onclick="window.location.href='detail.html?mal_id=9253&q=Steins%3BGate'">
-            <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
-            <img src="https://cdn.myanimelist.net/images/anime/5/73199.jpg" alt="Steins;Gate" class="w-12 h-16 object-cover rounded-md" />
-            <div class="text-left">
-              <p class="text-sm font-bold">Steins;Gate</p>
-              <p class="text-xs text-on-surface-variant">Sci-Fi - Suspenso</p>
-            </div>
-          </button>
-          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="32281" data-title="Kimi no Na wa." onclick="window.location.href='detail.html?mal_id=32281&q=Kimi%20no%20Na%20wa.'">
-            <span class="absolute top-2 right-2 rounded-full bg-fuchsia-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Pelicula</span>
-            <img src="https://cdn.myanimelist.net/images/anime/5/87048.jpg" alt="Kimi no Na wa." class="w-12 h-16 object-cover rounded-md" />
-            <div class="text-left">
-              <p class="text-sm font-bold">Kimi no Na wa.</p>
-              <p class="text-xs text-on-surface-variant">Romance - Fantasia</p>
-            </div>
-          </button>
-          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="16498" data-title="Shingeki no Kyojin" onclick="window.location.href='detail.html?mal_id=16498&q=Shingeki%20no%20Kyojin'">
-            <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
-            <img src="https://cdn.myanimelist.net/images/anime/10/47347.jpg" alt="Shingeki no Kyojin" class="w-12 h-16 object-cover rounded-md" />
-            <div class="text-left">
-              <p class="text-sm font-bold">Attack on Titan</p>
-              <p class="text-xs text-on-surface-variant">Accion - Drama</p>
-            </div>
-          </button>
-          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="12355" data-title="Ookami Kodomo no Ame to Yuki" onclick="window.location.href='detail.html?mal_id=12355&q=Ookami%20Kodomo%20no%20Ame%20to%20Yuki'">
-            <span class="absolute top-2 right-2 rounded-full bg-fuchsia-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Pelicula</span>
-            <img src="https://cdn.myanimelist.net/images/anime/9/35721.jpg" alt="Wolf Children" class="w-12 h-16 object-cover rounded-md" />
-            <div class="text-left">
-              <p class="text-sm font-bold">Wolf Children</p>
-              <p class="text-xs text-on-surface-variant">Drama - Fantasia</p>
-            </div>
-          </button>
-          <button class="w-full bg-surface-container-low hover:bg-surface-container-high rounded-xl p-3 flex items-center gap-3 border border-transparent hover:border-violet-400/40 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)] hover:scale-[1.02] transition-all cursor-pointer relative" data-mal-id="40591" data-title="Kaguya-sama: Love is War" onclick="window.location.href='detail.html?mal_id=40591&q=Kaguya-sama%3A%20Love%20is%20War'">
-            <span class="absolute top-2 right-2 rounded-full bg-violet-500/90 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-white">Anime</span>
-            <img src="https://cdn.myanimelist.net/images/anime/1295/106551.jpg" alt="Kaguya-sama: Love is War" class="w-12 h-16 object-cover rounded-md" />
-            <div class="text-left">
-              <p class="text-sm font-bold">Kaguya-sama: Love is War</p>
-              <p class="text-xs text-on-surface-variant">Romance - Comedia</p>
-            </div>
-          </button>
-        </div>
-        <a class="mt-4 inline-flex w-full items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-600 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white shadow-lg hover:scale-105 active:scale-95 transition-transform" href="destacados.html">Ver m&aacute;s</a>
-      </aside>
-    </div>
-  </main>
+      </main>
 
-  <!-- Avatar Picker Modal -->
-  <div id="avatar-modal" class="fixed inset-0 z-[60] hidden">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-avatar-close></div>
-    <div class="relative mx-auto mt-28 w-[92%] max-w-3xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="font-headline text-xl font-bold">Elige tu nuevo avatar</h3>
-        <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-avatar-close aria-label="Cerrar">x</button>
-      </div>
-      <p class="text-sm text-on-surface-variant mb-4">Selecciona una imagen para tu perfil.</p>
-      <div class="max-h-[60vh] overflow-y-auto pr-2 transparent-scrollbar">
-        <div id="avatar-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Edit Profile Modal -->
-  <div id="profile-modal" class="fixed inset-0 z-[60] hidden">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-profile-close></div>
-    <div class="relative mx-auto mt-28 w-[92%] max-w-2xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="font-headline text-xl font-bold">Editar perfil</h3>
-        <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-profile-close aria-label="Cerrar">x</button>
-      </div>
-        <div class="space-y-4">
-        <div class="space-y-2">
-          <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Nombre de usuario</label>
-          <input id="profile-name-input" class="w-full rounded-xl bg-surface-container-low border border-outline-variant px-4 py-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40" type="text" placeholder="Tu nombre" />
-        </div>
-        <div class="space-y-2">
-          <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Descripci�n</label>
-          <textarea id="profile-desc-input" class="w-full rounded-xl bg-surface-container-low border border-outline-variant px-4 py-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40 min-h-[120px]" placeholder="Escribe una breve descripci�n"></textarea>
-        </div>
-        <div class="space-y-2">
-          <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Color del recuadro</label>
-          <div id="profile-color-options" class="flex flex-wrap gap-3">
-            <button type="button" data-color-class="bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800" class="w-9 h-9 rounded-full bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 border border-zinc-700 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(255,255,255,0.18)]"></button>
-            <button type="button" data-color-class="bg-gradient-to-br from-violet-900/50 via-indigo-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-violet-900/50 via-indigo-900/40 to-slate-900/30 border border-violet-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)]"></button>
-            <button type="button" data-color-class="bg-gradient-to-br from-fuchsia-900/50 via-rose-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-fuchsia-900/50 via-rose-900/40 to-slate-900/30 border border-rose-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(244,114,182,0.35)]"></button>
-            <button type="button" data-color-class="bg-gradient-to-br from-emerald-900/50 via-teal-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-900/50 via-teal-900/40 to-slate-900/30 border border-emerald-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(52,211,153,0.35)]"></button>
-            <button type="button" data-color-class="bg-gradient-to-br from-sky-900/50 via-cyan-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-sky-900/50 via-cyan-900/40 to-slate-900/30 border border-sky-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(56,189,248,0.35)]"></button>
-            <button type="button" data-color-class="bg-gradient-to-br from-amber-900/50 via-orange-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-amber-900/50 via-orange-900/40 to-slate-900/30 border border-amber-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(251,191,36,0.35)]"></button>
-            <button type="button" data-color-class="bg-gradient-to-br from-lime-900/50 via-green-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-lime-900/50 via-green-900/40 to-slate-900/30 border border-lime-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(163,230,53,0.35)]"></button>
-            <button type="button" data-color-class="bg-gradient-to-br from-red-900/50 via-orange-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-red-900/50 via-orange-900/40 to-slate-900/30 border border-red-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(248,113,113,0.35)]"></button>
-            <button type="button" data-color-class="bg-gradient-to-br from-blue-900/50 via-indigo-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-900/50 via-indigo-900/40 to-slate-900/30 border border-blue-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(96,165,250,0.35)]"></button>
-            <button type="button" data-color-class="bg-gradient-to-br from-purple-900/50 via-pink-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-900/50 via-pink-900/40 to-slate-900/30 border border-pink-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(236,72,153,0.35)]"></button>
+      <!-- Avatar Picker Modal -->
+      <div id="avatar-modal" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-avatar-close></div>
+        <div class="relative mx-auto mt-28 w-[92%] max-w-3xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-headline text-xl font-bold">Elige tu nuevo avatar</h3>
+            <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-avatar-close aria-label="Cerrar">x</button>
+          </div>
+          <p class="text-sm text-on-surface-variant mb-4">Selecciona una imagen para tu perfil.</p>
+          <div class="max-h-[60vh] overflow-y-auto pr-2 transparent-scrollbar">
+            <div id="avatar-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4"></div>
           </div>
         </div>
-        <div class="flex justify-end gap-3 pt-2">
-          <button class="rounded-full bg-surface-container-low px-4 py-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-on-surface" type="button" data-profile-close>Cancelar</button>
-          <button id="profile-save-btn" class="rounded-full bg-primary text-on-primary px-6 py-2 text-xs font-bold uppercase tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform" type="button">Guardar</button>
+      </div>
+
+      <!-- Edit Profile Modal -->
+      <div id="profile-modal" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-profile-close></div>
+        <div class="relative mx-auto mt-28 w-[92%] max-w-2xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-headline text-xl font-bold">Editar perfil</h3>
+            <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-profile-close aria-label="Cerrar">x</button>
+          </div>
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Nombre de usuario</label>
+              <input id="profile-name-input" class="w-full rounded-xl bg-surface-container-low border border-outline-variant px-4 py-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40" type="text" placeholder="Tu nombre" />
+            </div>
+            <div class="space-y-2">
+              <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Descripci�n</label>
+              <textarea id="profile-desc-input" class="w-full rounded-xl bg-surface-container-low border border-outline-variant px-4 py-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40 min-h-[120px]" placeholder="Escribe una breve descripci�n"></textarea>
+            </div>
+            <div class="space-y-2">
+              <label class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Color del recuadro</label>
+              <div id="profile-color-options" class="flex flex-wrap gap-3">
+                <button type="button" data-color-class="bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800" class="w-9 h-9 rounded-full bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 border border-zinc-700 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(255,255,255,0.18)]"></button>
+                <button type="button" data-color-class="bg-gradient-to-br from-violet-900/50 via-indigo-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-violet-900/50 via-indigo-900/40 to-slate-900/30 border border-violet-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(139,92,246,0.35)]"></button>
+                <button type="button" data-color-class="bg-gradient-to-br from-fuchsia-900/50 via-rose-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-fuchsia-900/50 via-rose-900/40 to-slate-900/30 border border-rose-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(244,114,182,0.35)]"></button>
+                <button type="button" data-color-class="bg-gradient-to-br from-emerald-900/50 via-teal-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-900/50 via-teal-900/40 to-slate-900/30 border border-emerald-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(52,211,153,0.35)]"></button>
+                <button type="button" data-color-class="bg-gradient-to-br from-sky-900/50 via-cyan-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-sky-900/50 via-cyan-900/40 to-slate-900/30 border border-sky-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(56,189,248,0.35)]"></button>
+                <button type="button" data-color-class="bg-gradient-to-br from-amber-900/50 via-orange-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-amber-900/50 via-orange-900/40 to-slate-900/30 border border-amber-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(251,191,36,0.35)]"></button>
+                <button type="button" data-color-class="bg-gradient-to-br from-lime-900/50 via-green-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-lime-900/50 via-green-900/40 to-slate-900/30 border border-lime-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(163,230,53,0.35)]"></button>
+                <button type="button" data-color-class="bg-gradient-to-br from-red-900/50 via-orange-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-red-900/50 via-orange-900/40 to-slate-900/30 border border-red-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(248,113,113,0.35)]"></button>
+                <button type="button" data-color-class="bg-gradient-to-br from-blue-900/50 via-indigo-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-900/50 via-indigo-900/40 to-slate-900/30 border border-blue-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(96,165,250,0.35)]"></button>
+                <button type="button" data-color-class="bg-gradient-to-br from-purple-900/50 via-pink-900/40 to-slate-900/30" class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-900/50 via-pink-900/40 to-slate-900/30 border border-pink-400/40 transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_18px_rgba(236,72,153,0.35)]"></button>
+              </div>
+            </div>
+            <div class="flex justify-end gap-3 pt-2">
+              <button class="rounded-full bg-surface-container-low px-4 py-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-on-surface" type="button" data-profile-close>Cancelar</button>
+              <button id="profile-save-btn" class="rounded-full bg-primary text-on-primary px-6 py-2 text-xs font-bold uppercase tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-transform" type="button">Guardar</button>
+            </div>
+          </div>
+
+
         </div>
       </div>
 
-      
-    </div>
-  </div>
+      <!-- Full Lists Modal -->
+      <div id="lists-modal" class="fixed inset-0 z-[70] hidden">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-lists-close></div>
+        <div class="relative mx-auto mt-20 w-[92%] max-w-6xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-headline text-2xl font-bold" id="lists-modal-title">Mi Lista</h3>
+            <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-lists-close aria-label="Cerrar">x</button>
+          </div>
+          <div id="lists-modal-body" class="max-h-[70vh] overflow-y-auto overflow-x-hidden pr-2 transparent-scrollbar">
+            <div id="my-list-modal" class="space-y-4 hidden">
+              <div id="my-list-grid-full" data-show-all="1" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+            </div>
+            <div id="favorites-modal" class="space-y-4 hidden">
+              <div id="favorites-grid-full" data-show-all="1" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- Full Lists Modal -->
-  <div id="lists-modal" class="fixed inset-0 z-[70] hidden">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-lists-close></div>
-    <div class="relative mx-auto mt-20 w-[92%] max-w-6xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="font-headline text-2xl font-bold" id="lists-modal-title">Mi Lista</h3>
-        <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-lists-close aria-label="Cerrar">x</button>
-      </div>
-      <div id="lists-modal-body" class="max-h-[70vh] overflow-y-auto overflow-x-hidden pr-2 transparent-scrollbar">
-        <div id="my-list-modal" class="space-y-4 hidden">
-          <div id="my-list-grid-full" data-show-all="1" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+      <!-- Status Modal -->
+      <div id="status-modal" class="fixed inset-0 z-[70] hidden">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-status-close></div>
+        <div class="relative mx-auto mt-20 w-[92%] max-w-6xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-headline text-2xl font-bold" id="status-modal-title">Completados</h3>
+            <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-status-close aria-label="Cerrar">x</button>
+          </div>
+          <div id="status-modal-body" class="max-h-[70vh] overflow-y-auto overflow-x-hidden pr-2 transparent-scrollbar">
+            <div id="completed-section" class="space-y-4 hidden">
+              <div id="completed-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+            </div>
+            <div id="pending-section" class="space-y-4 hidden">
+              <div id="pending-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+            </div>
+          </div>
         </div>
-        <div id="favorites-modal" class="space-y-4 hidden">
-          <div id="favorites-grid-full" data-show-all="1" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
-        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Status Modal -->
-  <div id="status-modal" class="fixed inset-0 z-[70] hidden">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-status-close></div>
-    <div class="relative mx-auto mt-20 w-[92%] max-w-6xl rounded-2xl bg-surface-container-high p-6 shadow-2xl">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="font-headline text-2xl font-bold" id="status-modal-title">Completados</h3>
-        <button class="rounded-full bg-surface-container-low w-8 h-8 flex items-center justify-center text-xs font-bold text-on-surface-variant hover:text-on-surface" type="button" data-status-close aria-label="Cerrar">x</button>
-      </div>
-      <div id="status-modal-body" class="max-h-[70vh] overflow-y-auto overflow-x-hidden pr-2 transparent-scrollbar">
-        <div id="completed-section" class="space-y-4 hidden">
-          <div id="completed-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+      <!-- Footer -->
+      <footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-900 font-['Inter'] text-sm tracking-wide">
+        <div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-48xl mx-auto">
+          <div class="flex flex-col gap-4 mb-8 md:mb-0">
+            <a class="text-lg font-bold text-neutral-100 flex items-center gap-2" href="index.html"><img src="img/icon.png" alt="AniDex" class="h-6 w-6 rounded-full transition-transform duration-200 active:scale-110" /><span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span></a>
+            <p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jamas creadas. Curado para el fan exigente.</p>
+          </div>
+          <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+            <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Politica de Privacidad</a>
+            <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Terminos de Servicio</a>
+            <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Contacto</a>
+            <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Documentación API</a>
+          </div>
+          <div class="mt-8 md:mt-0 text-neutral-500"> 2026 AniDex. Todos los derechos reservados.</div>
         </div>
-        <div id="pending-section" class="space-y-4 hidden">
-          <div id="pending-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-900 font-['Inter'] text-sm tracking-wide">
-<div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-48xl mx-auto">
-<div class="flex flex-col gap-4 mb-8 md:mb-0">
-<a class="text-lg font-bold text-neutral-100 flex items-center gap-2" href="index.html"><img src="img/icon.png" alt="AniDex" class="h-6 w-6 rounded-full transition-transform duration-200 active:scale-110" /><span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span></a>
-<p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jamas creadas. Curado para el fan exigente.</p>
-</div>
-<div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Politica de Privacidad</a>
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Terminos de Servicio</a>
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Contacto</a>
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Documentación API</a>
-</div>
-<div class="mt-8 md:mt-0 text-neutral-500"> 2026 AniDex. Todos los derechos reservados.</div>
-</div>
-</footer>
-<script src="i18n.js"></script>
-<script src="title-images.js"></script>
-<script src="search.js"></script>
-<script src="favorites.js"></script>
-<script src="detail-links.js"></script>
-<script>
+      </footer>
+      <script src="i18n.js"></script>
+      <script src="title-images.js"></script>
+      <script src="search.js"></script>
+      <script src="favorites.js"></script>
+      <script src="detail-links.js"></script>
+      <script>
   document.addEventListener("DOMContentLoaded", () => {
     if (window.AniDexI18n) window.AniDexI18n.init();
     if (window.AniDexTitleImages) window.AniDexTitleImages.init();
@@ -430,8 +430,8 @@
     if (window.AniDexDetailLinks) window.AniDexDetailLinks.init();
     if (window.AniDexFavorites) window.AniDexFavorites.init();
   });
-</script>
-<script>
+      </script>
+      <script>
   (function () {
     const editBtn = document.getElementById("profile-avatar-edit");
     const modal = document.getElementById("avatar-modal");
@@ -498,8 +498,8 @@
     editBtn.addEventListener("click", openModal);
     modal.querySelectorAll("[data-avatar-close]").forEach((el) => el.addEventListener("click", closeModal));
   })();
-</script>
-<script>
+      </script>
+      <script>
   (function () {
     const modal = document.getElementById("lists-modal");
     const title = document.getElementById("lists-modal-title");
@@ -530,8 +530,8 @@
     });
     modal.querySelectorAll("[data-lists-close]").forEach((el) => el.addEventListener("click", closeModal));
   })();
-</script>
-<script>
+      </script>
+      <script>
   (function () {
     const modal = document.getElementById("status-modal");
     const title = document.getElementById("status-modal-title");
@@ -562,8 +562,8 @@
     });
     modal.querySelectorAll("[data-status-close]").forEach((el) => el.addEventListener("click", closeModal));
   })();
-</script>
-<script>
+      </script>
+      <script>
   (function () {
     const bindScroll = (btn, dir) => {
       const id = btn.getAttribute(dir === "left" ? "data-scroll-left" : "data-scroll-right");
@@ -576,8 +576,8 @@
     document.querySelectorAll("[data-scroll-left]").forEach((btn) => bindScroll(btn, "left"));
     document.querySelectorAll("[data-scroll-right]").forEach((btn) => bindScroll(btn, "right"));
   })();
-</script>
-<script>
+      </script>
+      <script>
   (function () {
     const editBtn = document.getElementById("profile-edit-btn");
     const modal = document.getElementById("profile-modal");
@@ -665,16 +665,7 @@
     closeEls.forEach((el) => el.addEventListener("click", closeModal));
     loadProfile();
   })();
-</script>
-<script data-ui-unlock>document.documentElement.classList.remove("preload-ui");</script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
+      </script>
+      <script data-ui-unlock>document.documentElement.classList.remove("preload-ui");</script>
+    </body>
+  </html>

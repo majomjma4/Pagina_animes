@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html class="dark" lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AniDex - Ingresar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script id="tailwind-config">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AniDex - Ingresar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
@@ -74,8 +74,8 @@
         }
       }
     }
-  </script>
-  <style>
+    </script>
+    <style>
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
     .glass-effect { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
     .auth-bg {
@@ -86,93 +86,93 @@
       background-size: cover;
       background-position: center;
     }
-  </style>
-  <link rel="icon" href="img/icon.png" />
-</head>
-<body class="bg-background text-on-background font-body min-h-screen flex flex-col">
-  <nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
-    <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
-      <a class="text-2xl font-bold tracking-tighter text-neutral-100 flex items-center gap-2" href="index.html">
-        <img src="img/icon.png" alt="AniDex" class="h-7 w-7 rounded-full transition-transform duration-200 active:scale-110" />
-        <span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span>
-      </a>
-      <div class="flex items-center gap-4 text-sm font-semibold">
-        <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="index.html">Inicio</a>
-        <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="registro.html">Registrarte</a>
+    </style>
+    <link rel="icon" href="img/icon.png" />
+  </head>
+  <body class="bg-background text-on-background font-body min-h-screen flex flex-col">
+    <nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
+      <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
+        <a class="text-2xl font-bold tracking-tighter text-neutral-100 flex items-center gap-2" href="index.html">
+          <img src="img/icon.png" alt="AniDex" class="h-7 w-7 rounded-full transition-transform duration-200 active:scale-110" />
+          <span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span>
+        </a>
+        <div class="flex items-center gap-4 text-sm font-semibold">
+          <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="index.html">Inicio</a>
+          <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="registro.html">Registrarte</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="auth-bg flex-1 flex items-center justify-center px-6 py-28">
+      <section class="w-full max-w-md bg-surface-container-low/70 glass-effect border border-white/10 rounded-2xl p-10 shadow-2xl">
+        <div class="space-y-2">
+          <h1 class="font-headline font-extrabold text-4xl tracking-tight">
+            Bienvenido a <span class="text-white">Ani</span><span class="text-violet-400">Dex</span>
+          </h1>
+          <p class="text-on-surface-variant">Accede a tu perfil para guardar y organizar tus títulos.</p>
+        </div>
+
+        <form id="login-form" class="mt-8 flex flex-col gap-6">
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1" for="login-user">Correo o usuario</label>
+            <div class="relative group">
+              <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary">person</span>
+              <input id="login-user" class="w-full bg-surface-container-lowest border-none rounded-xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="nombre@ejemplo.com" type="text" />
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1" for="login-pass">Contraseña</label>
+            <div class="relative group">
+              <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary">lock</span>
+              <input id="login-pass" class="w-full bg-surface-container-lowest border-none rounded-xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="••••••••" type="password" />
+            </div>
+            <div class="flex justify-end">
+              <a class="text-xs text-primary-dim hover:text-primary transition-colors" href="#">¿Olvidaste tu contraseña?</a>
+            </div>
+          </div>
+          <button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-4 rounded-full font-headline font-bold text-lg hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20" type="submit">
+            Iniciar sesión
+          </button>
+        </form>
+
+        <p class="mt-6 text-center text-sm text-on-surface-variant">
+          ¿No tienes cuenta? <a class="text-primary-dim font-bold hover:underline" href="registro.html">Regístrate ahora</a>
+        </p>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-900 font-['Inter'] text-sm tracking-wide">
+      <div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-7xl mx-auto">
+        <div class="flex flex-col gap-4 mb-8 md:mb-0">
+          <a class="text-lg font-bold text-neutral-100 flex items-center gap-2" href="index.html"><img src="img/icon.png" alt="AniDex" class="h-6 w-6 rounded-full transition-transform duration-200 active:scale-110" /><span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span></a>
+          <p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jam?s creadas. Curado para el fan exigente.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Política de Privacidad</a>
+          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Téminos de Servicio</a>
+          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Contacto</a>
+          <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Documentación API</a>
+        </div>
+        <div class="mt-8 md:mt-0 text-neutral-500"> 2024 AniDex. Todos los derechos reservados.</div>
+      </div>
+    </footer>
+    <div id="login-success" class="fixed inset-0 z-[80] hidden">
+      <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+      <div class="relative mx-auto mt-[20vh] w-[92%] max-w-md rounded-2xl bg-surface-container-high/90 border border-violet-500/30 p-6 shadow-2xl text-center overflow-hidden">
+        <span class="pointer-events-none absolute -top-20 -right-16 h-40 w-40 rounded-full bg-violet-500/20 blur-3xl"></span>
+        <span class="pointer-events-none absolute -bottom-24 -left-16 h-44 w-44 rounded-full bg-fuchsia-500/20 blur-3xl"></span>
+        <button type="button" id="login-close" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface flex items-center justify-center">x</button>
+        <img src="img/doraemon.gif" alt="Doraemon feliz" class="w-20 h-20 mx-auto mb-4 rounded-full" />
+        <h3 class="font-headline text-2xl font-extrabold text-violet-400">
+          ¡Bienvenido de nuevo, <span id="login-name">Usuario</span>!
+        </h3>
+        <p class="text-white/80 text-sm leading-relaxed mt-4">
+          Tu colección de animes te estaba esperando. ★
+        </p>
       </div>
     </div>
-  </nav>
-
-  <main class="auth-bg flex-1 flex items-center justify-center px-6 py-28">
-    <section class="w-full max-w-md bg-surface-container-low/70 glass-effect border border-white/10 rounded-2xl p-10 shadow-2xl">
-      <div class="space-y-2">
-        <h1 class="font-headline font-extrabold text-4xl tracking-tight">
-          Bienvenido a <span class="text-white">Ani</span><span class="text-violet-400">Dex</span>
-        </h1>
-        <p class="text-on-surface-variant">Accede a tu perfil para guardar y organizar tus títulos.</p>
-      </div>
-
-      <form id="login-form" class="mt-8 flex flex-col gap-6">
-        <div class="flex flex-col gap-2">
-          <label class="text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1" for="login-user">Correo o usuario</label>
-          <div class="relative group">
-            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary">person</span>
-            <input id="login-user" class="w-full bg-surface-container-lowest border-none rounded-xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="nombre@ejemplo.com" type="text" />
-          </div>
-        </div>
-        <div class="flex flex-col gap-2">
-          <label class="text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1" for="login-pass">Contraseña</label>
-          <div class="relative group">
-            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary">lock</span>
-            <input id="login-pass" class="w-full bg-surface-container-lowest border-none rounded-xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="••••••••" type="password" />
-          </div>
-          <div class="flex justify-end">
-            <a class="text-xs text-primary-dim hover:text-primary transition-colors" href="#">¿Olvidaste tu contraseña?</a>
-          </div>
-        </div>
-        <button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-4 rounded-full font-headline font-bold text-lg hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20" type="submit">
-          Iniciar sesión
-        </button>
-      </form>
-
-      <p class="mt-6 text-center text-sm text-on-surface-variant">
-        ¿No tienes cuenta? <a class="text-primary-dim font-bold hover:underline" href="registro.html">Regístrate ahora</a>
-      </p>
-    </section>
-  </main>
-
-  <!-- Footer -->
-<footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-900 font-['Inter'] text-sm tracking-wide">
-<div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-7xl mx-auto">
-<div class="flex flex-col gap-4 mb-8 md:mb-0">
-<a class="text-lg font-bold text-neutral-100 flex items-center gap-2" href="index.html"><img src="img/icon.png" alt="AniDex" class="h-6 w-6 rounded-full transition-transform duration-200 active:scale-110" /><span class="text-neutral-100">Ani<span class="text-violet-400">Dex</span></span></a>
-<p class="text-neutral-500 max-w-xs leading-relaxed">Descubre, sigue y mira las mejores obras maestras animadas jam?s creadas. Curado para el fan exigente.</p>
-</div>
-<div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Política de Privacidad</a>
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Téminos de Servicio</a>
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Contacto</a>
-<a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Documentación API</a>
-</div>
-<div class="mt-8 md:mt-0 text-neutral-500"> 2024 AniDex. Todos los derechos reservados.</div>
-</div>
-</footer>
-  <div id="login-success" class="fixed inset-0 z-[80] hidden">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-    <div class="relative mx-auto mt-[20vh] w-[92%] max-w-md rounded-2xl bg-surface-container-high/90 border border-violet-500/30 p-6 shadow-2xl text-center overflow-hidden">
-      <span class="pointer-events-none absolute -top-20 -right-16 h-40 w-40 rounded-full bg-violet-500/20 blur-3xl"></span>
-      <span class="pointer-events-none absolute -bottom-24 -left-16 h-44 w-44 rounded-full bg-fuchsia-500/20 blur-3xl"></span>
-      <button type="button" id="login-close" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface flex items-center justify-center">x</button>
-      <img src="img/doraemon.gif" alt="Doraemon feliz" class="w-20 h-20 mx-auto mb-4 rounded-full" />
-      <h3 class="font-headline text-2xl font-extrabold text-violet-400">
-        ¡Bienvenido de nuevo, <span id="login-name">Usuario</span>!
-      </h3>
-      <p class="text-white/80 text-sm leading-relaxed mt-4">
-        Tu colección de animes te estaba esperando. ★
-      </p>
-    </div>
-  </div>
-<script>
+    <script>
   (function () {
     const form = document.getElementById("login-form");
     const modal = document.getElementById("login-success");
@@ -192,12 +192,12 @@
       });
     }
   })();
-</script>
-<script src="i18n.js"></script>
-<script>
+    </script>
+    <script src="i18n.js"></script>
+    <script>
   document.addEventListener("DOMContentLoaded", () => {
     if (window.AniDexI18n) window.AniDexI18n.init();
   });
-</script>
-</body>
+    </script>
+  </body>
 </html>
