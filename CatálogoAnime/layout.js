@@ -104,6 +104,24 @@
     }, 50);
   }
 
+  function initSearchWhenReady() {
+    if (window.AniDexSearch) {
+      window.AniDexSearch.init();
+      return;
+    }
+
+    let tries = 0;
+    const timer = setInterval(() => {
+      tries += 1;
+      if (window.AniDexSearch) {
+        window.AniDexSearch.init();
+        clearInterval(timer);
+      } else if (tries >= 20) {
+        clearInterval(timer);
+      }
+    }, 50);
+  }
+
   function finalizeLayout() {
     setActiveMenu();
     isReady = true;
@@ -116,6 +134,7 @@
       }
     }
     initI18nWhenReady();
+    initSearchWhenReady();
   }
 
   async function initLayout() {

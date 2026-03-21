@@ -1,5 +1,15 @@
 (() => {
   const API = "https://api.jikan.moe/v4";
+  const DETAIL_OVERRIDES = {
+    57658: {
+      episodes: 12,
+      synopsis:
+        "Tras las masacres de Shibuya, Itadori, cargado de culpa y preocupado por el interes de Sukuna en Fushiguro, decide no volver a la Preparatoria de Hechiceria. Se une a Choso para exorcizar los espiritus liberados por Noritoshi Kamo. En medio del caos, la cupula jujutsu reactiva la ejecucion de Itadori y asigna a Yuta Okkotsu como su verdugo. Hechiceros modernos y antiguos, ahora jugadores del Juego de la Exterminacion, chocan con motivos opuestos y empujan al mundo hacia una nueva era dominada por la hechiceria."
+    },
+    60058: {
+      title: "Oshi no Ko Season 3"
+    }
+  };
   const GENRE_ES = {
     Action: "Acción",
     Adventure: "Aventura",
@@ -187,6 +197,15 @@
     const chars = (await byId(selectedId, "characters")) || [];
     const vids = (await byId(selectedId, "videos")) || {};
     const pics = (await byId(selectedId, "pictures")) || [];
+    const override = DETAIL_OVERRIDES[selectedId];
+    if (override) {
+      if (override.title) {
+        full.title = override.title;
+        full.title_english = override.title;
+      }
+      if (override.synopsis) full.synopsis = override.synopsis;
+      if (override.episodes) full.episodes = override.episodes;
+    }
 
     const preferredTitle = full.title_english || full.title || full.title_japanese || "Anime";
     const originalTitle = full.title || full.title_japanese || full.title_english || "N/A";
