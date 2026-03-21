@@ -119,13 +119,45 @@
       animation: none;
     }
   }
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    overflow-x: visible;
+  }
+
+  main, .page, .app {
+    width: 100%;
+  }
+
+  .max-w-screen-2xl,
+  .max-w-screen-xl,
+  .max-w-screen-lg,
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-5xl,
+  .max-w-4xl,
+  .max-w-3xl,
+  .max-w-2xl,
+  .max-w-xl,
+  .max-w-lg,
+  .max-w-md,
+  .max-w-sm,
+  .max-w-xs,
+  .max-w-48xl {
+    max-width: 100% !important;
+  }
+
 </style>
 
 <!-- Navbar Component -->
 <template id="layout-header">
   <nav class="fixed top-0 w-full z-50 bg-neutral-950/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
-    <div class="flex items-center justify-between px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Manrope'] antialiased">
-      <a class="logo-badge -ml-10" href="index.html" aria-label="MyNeko">
+    <div class="flex items-center justify-between px-5 h-20 w-full font-['Manrope'] antialiased">
+      <a class="logo-badge" href="index.html" aria-label="MyNeko">
         <img src="img/icon3.png" alt="MyNeko" class="logo-icon" />
         <span class="logo-text-stack">
           <span class="logo-text">NekoraList</span>
@@ -135,7 +167,7 @@
 
       <div class="hidden md:flex items-center gap-8" id="main-menu"></div>
 
-      <div class="flex items-center gap-6 ml-14 -mr-10">
+      <div class="flex items-center gap-6">
         <div class="hidden lg:flex items-center bg-surface-container-high rounded-full px-4 py-2 w-48 group focus-within:ring-1 focus-within:ring-primary/30 transition-all">
           <span class="material-symbols-outlined text-violet-400 text-sm">search</span>
           <input
@@ -209,7 +241,7 @@
 <!-- Footer Component -->
 <template id="layout-footer">
   <footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-900 font-['Inter'] text-sm tracking-wide">
-    <div class="flex flex-col md:flex-row justify-between items-center py-12 px-10 max-w-48xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-center py-12 px-5 w-full">
       <div class="flex flex-col gap-4 mb-8 md:mb-0">
         <a class="logo-badge logo-badge--footer" href="index.html" aria-label="MyNeko">
           <img src="img/icon3.png" alt="MyNeko" class="logo-icon" />
@@ -232,3 +264,11 @@
     </div>
   </footer>
 </template>
+
+
+
+
+
+
+
+
