@@ -23,7 +23,7 @@
   .logo-text {
     font-family: "Nunito", "Manrope", "Inter", system-ui, sans-serif;
     font-weight: 800;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     font-size: 1.7rem;
     line-height: 1;
     background: linear-gradient(120deg, #00c6ff 0%, #58d0ff 25%, #a855f7 60%, #00c6ff 100%);
@@ -76,13 +76,166 @@
   }
 
   .logo-badge.logo-badge--footer .logo-icon {
-    width: 34px;
-    height: 34px;
+    width: 20px;
+    height: 20px;
     border-radius: 14px;
   }
 
   .logo-badge.logo-badge--footer .logo-tagline {
     font-size: 0.74rem;
+  }
+
+  .footer-shell {
+    position: relative;
+    overflow: hidden;
+    background: #0b0b0f;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 28px 28px 0 0;
+    box-shadow: 0 -18px 36px rgba(0, 0, 0, 0.45), 0 0 18px rgba(168, 85, 247, 0.25);
+  }
+
+  .footer-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("img/fondoanime.png") center/cover no-repeat;
+    opacity: 0.3;
+    filter: blur(2px) saturate(1.2) brightness(1.2);
+    z-index: 0;
+  }
+
+  .footer-shell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.85) 55%, rgba(10, 10, 15, 0.95) 100%);
+    z-index: 1;
+  }
+
+  .footer-content {
+    position: relative;
+    z-index: 2;
+  }
+
+
+  .footer-center {
+    min-height: 180px;
+  }
+
+  .footer-brand {
+    text-shadow: 0 0 18px rgba(56, 189, 248, 0.25), 0 0 28px rgba(168, 85, 247, 0.25);
+  }
+
+  .footer-brand-stack {
+    text-align: center;
+  }
+
+  .footer-logo {
+    width:  36px;
+    height:  36px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 0 12px rgba(0, 198, 255, 0.35), 0 0 18px rgba(168, 85, 247, 0.35);
+  }
+
+  .footer-name {
+    font-family: "Nunito", "Manrope", "Inter", system-ui, sans-serif;
+    font-weight: 800;
+    font-size:  1.5rem;
+    letter-spacing: 0.03em;
+    background: linear-gradient(120deg, #00c6ff 0%, #58d0ff 25%, #a855f7 60%, #00c6ff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: logoShimmer 3.8s ease-in-out infinite;
+  }
+
+  .footer-nav a {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.15rem;
+    background: linear-gradient(120deg, #00c6ff 0%, #58d0ff 25%, #a855f7 60%, #00c6ff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.25);
+    transition: text-shadow 0.25s ease-in-out, transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  }
+
+  .footer-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #38bdf8, #a855f7);
+    transform: scaleX(1);
+    transform-origin: center;
+    opacity: 0.6;
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  }
+
+  .footer-nav a:hover {
+    background: linear-gradient(120deg, #00c6ff 0%, #58d0ff 25%, #a855f7 60%, #00c6ff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0 0 16px rgba(56, 189, 248, 0.65), 0 0 26px rgba(168, 85, 247, 0.55);
+    transform: translateY(-2px) scale(1.03);
+  }
+
+  .footer-nav a:hover::after {
+    opacity: 1;
+    transform: scaleX(1.15);
+  }
+
+  .footer-tagline {
+    font-size:  1.2rem;
+    color: rgba(203, 213, 225, 0.85);
+    letter-spacing: 0.01em;
+    text-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
+  }
+
+  .footer-nav .footer-icon {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  }
+
+  .footer-nav a:hover .footer-icon {
+    transform: translateY(-1px) scale(1.08);
+    opacity: 1;
+  }
+    .footer-orbit--left,
+    .footer-orbit--right {
+      animation: none;
+    }
+  .footer-copy {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: rgba(161, 161, 170, 0.85);
+  }
+  .footer-links a {
+    color: rgba(212, 212, 216, 0.7);
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.35), 0 0 16px rgba(168, 85, 247, 0.35);
+  }
+
+  .footer-pill {
+    background: rgba(24, 24, 27, 0.7);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.15);
   }
 
   .nav-icon {
@@ -127,10 +280,18 @@
 
   body {
     overflow-x: visible;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   main, .page, .app {
     width: 100%;
+    flex: 1 0 auto;
+  }
+
+  footer {
+    margin-top: auto;
   }
 
   .max-w-screen-2xl,
@@ -240,27 +401,23 @@
 
 <!-- Footer Component -->
 <template id="layout-footer">
-  <footer class="w-full rounded-t-[2rem] mt-20 bg-neutral-900 font-['Inter'] text-sm tracking-wide">
-    <div class="flex flex-col md:flex-row justify-between items-center py-12 px-5 w-full">
-      <div class="flex flex-col gap-4 mb-8 md:mb-0">
-        <a class="logo-badge logo-badge--footer" href="index.html" aria-label="MyNeko">
-          <img src="img/icon3.png" alt="MyNeko" class="logo-icon" />
-          <span class="logo-text-stack">
-            <span class="logo-text">MyNeko</span>
-            <span class="logo-tagline">Descubre, guarda y disfruta de tus animes favoritos</span>
-          </span>
-        </a>
-        <p class="text-neutral-500 max-w-xs leading-relaxed">
-          Descubre, sigue y mira las mejores obras maestras animadas jamas creadas. Curado para el fan exigente.
-        </p>
+  <footer class="footer-shell w-full mt-20 font-['Inter'] text-sm tracking-wide">
+    <div class="footer-content w-full px-6 md:px-12 py-14">
+<div class="footer-center flex flex-col items-center text-center gap-6">
+        <div class="footer-brand-stack flex flex-col items-center gap-2">
+          <a class="footer-brand inline-flex items-center gap-3" href="index.html" aria-label="MyNeko">
+            <img src="img/icon3.png" alt="MyNeko" class="footer-logo" />
+            <span class="footer-name">NekoraList</span>
+          </a>
+          <div class="footer-tagline">Descubre, guarda y disfruta de tus animes favoritos</div>
+        </div>
+        <nav class="footer-nav footer-links flex flex-wrap justify-center gap-6 text-sm font-semibold">
+          <a href="index.html">Inicio</a>
+          <a href="destacados.html">Destacados</a>
+          <a href="ranking.html">Ranking</a>
+        </nav>
+        <div class="footer-copy">@ 2026 NekoraList - Todos los derechos reservados</div>
       </div>
-      <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
-        <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Politica de Privacidad</a>
-        <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Términos de Servicio</a>
-        <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Contacto</a>
-        <a class="text-neutral-500 hover:text-violet-400 transition-colors opacity-80 hover:opacity-100" href="#">Documentación API</a>
-      </div>
-      <div class="mt-8 md:mt-0 text-neutral-500">2026 MyNeko. Todos los derechos reservados.</div>
     </div>
   </footer>
 </template>
