@@ -262,8 +262,8 @@
 
     // Destacados de la temporada
     const seasonal = Array.from(
-      document.querySelectorAll("section img[alt*='Destacado']")
-    );
+      document.querySelectorAll("section img[alt*='Destacado'], section img[alt*='Spotlight']")
+    ).filter((img) => !img.hasAttribute("data-spotlight-rotating"));
 
     for (const img of seasonal) {
       const card = img.closest(".group.cursor-pointer");

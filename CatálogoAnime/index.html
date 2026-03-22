@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html class="dark" lang="es"><head>
     <script data-ui-preload>document.documentElement.classList.add("preload-ui");</script>
@@ -88,12 +88,102 @@
             display: none;
         }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        html, body {
+            overflow-x: hidden;
+        }
+        body {
+            background-color: #0e0e0e;
+        }
 
         .hero-mask {
             mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
         }
         .text-shadow-glow {
             text-shadow: 0 0 20px rgba(205, 189, 255, 0.4);
+        }
+        .spotlight-section {
+            position: relative;
+            padding: 24px 20px 28px;
+            border-radius: 28px;
+            background:
+                radial-gradient(1200px 300px at 10% -10%, rgba(0, 198, 255, 0.18), transparent 60%),
+                radial-gradient(1200px 300px at 90% -20%, rgba(168, 85, 247, 0.18), transparent 60%),
+                rgba(13, 13, 16, 0.75);
+            border: none;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+        }
+        .spotlight-section::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            border: none;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 0.6;
+        }
+        .spotlight-card {
+            border: 1px solid rgba(168, 85, 247, 0.65);
+            box-shadow:
+                0 0 18px rgba(168, 85, 247, 0.45),
+                0 14px 30px rgba(40, 0, 120, 0.35);
+            transition: transform 0.45s ease, box-shadow 0.45s ease;
+        }
+        .spotlight-card.is-rotating {
+            transform: translateY(-4px);
+            box-shadow:
+                0 0 22px rgba(56, 189, 248, 0.35),
+                0 0 28px rgba(168, 85, 247, 0.45),
+                0 14px 30px rgba(40, 0, 120, 0.35);
+        }
+        .spotlight-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 198, 255, 0.08), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .spotlight-card:hover::before {
+            opacity: 1;
+        }
+        .spotlight-title-em {
+            color: #a855f7;
+            text-shadow: 0 0 12px rgba(168, 85, 247, 0.45);
+        }
+        .section-title-em {
+            font-weight: 800;
+            letter-spacing: 0.01em;
+        }
+        .section-title-em.anime {
+            color: #38bdf8;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.55);
+        }
+        .section-title-em.movie {
+            color: #f472b6;
+            text-shadow: 0 0 12px rgba(244, 114, 182, 0.6);
+        }
+        [data-spotlight-type] {
+            background: linear-gradient(90deg, #38bdf8, #a855f7) !important;
+            color: #fff !important;
+            font-size: 0.75rem !important;
+            padding: 0.35rem 0.85rem !important;
+            letter-spacing: 0.14em;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.35), 0 0 18px rgba(168, 85, 247, 0.3);
+        }
+        .spotlight-fade {
+            transition: opacity 0.45s ease;
+            will-change: opacity;
+        }
+        .spotlight-fade.is-fading {
+            opacity: 0;
+        }
+        .spotlight-subtitle {
+            font-size: 1.4rem;
+            line-height: 1.15;
+            transform: translateY(-10px);
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
         }
         .carousel-row {
             --cards: 5;
@@ -103,24 +193,94 @@
             gap: var(--gap);
             justify-content: flex-start;
             padding-inline: var(--pad);
+            padding-top: 10px;
             scroll-snap-type: x mandatory;
             scroll-padding-inline: var(--pad);
+            overflow-x: auto !important;
+            overflow-y: visible !important;
         }
         .carousel-card {
             flex: 0 0 calc((100% - (var(--cards) - 1) * var(--gap)) / var(--cards));
             scroll-snap-align: start;
             scroll-snap-stop: always;
+            position: relative;
+            z-index: 0;
+        }
+        .carousel-card:hover {
+            z-index: 3;
         }
         .carousel-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            border-radius: 0.75rem;
+        }
+        .spotlight-section--tight {
+            padding-bottom: 23px;
+        }
+        .spotlight-section--compact {
+            padding-top: 19px;
+            padding-bottom: 18px;
+        }
+        .spotlight-grid--compact {
+            height: 595px;
         }
         .carousel-card > .relative {
-            width: 100%;
-            height: 0;
-            padding-top: 150%;
+              width: 100%;
+              height: 0;
+              padding-top: 150%;
+              border: 4px solid rgba(255, 255, 255, 0.88);
+              border-radius: 0.75rem;
+              box-shadow: 0 0 18px rgba(255, 255, 255, 0.35), 0 0 36px rgba(255, 255, 255, 0.2);
+              transform-origin: center top;
+          }
+        .carousel-wrap {
+            position: relative;
+        }
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 6;
+        }
+        .carousel-nav-zone {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 7;
+            pointer-events: none;
+        }
+        .carousel-wrap:hover .carousel-nav-zone,
+        .carousel-wrap:focus-within .carousel-nav-zone {
+            pointer-events: auto;
+        }
+        .carousel-nav-zone.is-disabled {
+            pointer-events: none;
+        }
+        .carousel-nav-btn.is-disabled {
+            opacity: 0 !important;
+            pointer-events: none;
+            visibility: hidden;
+        }
+        .carousel-wrap:hover .carousel-nav-btn,
+        .carousel-wrap:focus-within .carousel-nav-btn {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .carousel-nav-left { left: -8px; }
+        .carousel-nav-right { right: -8px; }
+        @media (max-width: 768px) {
+            .carousel-nav-left { left: 2px; }
+            .carousel-nav-right { right: 2px; }
         }
         .carousel-card > .relative > img {
             position: absolute;
@@ -147,70 +307,102 @@
       <!-- Hero Section -->
       <section class="relative w-full h-[921px] flex items-end overflow-hidden">
         <div class="absolute inset-0 z-0">
-          <img id="hero-image" alt="Fondo de anime destacado" class="w-full h-full object-cover hero-m?sk scale-105 -translate-y-[75px]" data-alt="Escena cinematográfica de alta calidad con iluminación etérea y tonos púrpura" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASyl0CtuKLwGu8E0g6kJg-AFMonCwUb2HQ4hZvUGuD0_n-GwG61WBtLa1P4WxLShGtZ1WdK79L8IStuCkdamLElWUpBsSuyOjlLszhFAARPXJXAMh5O1B7nkmoUbt235bb4gzcno51HQSRTI6Oh2kkDxU1qcK6jFx8LgH0ImqNPAd91dTA_ZC-HvQVlTdYcRV6Atw2S7_DgDyx7j2rgSWD3OpPRb6OBprhy06fu2rokdR9xMrz_zaaSt7N3Zs--RXOE0QQpITwOxiB"/>
+          <img id="hero-image" alt="Fondo de anime destacado" class="w-full h-full object-cover hero-m?sk scale-105 -translate-y-[75px]" data-alt="Escena cinematogrÃ¡fica de alta calidad con iluminaciÃ³n etÃ©rea y tonos pÃºrpura" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASyl0CtuKLwGu8E0g6kJg-AFMonCwUb2HQ4hZvUGuD0_n-GwG61WBtLa1P4WxLShGtZ1WdK79L8IStuCkdamLElWUpBsSuyOjlLszhFAARPXJXAMh5O1B7nkmoUbt235bb4gzcno51HQSRTI6Oh2kkDxU1qcK6jFx8LgH0ImqNPAd91dTA_ZC-HvQVlTdYcRV6Atw2S7_DgDyx7j2rgSWD3OpPRb6OBprhy06fu2rokdR9xMrz_zaaSt7N3Zs--RXOE0QQpITwOxiB"/>
           <div class="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent"></div>
           <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background/95 via-background/60 to-transparent"></div>
           <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent"></div>
         </div>
-        <div class="relative z-10 px-8 md:px-16 pb-[86px] max-w-4xl translate-y-[-75px]">
+          <div class="relative z-10 px-8 md:px-16 pb-[86px] w-full md:w-1/2 max-w-none text-left translate-y-[-95px]">
           <div class="flex items-center gap-2 mb-4">
-            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase">Lo más nuevo</span>
+            <span class="bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-violet-500 text-white px-4 py-1.5 rounded-full text-sm font-extrabold tracking-widest uppercase shadow-[0_0_18px_rgba(34,211,238,0.55)]">Lo más nuevo</span>
             <span id="hero-meta" class="text-on-surface-variant text-sm font-medium"> 28 Episodios</span>
           </div>
           <h1 id="hero-title" class="text-5xl md:text-7xl font-extrabold font-headline tracking-tighter mb-6 leading-[0.9] text-shadow-glow">
-            Frieren: Más allá <br/><span class="text-primary-dim">del final del viaje</span>
+            Frieren: MÃ¡s allÃ¡ <br/><span class="text-primary-dim">del final del viaje</span>
           </h1>
           <p id="hero-description" class="text-lg md:text-xl text-on-surface-variant max-w-2xl mb-10 leading-relaxed font-body">
-            Después de que el grupo de héroes derrotara al Rey Demonio, restauraron la paz en la tierra y regresaron a sus vidas separadas. Para la maga elfa Frieren, décadas pasan en un abrir y cerrar de ojos.
+            DespuÃ©s de que el grupo de hÃ©roes derrotara al Rey Demonio, restauraron la paz en la tierra y regresaron a sus vidas separadas. Para la maga elfa Frieren, dÃ©cadas pasan en un abrir y cerrar de ojos.
           </p>
           <div class="flex flex-wrap gap-4">
             <button id="hero-watch" class="bg-gradient-to-br from-primary to-primary-container px-7 py-3.5 rounded-full text-on-primary font-bold tracking-tight hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shadow-lg shadow-primary-container/20"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span> VER AHORA</button>
             <button id="hero-my-list" data-add-my-list data-dynamic-title="0" class="bg-surface-container-high/60 backdrop-blur-md px-7 py-3.5 rounded-full text-on-surface font-bold border border-outline-variant/20 hover:bg-surface-container-high transition-all flex items-center gap-2"><span class="material-symbols-outlined">playlist_add</span><span data-add-label>MI LISTA</span></button>
           </div>
           <div class="mt-6 flex items-center gap-4 py-1">
-            <button id="hero-prev" class="rounded-full bg-surface-container-high/70 px-5 py-2.5 text-sm font-bold hover:bg-surface-container-high transition-colors" type="button">‹</button>
+            <button id="hero-prev" class="rounded-full bg-surface-container-high/70 px-5 py-2.5 text-sm font-bold hover:bg-surface-container-high transition-colors" type="button"><</button>
             <div id="hero-dots" class="flex items-center gap-3"></div>
-            <button id="hero-next" class="rounded-full bg-surface-container-high/70 px-5 py-2.5 text-sm font-bold hover:bg-surface-container-high transition-colors" type="button">›</button>
+            <button id="hero-next" class="rounded-full bg-surface-container-high/70 px-5 py-2.5 text-sm font-bold hover:bg-surface-container-high transition-colors" type="button">></button>
           </div>
         </div>
       </section>
       <!-- Category Sections -->
       <div class="space-y-20 pb-20 -mt-[20px] relative z-20">
         <!-- Seasonal Spotlight (Asymmetric Bento Grid) -->
-        <section class="px-8 md:px-16 mt-[-25px]">
+        <section class="px-8 md:px-16 mt-[-25px] spotlight-section spotlight-section--tight spotlight-section--compact">
           <div class="mb-8 flex items-end justify-between">
             <div>
-              <h2 class="text-3xl font-bold font-headline tracking-tight">Los más Destacados</h2>
+              <h2 class="text-3xl font-bold font-headline tracking-tight">Los más <span class="spotlight-title-em">Destacados</span></h2>
               <div class="h-1 w-12 bg-primary mt-2 rounded-full"></div>
             </div>
-            <a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium flex items-center gap-1" href="destacados.html">Ver mas</a>
+            <a class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-sm font-bold text-primary shadow-[0_0_12px_rgba(168,85,247,0.25)] transition-all hover:border-primary hover:bg-primary/20 hover:text-primary" href="destacados.html">
+              <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+              Ver mas
+            </a>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-[600px]">
-            <div class="md:col-span-2 md:row-span-2 relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10" onclick="window.location.href='detail.html'">
-              <img alt="Destacado grande de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Escena dramÃ¡tica de batalla anime con efectos de energÃ­a brillante" data-fallback="img/fondoanime.png" loading="lazy" referrerpolicy="no-referrer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfEs1IvGWNIZxiSWnnh8wCUr59ea4njuZckziZXqicnQPNvJkan5uFN_-BmFdNvpNSE7c6Gy-mHlJOyMU4hG1QNd2nk5WYUB4_uFh5jJL-K6arAlskDJ_8qihvbrLMvZNDOsSiBXcBUPHNcfenZNrmyKDhpAa0TRP_9gxyxTMIHLtWKcJBfTyyYK2OT7w8mggHKLEv6KE0h3MMHguW46V5ghR79auKbPcZFbiWP4qDRaPBSBDdTGBjWbacwEx2LnRwcBnZnp4l3j-4"/>
+          <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-[600px] spotlight-grid spotlight-grid--compact">
+            <div id="spotlight-card-1" class="md:col-span-2 md:row-span-2 relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10 spotlight-card" onclick="window.location.href='detail.html'">
+              <div class="absolute top-4 right-4 z-10">
+                <div data-spotlight-score class="bg-surface-container-lowest/90 backdrop-blur px-4 py-2 rounded-full text-base font-bold text-primary flex items-center gap-2 shadow-xl shadow-black/35">
+                  <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span data-score-value>9.4</span>
+                </div>
+              </div>
+              <div data-spotlight-type class="absolute top-4 left-4 z-10 bg-primary/80 text-white text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Anime</div>
+              <img data-spotlight-rotating="1" alt="Spotlight de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Escena dramÃƒÂ¡tica de batalla anime con efectos de energÃƒÂ­a brillante" data-fallback="img/fondoanime.png" loading="lazy" referrerpolicy="no-referrer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfEs1IvGWNIZxiSWnnh8wCUr59ea4njuZckziZXqicnQPNvJkan5uFN_-BmFdNvpNSE7c6Gy-mHlJOyMU4hG1QNd2nk5WYUB4_uFh5jJL-K6arAlskDJ_8qihvbrLMvZNDOsSiBXcBUPHNcfenZNrmyKDhpAa0TRP_9gxyxTMIHLtWKcJBfTyyYK2OT7w8mggHKLEv6KE0h3MMHguW46V5ghR79auKbPcZFbiWP4qDRaPBSBDdTGBjWbacwEx2LnRwcBnZnp4l3j-4"/>
               <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90"></div>
               <div class="absolute inset-0 bg-primary-container/0 group-hover:bg-primary-container/20 transition-colors"></div>
               <div class="absolute bottom-0 left-0 p-8">
-                <h3 class="text-4xl font-extrabold font-headline mb-4">Solo Leveling</h3>
+                <h3 class="text-4xl font-extrabold font-headline mb-2">Solo Leveling</h3>
+                <p data-spotlight-meta class="text-sm text-on-surface-variant">2024 â€¢ Studio</p>
               </div>
             </div>
-            <div class="md:col-span-2 relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10" onclick="window.location.href='detail.html'">
-              <img alt="Destacado de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Primer plano del rostro expresivo de un personaje anime" data-fallback="img/fondoanime.png" loading="lazy" referrerpolicy="no-referrer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgJ-yNDPcau0sSBkw_cGTC3DcXxC0TQo-0fTUKahdE5DUWtAnr0hWZaO_7WJ1gNB1_h-q_W6GPkuV2mT5Pf_09bEmD4iNptwXJ15fHn_aPbRDzSebKsJAt3Nk2DuquWSC2OQRmssyZjmOVP4z44_mMFUKikgnzhW0yPGnZEZUAq-6sf8Ozv51ef5cqpnYy3s9V9geTRNL41WRE40oFQMp5zgTlJ8dXSOdEkpFMpZoFdCAp2wYDSdJqyEpWS1-JaM960BH1zhV7A813"/>
+            <div id="spotlight-card-2" class="md:col-span-2 relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10 spotlight-card" onclick="window.location.href='detail.html'">
+              <div class="absolute top-4 right-4 z-10">
+                <div data-spotlight-score class="bg-surface-container-lowest/90 backdrop-blur px-4 py-2 rounded-full text-base font-bold text-primary flex items-center gap-2 shadow-xl shadow-black/35">
+                  <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span data-score-value>9.1</span>
+                </div>
+              </div>
+              <div data-spotlight-type class="absolute top-4 left-4 z-10 bg-primary/80 text-white text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Anime</div>
+              <img data-spotlight-rotating="1" alt="Spotlight de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Primer plano del rostro expresivo de un personaje anime" data-fallback="img/fondoanime.png" loading="lazy" referrerpolicy="no-referrer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgJ-yNDPcau0sSBkw_cGTC3DcXxC0TQo-0fTUKahdE5DUWtAnr0hWZaO_7WJ1gNB1_h-q_W6GPkuV2mT5Pf_09bEmD4iNptwXJ15fHn_aPbRDzSebKsJAt3Nk2DuquWSC2OQRmssyZjmOVP4z44_mMFUKikgnzhW0yPGnZEZUAq-6sf8Ozv51ef5cqpnYy3s9V9geTRNL41WRE40oFQMp5zgTlJ8dXSOdEkpFMpZoFdCAp2wYDSdJqyEpWS1-JaM960BH1zhV7A813"/>
               <div class="absolute inset-0 bg-black/40 group-hover:bg-primary-container/20 transition-colors"></div>
               <div class="absolute inset-0 flex items-center justify-center">
                 <h3 class="text-2xl font-bold text-center px-4">The Apothecary Diaries</h3>
               </div>
             </div>
-            <div class="relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10" onclick="window.location.href='detail.html'">
-              <img alt="Destacado de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Bosque anime sereno con plantas mÃ­sticas luminosas" data-fallback="img/fondoanime.png" loading="lazy" referrerpolicy="no-referrer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2q_skNN7IEXINa_mQLWLtLooGZISRCJFcyFjR3-NhCFoQIV4rVukiI28cqzl7NwA1WRT10f9y_sBVA5KkJuprPzW2QkHsxVtQR7BFHYdKPirCvmU9EAQOC4weVwBfy07uTKoRhP1y13VRDG3hA9igt5f2qH88HGxQ7HJ0NF_FJ80hss_-Tj-Z198bRHpqi85zQe-swEt4fP6Cj4nJcWzWyRxEPOSaQv6kswMt5oDI9hJkaV25CtItXBgjs9EUI-R4wQ4uD4lO2a_z"/>
+            <div id="spotlight-card-3" class="relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10 spotlight-card" onclick="window.location.href='detail.html'">
+              <div class="absolute top-4 right-4 z-10">
+                <div data-spotlight-score class="bg-surface-container-lowest/90 backdrop-blur px-4 py-2 rounded-full text-base font-bold text-primary flex items-center gap-2 shadow-xl shadow-black/35">
+                  <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span data-score-value>8.7</span>
+                </div>
+              </div>
+              <div data-spotlight-type class="absolute top-4 left-4 z-10 bg-primary/80 text-white text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Anime</div>
+              <img data-spotlight-rotating="1" alt="Spotlight de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Bosque anime sereno con plantas mÃƒÂ­sticas luminosas" data-fallback="img/fondoanime.png" loading="lazy" referrerpolicy="no-referrer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2q_skNN7IEXINa_mQLWLtLooGZISRCJFcyFjR3-NhCFoQIV4rVukiI28cqzl7NwA1WRT10f9y_sBVA5KkJuprPzW2QkHsxVtQR7BFHYdKPirCvmU9EAQOC4weVwBfy07uTKoRhP1y13VRDG3hA9igt5f2qH88HGxQ7HJ0NF_FJ80hss_-Tj-Z198bRHpqi85zQe-swEt4fP6Cj4nJcWzWyRxEPOSaQv6kswMt5oDI9hJkaV25CtItXBgjs9EUI-R4wQ4uD4lO2a_z"/>
               <div class="absolute inset-0 bg-black/40 group-hover:bg-primary-container/20 transition-colors flex flex-col justify-end p-4">
-                <h4 class="font-bold text-sm">Undead Unluck</h4>
+                <h4 class="font-bold spotlight-subtitle">Undead Unluck</h4>
               </div>
             </div>
-            <div class="relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10" onclick="window.location.href='detail.html'">
-              <img alt="Destacado de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Escena de acciÃ³n deportiva anime a ritmo frenÃ©tico" data-fallback="img/fondoanime.png" loading="lazy" referrerpolicy="no-referrer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ5qAXtvlxTvCn09vDY4wAIFQ0pSixDM-EZ1_G2ikLShfPSIVgjE6BRxgPZEX_LsVn_WN_zHvw3ynIuf2qN3IVoT3ni8MkH0QMTcMI974YwQFJtcJeBMyvGHjDidzk9ppyNm3ysCA4gFA2aUBroWZ3GLFWIcpCLnxsJwGwJtIli6M5os4aZ5oTC_I4oEIhYCuZ55qZQomDSUFsexP297sinHqj50nQvCWlkqo4afO3JcqzF1tr5BSCvjidzOA?oBQUw-a_ATVuBrXKq"/>
+            <div id="spotlight-card-4" class="relative rounded-lg overflow-hidden group cursor-pointer bg-surface-container-low border border-outline-variant/10 spotlight-card" onclick="window.location.href='detail.html'">
+              <div class="absolute top-4 right-4 z-10">
+                <div data-spotlight-score class="bg-surface-container-lowest/90 backdrop-blur px-4 py-2 rounded-full text-base font-bold text-primary flex items-center gap-2 shadow-xl shadow-black/35">
+                  <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span data-score-value>8.9</span>
+                </div>
+              </div>
+              <div data-spotlight-type class="absolute top-4 left-4 z-10 bg-primary/80 text-white text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Anime</div>
+              <img data-spotlight-rotating="1" alt="Spotlight de temporada" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Escena de acciÃƒÂ³n deportiva anime a ritmo frenÃƒÂ©tico" data-fallback="img/fondoanime.png" loading="lazy" referrerpolicy="no-referrer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ5qAXtvlxTvCn09vDY4wAIFQ0pSixDM-EZ1_G2ikLShfPSIVgjE6BRxgPZEX_LsVn_WN_zHvw3ynIuf2qN3IVoT3ni8MkH0QMTcMI974YwQFJtcJeBMyvGHjDidzk9ppyNm3ysCA4gFA2aUBroWZ3GLFWIcpCLnxsJwGwJtIli6M5os4aZ5oTC_I4oEIhYCuZ55qZQomDSUFsexP297sinHqj50nQvCWlkqo4afO3JcqzF1tr5BSCvjidzOA?oBQUw-a_ATVuBrXKq"/>
               <div class="absolute inset-0 bg-black/40 group-hover:bg-primary-container/20 transition-colors flex flex-col justify-end p-4">
-                <h4 class="font-bold text-sm">Haikyuu!! Final</h4>
+                <h4 class="font-bold spotlight-subtitle">Haikyuu!! Final</h4>
               </div>
             </div>
           </div>
@@ -219,23 +411,29 @@
         <section class="pl-8 md:pl-16 mt-[30px]">
           <div class="flex items-end justify-between pr-8 mb-8">
             <div>
-              <h2 class="text-3xl font-bold font-headline tracking-tight">Animes Populares</h2>
+              <h2 class="text-3xl font-bold font-headline tracking-tight"><span class="section-title-em anime">Animes</span> Populares</h2>
               <div class="h-1 w-12 bg-primary mt-2 rounded-full"></div>
             </div>
-            <div class="flex items-center gap-4">
-              <button id="trending-prev" class="rounded-full bg-surface-container-high/70 px-3 py-2 text-lg font-bold text-violet-400 hover:text-violet-300 hover:bg-surface-container-high transition-colors" type="button" aria-label="Anterior">&lsaquo;</button>
-              <button id="trending-next" class="rounded-full bg-surface-container-high/70 px-3 py-2 text-lg font-bold text-violet-400 hover:text-violet-300 hover:bg-surface-container-high transition-colors" type="button" aria-label="Siguiente">&rsaquo;</button>
-              <a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium flex items-center gap-1" href="series.html">Ver mas</a>
-            </div>
+            <a class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-sm font-bold text-primary shadow-[0_0_12px_rgba(168,85,247,0.25)] transition-all hover:border-primary hover:bg-primary/20 hover:text-primary" href="series.html">
+              <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+              Ver mas
+            </a>
           </div>
-          <div id="trending-row" class="carousel-row overflow-x-auto no-scrollbar pb-8 scroll-smooth">
+          <div class="carousel-wrap">
+            <div class="carousel-nav-zone carousel-nav-left">
+              <button id="trending-prev" class="carousel-nav-btn rounded-full bg-surface-container-high/90 px-4 py-3 text-2xl font-bold text-violet-200 hover:text-white hover:bg-surface-container-high transition-colors backdrop-blur" type="button" aria-label="Anterior">&lsaquo;</button>
+            </div>
+            <div class="carousel-nav-zone carousel-nav-right">
+              <button id="trending-next" class="carousel-nav-btn rounded-full bg-surface-container-high/90 px-4 py-3 text-2xl font-bold text-violet-200 hover:text-white hover:bg-surface-container-high transition-colors backdrop-blur" type="button" aria-label="Siguiente">&rsaquo;</button>
+            </div>
+            <div id="trending-row" class="carousel-row overflow-x-auto no-scrollbar pb-8 scroll-smooth">
             <!-- Anime Card -->
             <div class="carousel-card group cursor-pointer" onclick="window.location.href='detail.html'">
               <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl group-hover:shadow-primary-container/10">
                 <img alt="Póster de anime" class="w-full h-full object-cover" data-alt="Arte de personaje anime estilizado con colores vibrantes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf_5yu8ItByDxj1mtS86M1c4L-O9mK0YowNyDHJw9W3iBVZ8FyDg-EqWFT6-8OHsq_coAIAP0l958Z_MmlAFEJw4WhJphbR4l9vrMyWi2j3WVvXgYbjrEmsF1lNw_pei3FsECFfbJAjngFTubB3gifJd8ggZOoo0o4uF2DMo2NTvstvfpwoVeh2cIGu3izqmnqcGUvtn3bfztDQjI_3f_PqRWRxgPC6iAsoNpidsC32rJsZNIfPPYMhlo5KeRXtnq6jjUFrMUTk0d4"/>
                 <div class="absolute inset-0 bg-primary-container/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                   <div class="flex flex-wrap gap-1 mb-2">
-                    <span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Acci�n</span>
+                    <span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Acción</span>
                     <span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Sobrenatural</span>
                   </div>
                 </div>
@@ -244,11 +442,11 @@
                 </div>
               </div>
               <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Jujutsu Kaisen</h3>
-              <p class="text-xs text-on-surface-variant">Estudio MAPPA: Otoño 2023</p>
+              <p class="text-xs text-on-surface-variant">Estudio MAPPA: OtoÃ±o 2023</p>
             </div>
             <div class="carousel-card group cursor-pointer" onclick="window.location.href='detail.html'">
               <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
-                <img alt="Póster de anime" class="w-full h-full object-cover" data-alt="Ilustración dinámica de personaje anime con líneas definidas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG7j1khN7oa42GFgVO0GGKUGrbVAHUi69ljVSoVZw2JzGhXLGZPmMJVg-fuQthZ2BjRmQPHtiljA6oG5wD0e2QgsOauHs8rHo6CfVW_-qbdDPyc6WFV6NSVCR2bXYGfJANdbVZu3JCvQHDHUgQb-65j6hS6Sxh3KsQpp8TrqHwC-smxyfYY2kHVMRaba4VaaF-d0mASZkln-xJrLjreN-5Eryk7As7G1yYpz_0v5C6rK-TlGmV91TVOYBi2hNx43byaOojLl2FHhT9"/>
+                <img alt="Póster de anime" class="w-full h-full object-cover" data-alt="IlustraciÃ³n dinÃ¡mica de personaje anime con lÃ­neas definidas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG7j1khN7oa42GFgVO0GGKUGrbVAHUi69ljVSoVZw2JzGhXLGZPmMJVg-fuQthZ2BjRmQPHtiljA6oG5wD0e2QgsOauHs8rHo6CfVW_-qbdDPyc6WFV6NSVCR2bXYGfJANdbVZu3JCvQHDHUgQb-65j6hS6Sxh3KsQpp8TrqHwC-smxyfYY2kHVMRaba4VaaF-d0mASZkln-xJrLjreN-5Eryk7As7G1yYpz_0v5C6rK-TlGmV91TVOYBi2hNx43byaOojLl2FHhT9"/>
                 <div class="absolute inset-0 bg-primary-container/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                   <div class="flex flex-wrap gap-1 mb-2">
                     <span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Psicológico</span>
@@ -259,11 +457,11 @@
                 </div>
               </div>
               <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Monster</h3>
-              <p class="text-xs text-on-surface-variant">Estudio Madhouse: Clásico</p>
+              <p class="text-xs text-on-surface-variant">Estudio Madhouse: Clasico</p>
             </div>
             <div class="carousel-card group cursor-pointer" onclick="window.location.href='detail.html'">
               <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
-                <img alt="Póster de anime" class="w-full h-full object-cover" data-alt="Ciudad anime detallada de noche con luces de neón" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWK6GEmMfgg6EfbuobMqKnAGEoBR-JDGiUg00ci-kmNlIZtDkYI6Kn2Ke0sXVPIgNQCXFd-IsHB0kiCe8S2Zky7Vx8s8Yv0q9tzs5HYMvwxzBr6cc0oZ2o_86dXwOsGkjr4PDjv3ULdj9hX4Eanz5BPS7V2PEEqNSKPjrv61ZaMxz7RmFHx1Ah01hoqVReWKva7mpYkiw9VwRTTlov4AGu-uJhSG3Bln2hIug_IIGpsqGQXkCpk6x8T2qTeXcy2R7y7otUdEHtPV9T"/>
+                <img alt="Póster de anime" class="w-full h-full object-cover" data-alt="Ciudad anime detallada de noche con luces de neÃ³n" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWK6GEmMfgg6EfbuobMqKnAGEoBR-JDGiUg00ci-kmNlIZtDkYI6Kn2Ke0sXVPIgNQCXFd-IsHB0kiCe8S2Zky7Vx8s8Yv0q9tzs5HYMvwxzBr6cc0oZ2o_86dXwOsGkjr4PDjv3ULdj9hX4Eanz5BPS7V2PEEqNSKPjrv61ZaMxz7RmFHx1Ah01hoqVReWKva7mpYkiw9VwRTTlov4AGu-uJhSG3Bln2hIug_IIGpsqGQXkCpk6x8T2qTeXcy2R7y7otUdEHtPV9T"/>
                 <div class="absolute inset-0 bg-primary-container/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                   <div class="flex flex-wrap gap-1 mb-2">
                     <span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Ciberpunk</span>
@@ -278,14 +476,15 @@
             </div>
             <div class="carousel-card group cursor-pointer" onclick="window.location.href='detail.html'">
               <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
-                <img alt="Póster de anime" class="w-full h-full object-cover" data-alt="Silueta de espadachín anime contra una luna roja" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR9x5iy6NpAOvezWnwzK2vesTKLBp29cvFNXUtwXht6dD1l_D5gxqns-j0rTWWHrKxrDe_gNz2hRv_bp72i7d3-B1XfbVcKL9UOdKUyxhkn7PVkTFK6gvR6FYot0OR1ZFv5kxq0aRiZ5uP-MPaYLYP3NbHMNLEF22YktmuRvb3820xC4ub0dVEhj3jZVy7-ZDMJBIgRaWhSUwsjWpaA_FPrQNkZspeF-urqaKWFj1HOZJbRz951KKRSdvfM9UeaS3zgtT822TzJSbT"/>
+                <img alt="Póster de anime" class="w-full h-full object-cover" data-alt="Silueta de espadachÃ­n anime contra una luna roja" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR9x5iy6NpAOvezWnwzK2vesTKLBp29cvFNXUtwXht6dD1l_D5gxqns-j0rTWWHrKxrDe_gNz2hRv_bp72i7d3-B1XfbVcKL9UOdKUyxhkn7PVkTFK6gvR6FYot0OR1ZFv5kxq0aRiZ5uP-MPaYLYP3NbHMNLEF22YktmuRvb3820xC4ub0dVEhj3jZVy7-ZDMJBIgRaWhSUwsjWpaA_FPrQNkZspeF-urqaKWFj1HOZJbRz951KKRSdvfM9UeaS3zgtT822TzJSbT"/>
                 <div class="absolute inset-0 bg-primary-container/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                   <div class="flex flex-wrap gap-1 mb-2">
                     <span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Aventura</span>
                   </div>
                 </div>
                 <div class="absolute top-3 right-3 bg-surface-container-lowest/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">star</span> 9.1
+                  <span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span>9.1</span>
                 </div>
               </div>
               <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Demon Slayer</h3>
@@ -300,11 +499,12 @@
                   </div>
                 </div>
                 <div class="absolute top-3 right-3 bg-surface-container-lowest/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">star</span> 8.9
+                  <span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span>8.9</span>
                 </div>
               </div>
               <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Mushishi</h3>
-              <p class="text-xs text-on-surface-variant">Estudio Artland: Clásico</p>
+              <p class="text-xs text-on-surface-variant">Estudio Artland: Clasico</p>
             </div>
 
             <div class="carousel-card group cursor-pointer" onclick="window.location.href='detail.html'">
@@ -319,7 +519,7 @@
                 <img alt="P?ster de anime" class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/1935/127974l.jpg"/>
               </div>
               <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Chainsaw Man</h3>
-              <p class="text-xs text-on-surface-variant">Estudio MAPPA: Acci�n</p>
+              <p class="text-xs text-on-surface-variant">Estudio MAPPA: Acción</p>
             </div>
             <div class="carousel-card group cursor-pointer" onclick="window.location.href='detail.html'">
               <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
@@ -335,22 +535,29 @@
               <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Shingeki no Kyojin</h3>
               <p class="text-xs text-on-surface-variant">Estudio WIT: Drama</p>
             </div>
+            </div>
           </div>
         </section>
         <!-- Popular Movies -->
         <section class="pl-8 md:pl-16">
           <div class="flex items-end justify-between pr-8 mb-8">
             <div>
-              <h2 class="text-3xl font-bold font-headline tracking-tight">Peliculas Populares</h2>
+              <h2 class="text-3xl font-bold font-headline tracking-tight"><span class="section-title-em movie">Peliculas</span> Populares</h2>
               <div class="h-1 w-12 bg-primary mt-2 rounded-full"></div>
             </div>
-            <div class="flex items-center gap-4">
-              <button id="movies-prev" class="rounded-full bg-surface-container-high/70 px-3 py-2 text-lg font-bold text-violet-400 hover:text-violet-300 hover:bg-surface-container-high transition-colors" type="button" aria-label="Anterior">&lsaquo;</button>
-              <button id="movies-next" class="rounded-full bg-surface-container-high/70 px-3 py-2 text-lg font-bold text-violet-400 hover:text-violet-300 hover:bg-surface-container-high transition-colors" type="button" aria-label="Siguiente">&rsaquo;</button>
-              <a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium flex items-center gap-1" href="catalogo.html">Ver mas</a>
-            </div>
+            <a class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-sm font-bold text-primary shadow-[0_0_12px_rgba(168,85,247,0.25)] transition-all hover:border-primary hover:bg-primary/20 hover:text-primary" href="catalogo.html">
+              <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+              Ver mas
+            </a>
           </div>
-          <div id="movies-row" class="carousel-row overflow-x-auto no-scrollbar pb-8 scroll-smooth">
+          <div class="carousel-wrap">
+            <div class="carousel-nav-zone carousel-nav-left">
+              <button id="movies-prev" class="carousel-nav-btn rounded-full bg-surface-container-high/90 px-4 py-3 text-2xl font-bold text-violet-200 hover:text-white hover:bg-surface-container-high transition-colors backdrop-blur" type="button" aria-label="Anterior">&lsaquo;</button>
+            </div>
+            <div class="carousel-nav-zone carousel-nav-right">
+              <button id="movies-next" class="carousel-nav-btn rounded-full bg-surface-container-high/90 px-4 py-3 text-2xl font-bold text-violet-200 hover:text-white hover:bg-surface-container-high transition-colors backdrop-blur" type="button" aria-label="Siguiente">&rsaquo;</button>
+            </div>
+            <div id="movies-row" class="carousel-row overflow-x-auto no-scrollbar pb-8 scroll-smooth">
             <div class="carousel-card group cursor-pointer" onclick="window.location.href='detail.html'">
               <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
                 <img alt="P?ster de pel?cula" class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/1598/118702l.jpg"/>
@@ -375,11 +582,11 @@
               <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
                 <img alt="P?ster de pel?cula" class="w-full h-full object-cover" src="https://cdn.myanimelist.net/images/anime/6/79597l.jpg"/>
                 <div class="absolute inset-0 bg-primary-container/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                  <div class="flex flex-wrap gap-1 mb-2"><span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Acci�n</span><span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Sci-Fi</span></div>
+                  <div class="flex flex-wrap gap-1 mb-2"><span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Acción</span><span class="text-[10px] bg-background/80 px-2 py-0.5 rounded-full">Sci-Fi</span></div>
                 </div>
               </div>
               <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">Akira</h3>
-              <p class="text-xs text-on-surface-variant">Géneros: Acci�n, Sci-Fi</p>
+              <p class="text-xs text-on-surface-variant">Géneros: Acción, Sci-Fi</p>
             </div>
             <div class="carousel-card group cursor-pointer" onclick="window.location.href='detail.html'">
               <div class="relative aspect-[2/3] rounded-lg overflow-hidden bg-surface-container-high mb-4 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] group-hover:scale-[1.04] shadow-xl">
@@ -430,6 +637,7 @@
               </div>
               <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors truncate">El Tiempo Contigo</h3>
               <p class="text-xs text-on-surface-variant">Géneros: Drama, Romance</p>
+            </div>
             </div>
           </div>
         </section>
@@ -531,7 +739,14 @@
         item?.images?.jpg?.image_url ||
         "";
       if (bg) heroImage.src = item?.__image ? bg : await pickHeroImage(item, bg);
-      heroTitle.textContent = item?.__displayTitle || item?.title || "Anime";
+      const heroDisplayTitle = item?.__displayTitle || item?.title || "Anime";
+      if (heroDisplayTitle === "Oshi no Ko Season 3") {
+        heroTitle.innerHTML = 'Oshi no Ko Season <span class="align-super text-[0.6em] ml-0.5">3</span>';
+        heroTitle.classList.add("whitespace-nowrap");
+      } else {
+        heroTitle.textContent = heroDisplayTitle;
+        heroTitle.classList.remove("whitespace-nowrap");
+      }
       heroMeta.textContent = `${item?.__episodes || item?.episodes || "?"} Episodios`;
       heroDescription.textContent = "Cargando sinopsis...";
       if (item?.__synopsis) {
@@ -577,7 +792,7 @@
         episodes: 12,
         image: "img/jjk.webp",
         synopsis:
-          "Tras las masacres de Shibuya, Itadori, cargado de culpa y preocupado por el interes de Sukuna en Fushiguro, decide no volver a la Preparatoria de Hechiceria. Se une a Choso para exorcizar los espiritus liberados por Noritoshi Kamo. En medio del caos, la cupula jujutsu reactiva la ejecucion de Itadori y asigna a Yuta Okkotsu como su verdugo. Hechiceros modernos y antiguos, ahora jugadores del Juego de la Exterminacion, chocan con motivos opuestos y empujan al mundo hacia una nueva era dominada por la hechiceria."
+          "Tras las masacres de Shibuya, Itadori se aleja de la escuela mientras la cupula jujutsu reactiva su ejecucion y pone a Yuta Okkotsu tras el. Con el Juego de la Exterminacion en marcha, hechiceros de distintas eras chocan y el destino de Fushiguro se vuelve el centro de la tormenta."
       },
       { id: 55825, displayTitle: "Hell's Paradise Season 2", image: "img/HPS.webp" },
       { id: 56009, displayTitle: "Sentenced to Be a Hero", image: "img/Sbh.webp" },
@@ -649,8 +864,29 @@
         const cardWidth = card.getBoundingClientRect().width;
         return Math.max(280, Math.round((cardWidth + gap) * per));
       };
+      const setDisabled = (btn, disabled) => {
+        btn.disabled = disabled;
+        btn.classList.toggle("is-disabled", disabled);
+        const zone = btn.closest(".carousel-nav-zone");
+        if (zone) zone.classList.toggle("is-disabled", disabled);
+      };
+      const updateState = () => {
+        const max = row.scrollWidth - row.clientWidth;
+        if (max <= 2) {
+          setDisabled(prev, true);
+          setDisabled(next, true);
+          return;
+        }
+        setDisabled(prev, row.scrollLeft <= 2);
+        setDisabled(next, row.scrollLeft >= max - 2);
+      };
       prev.addEventListener("click", () => row.scrollBy({ left: -step(), behavior: "smooth" }));
       next.addEventListener("click", () => row.scrollBy({ left: step(), behavior: "smooth" }));
+      row.addEventListener("scroll", () => {
+        requestAnimationFrame(updateState);
+      });
+      window.addEventListener("resize", updateState);
+      setTimeout(updateState, 0);
     };
 
     bindHorizontalArrows("trending-row", "trending-prev", "trending-next");
@@ -698,6 +934,96 @@
       }
     };
 
+    const ensureGenreOverlay = (media) => {
+      if (!media) return null;
+      const candidates = Array.from(
+        media.querySelectorAll("[data-card-genres], .absolute.inset-0")
+      ).filter((el) => el instanceof HTMLElement);
+      let overlay = candidates[0] || null;
+      if (overlay) {
+        overlay.setAttribute("data-card-genres", "true");
+        if (!overlay.querySelector("[data-card-genres-list]")) {
+          const list = overlay.querySelector(".flex") || document.createElement("div");
+          list.className = list.className || "flex flex-wrap gap-1 mb-2";
+          list.setAttribute("data-card-genres-list", "true");
+          if (!overlay.contains(list)) overlay.appendChild(list);
+        }
+        candidates.slice(1).forEach((extra) => {
+          if (extra.getAttribute("data-card-genres") === "true") extra.remove();
+        });
+        return overlay;
+      }
+      overlay = document.createElement("div");
+      overlay.setAttribute("data-card-genres", "true");
+      overlay.className =
+        "absolute inset-0 bg-primary-container/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4";
+      const list = document.createElement("div");
+      list.setAttribute("data-card-genres-list", "true");
+      list.className = "flex flex-wrap gap-1 mb-2";
+      overlay.appendChild(list);
+      media.appendChild(overlay);
+      return overlay;
+    };
+
+    const updateGenreBadges = (media, genres, fallbackLabel) => {
+      const overlay = ensureGenreOverlay(media);
+      if (!overlay) return;
+      const listEl = overlay.querySelector("[data-card-genres-list]");
+      if (!listEl) return;
+      const translateGenre = (label) => {
+        const map = {
+          "Action": "Acción",
+          "Adventure": "Aventura",
+          "Comedy": "Comedia",
+          "Drama": "Drama",
+          "Fantasy": "Fantasía",
+          "Sci-Fi": "Ciencia ficción",
+          "Slice of Life": "Recuentos de la vida",
+          "Supernatural": "Sobrenatural",
+          "Romance": "Romance",
+          "Mystery": "Misterio",
+          "Thriller": "Suspenso",
+          "Psychological": "Psicológico",
+          "Horror": "Terror",
+          "Sports": "Deportes",
+          "Music": "Música",
+          "School": "Escolar",
+          "Historical": "Histórico",
+          "Military": "Militar",
+          "Space": "Espacio",
+          "Mecha": "Mecha",
+          "Game": "Juegos",
+          "Vampire": "Vampiros",
+          "Demons": "Demonios",
+          "Samurai": "Samurái",
+          "Police": "Policía",
+          "Super Power": "Superpoderes",
+          "Harem": "Harem",
+          "Reverse Harem": "Harem inverso",
+          "Magical Girl": "Chica mágica",
+          "Kids": "Infantil",
+          "Seinen": "Seinen",
+          "Shounen": "Shounen",
+          "Shoujo": "Shoujo",
+          "Josei": "Josei",
+          "Ecchi": "Ecchi"
+        };
+        const cleaned = (label || "").trim();
+        return map[cleaned] || cleaned;
+      };
+      const labels = Array.isArray(genres) && genres.length
+        ? genres.map(translateGenre)
+        : [fallbackLabel];
+      listEl.innerHTML = "";
+      labels.slice(0, 2).forEach((label) => {
+        if (!label) return;
+        const span = document.createElement("span");
+        span.className = "text-[10px] bg-background/80 px-2 py-0.5 rounded-full";
+        span.textContent = label;
+        listEl.appendChild(span);
+      });
+    };
+
     const updateCarouselFromTop = async (rowId, type) => {
       const row = document.getElementById(rowId);
       if (!row) return;
@@ -718,6 +1044,10 @@
         if (!item) return;
         const titleEl = card.querySelector("h3,h4,h5");
         const img = card.querySelector("img");
+        const media =
+          card.querySelector(".relative") ||
+          card.querySelector(".aspect-\\[2/3\\]") ||
+          card;
         const displayTitle = item?.title_english || item?.title || item?.title_japanese || "";
         const src = imageOf(item) || "img/fondoanime.png";
         if (img) {
@@ -725,6 +1055,27 @@
           img.alt = displayTitle || img.alt || "Anime";
         }
         if (titleEl && displayTitle) titleEl.textContent = displayTitle;
+        const genres = Array.isArray(item?.genres)
+          ? item.genres.map((g) => g?.name).filter(Boolean)
+          : [];
+        const fallbackLabel = type === "movie" ? "Película" : "Anime";
+        if (media) updateGenreBadges(media, genres, fallbackLabel);
+        const score =
+          typeof item?.score === "number" ? item.score.toFixed(1) : "--";
+        if (media) {
+          let badge = media.querySelector("[data-card-score]");
+          if (!badge) {
+            badge = document.createElement("div");
+            badge.setAttribute("data-card-score", "true");
+            badge.className =
+              "absolute top-3 right-3 bg-surface-container-lowest/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1";
+            badge.innerHTML =
+              "<span class=\"material-symbols-outlined text-[10px]\" style=\"font-variation-settings: 'FILL' 1;\">star</span><span data-card-score-value>--</span>";
+            media.appendChild(badge);
+          }
+          const scoreValue = badge.querySelector("[data-card-score-value]");
+          if (scoreValue) scoreValue.textContent = score;
+        }
         if (item?.mal_id) {
           card.dataset.malId = String(item.mal_id);
           card.onclick = () => {
@@ -737,6 +1088,297 @@
     updateCarouselFromTop("trending-row", "tv");
     updateCarouselFromTop("movies-row", "movie");
 
+    const spotlightCards = ["spotlight-card-1", "spotlight-card-2", "spotlight-card-3", "spotlight-card-4"];
+    const buildSpotlightPool = async () => {
+      const [topAnime, topMovies] = await Promise.all([
+        fetchTop("tv", 24),
+        fetchTop("movie", 24)
+      ]);
+      const combined = [...(topAnime || []), ...(topMovies || [])];
+      const seen = new Set();
+      const pool = [];
+      combined.forEach((it) => {
+        const title = it?.title_english || it?.title || it?.title_japanese || "";
+        const key = normalize(title);
+        if (!key || seen.has(key)) return;
+        seen.add(key);
+        const score = typeof it?.score === "number" ? it.score.toFixed(1) : "--";
+        const year =
+          it?.year ||
+          (it?.aired?.from ? new Date(it.aired.from).getFullYear() : "");
+        const studio =
+          (it?.studios && it.studios[0] && it.studios[0].name) ||
+          (it?.producers && it.producers[0] && it.producers[0].name) ||
+          "";
+        const typeKey = normalize(it?.type).includes("movie") ? "movie" : "anime";
+        const typeLabel = typeKey === "movie" ? "Película" : "Anime";
+        pool.push({
+          title,
+          image: imageOf(it) || "img/fondoanime.png",
+          score,
+          year,
+          studio,
+          typeLabel,
+          typeKey,
+          malId: it?.mal_id
+        });
+      });
+      return pool;
+    };
+    const initSpotlightRotation = async () => {
+      const cards = spotlightCards
+        .map((id) => {
+          const card = document.getElementById(id);
+          if (!card) return null;
+          const img = card.querySelector("img");
+          const titleEl = card.querySelector("h3, h4");
+          const scoreEl = card.querySelector("[data-spotlight-score]");
+          const typeEl = card.querySelector("[data-spotlight-type]");
+          const metaEl = card.querySelector("[data-spotlight-meta]");
+          const fadeTargets = [img, titleEl].filter(Boolean);
+          fadeTargets.forEach((el) => el.classList.add("spotlight-fade"));
+          return { card, img, titleEl, scoreEl, typeEl, metaEl, fadeTargets };
+        })
+        .filter(Boolean);
+      if (!cards.length) return;
+
+      const pool = await buildSpotlightPool();
+      if (!pool.length) return;
+
+      const stepDelay = 5000;
+      const stepsPerCycle = cards.length;
+      const cycleInterval = stepDelay * stepsPerCycle;
+      const fadeMs = 450;
+      const cardOrder = [0, 1, 2, 3];
+      const orderIndex = new Map(cardOrder.map((slotIndex, idx) => [slotIndex, idx]));
+      const detailCache = new Map();
+      const animePool = pool.filter((it) => it.typeKey === "anime");
+      const moviePool = pool.filter((it) => it.typeKey === "movie");
+      const idxRef = { anime: 0, movie: 0, all: 0 };
+      const typePattern = ["anime", "movie", "anime", "movie"];
+      const stateKey = "spotlightStateV3";
+      const storageKey = "spotlightBaseTs";
+      let stepTimer = null;
+      let startTimer = null;
+      let displayItems = new Array(cards.length).fill(null);
+
+      const resolveDetails = async (item) => {
+        if (!item?.malId) return null;
+        if (detailCache.has(item.malId)) return detailCache.get(item.malId);
+        try {
+          const res = await fetch(`https://api.jikan.moe/v4/anime/${item.malId}`);
+          if (!res.ok) return null;
+          const json = await res.json();
+          const data = json?.data || null;
+          if (data) detailCache.set(item.malId, data);
+          return data;
+        } catch {
+          return null;
+        }
+      };
+
+      const applyItem = (slot, item) => {
+        if (!slot || !item) return;
+        const key = item.malId ? String(item.malId) : normalize(item.title);
+        slot.card.dataset.spotlightKey = key;
+        if (slot.titleEl) slot.titleEl.textContent = item.title;
+        if (slot.img) {
+          slot.img.src = item.image;
+          slot.img.alt = item.title || slot.img.alt || "Anime destacado";
+        }
+        if (slot.scoreEl) {
+          const scoreValue = slot.scoreEl.querySelector("[data-score-value]");
+          if (scoreValue) scoreValue.textContent = item.score || "--";
+        }
+        if (slot.typeEl) slot.typeEl.textContent = item.typeLabel || "Anime";
+        if (slot.metaEl) {
+          const parts = [];
+          if (item.year) parts.push(item.year);
+          if (item.studio) parts.push(item.studio);
+          slot.metaEl.textContent = parts.length ? parts.join(" - ") : "Datos no disponibles";
+        }
+
+        resolveDetails(item).then((detail) => {
+          if (!detail) return;
+          if (slot.card.dataset.spotlightKey !== key) return;
+          const score =
+            typeof detail?.score === "number" ? detail.score.toFixed(1) : "--";
+          const year =
+            detail?.year ||
+            (detail?.aired?.from ? new Date(detail.aired.from).getFullYear() : "");
+          const studio =
+            (detail?.studios && detail.studios[0] && detail.studios[0].name) ||
+            (detail?.producers && detail.producers[0] && detail.producers[0].name) ||
+            "";
+          const typeLabel = normalize(detail?.type).includes("movie") ? "Película" : "Anime";
+          if (slot.scoreEl) {
+            const scoreValue = slot.scoreEl.querySelector("[data-score-value]");
+            if (scoreValue) scoreValue.textContent = score;
+          }
+          if (slot.typeEl) slot.typeEl.textContent = typeLabel;
+          if (slot.metaEl) {
+            const parts = [];
+            if (year) parts.push(year);
+            if (studio) parts.push(studio);
+            slot.metaEl.textContent = parts.length ? parts.join(" - ") : "Datos no disponibles";
+          }
+        });
+      };
+
+      const takeUnique = (list, key, seen) => {
+        if (!list.length) return null;
+        const start = idxRef[key] || 0;
+        for (let i = 0; i < list.length; i += 1) {
+          const idx = (start + i) % list.length;
+          const item = list[idx];
+          const idKey = item?.malId ? String(item.malId) : normalize(item?.title);
+          if (!idKey || seen.has(idKey)) continue;
+          idxRef[key] = (idx + 1) % list.length;
+          seen.add(idKey);
+          return item;
+        }
+        return null;
+      };
+
+      const buildBaseSet = () => {
+        const seen = new Set();
+        const set = [];
+        for (let i = 0; i < cards.length; i += 1) {
+          const preferred = typePattern[i % typePattern.length] || "anime";
+          const preferredList = preferred === "movie" ? moviePool : animePool;
+          let item = takeUnique(preferredList, preferred, seen) || takeUnique(pool, "all", seen);
+          if (item) set.push(item);
+        }
+        while (set.length < cards.length) {
+          const item = takeUnique(pool, "all", seen);
+          if (!item) break;
+          set.push(item);
+        }
+        return set;
+      };
+
+      const loadState = () => {
+        try {
+          const raw = localStorage.getItem(stateKey);
+          if (!raw) return null;
+          const parsed = JSON.parse(raw);
+          if (!parsed || !Array.isArray(parsed.items) || parsed.items.length !== cards.length) return null;
+          if (!Array.isArray(parsed.prevItems) || parsed.prevItems.length !== cards.length) return null;
+          if (!Number.isFinite(parsed.cycleIndex)) return null;
+          return parsed;
+        } catch {
+          return null;
+        }
+      };
+
+      const saveState = (items, prevItems, cycleIndex) => {
+        try {
+          localStorage.setItem(stateKey, JSON.stringify({ items, prevItems, cycleIndex }));
+        } catch {}
+      };
+
+      const now = Date.now();
+      let baseTs = now;
+      try {
+        const stored = Number(localStorage.getItem(storageKey));
+        if (Number.isFinite(stored) && stored > 0) baseTs = stored;
+        else localStorage.setItem(storageKey, String(baseTs));
+      } catch {}
+      if (baseTs > now) {
+        baseTs = now;
+        try { localStorage.setItem(storageKey, String(baseTs)); } catch {}
+      }
+
+      const elapsed = Math.max(0, now - baseTs);
+      const globalStep = Math.floor(elapsed / stepDelay);
+      const cycleIndex = Math.floor(globalStep / stepsPerCycle);
+      const phase = globalStep % stepsPerCycle;
+      const offset = Math.floor(cycleIndex / 3) % cards.length;
+      let currentItems = new Array(cards.length).fill(null);
+      let prevItems = new Array(cards.length).fill(null);
+
+      const storedState = loadState();
+      if (storedState && storedState.cycleIndex === cycleIndex) {
+        currentItems = storedState.items;
+        prevItems = storedState.prevItems || storedState.items;
+      } else if (storedState && storedState.cycleIndex === cycleIndex - 1) {
+        prevItems = storedState.items;
+        const baseSet = buildBaseSet();
+        currentItems = cards.map((_, i) => baseSet[(i + offset) % cards.length]);
+      } else {
+        const baseSet = buildBaseSet();
+        currentItems = cards.map((_, i) => baseSet[(i + offset) % cards.length]);
+        prevItems = currentItems.slice();
+      }
+
+      const renderPhase = (nextPhase, instant = false) => {
+        cards.forEach((slot, i) => {
+          const orderPos = orderIndex.get(i) ?? i;
+          const nextItem = orderPos <= nextPhase ? currentItems[i] : prevItems[i];
+          if (!nextItem) return;
+          const nextKey = nextItem.malId ? String(nextItem.malId) : normalize(nextItem.title);
+          const current = displayItems[i];
+          const currentKey = current?.malId ? String(current.malId) : normalize(current?.title);
+          if (currentKey === nextKey) return;
+          if (instant) {
+            applyItem(slot, nextItem);
+            displayItems[i] = nextItem;
+            return;
+          }
+          slot.fadeTargets.forEach((el) => el.classList.add("is-fading"));
+          slot.card.classList.add("is-rotating");
+          setTimeout(() => {
+            applyItem(slot, nextItem);
+            displayItems[i] = nextItem;
+            slot.fadeTargets.forEach((el) => el.classList.remove("is-fading"));
+            slot.card.classList.remove("is-rotating");
+          }, fadeMs);
+        });
+      };
+
+      renderPhase(phase, true);
+      saveState(currentItems, prevItems, cycleIndex);
+
+      cards.forEach((slot, i) => {
+        slot.card.removeAttribute("onclick");
+        slot.card.addEventListener("click", () => {
+          const item = displayItems[i];
+          if (!item) return;
+          const title = item.title || "anime";
+          if (item.malId) {
+            window.location.href = `detail.html?mal_id=${encodeURIComponent(String(item.malId))}&q=${encodeURIComponent(title)}`;
+          } else {
+            window.location.href = `detail.html?q=${encodeURIComponent(title)}`;
+          }
+        });
+      });
+
+      const syncToTime = () => {
+        const nowMs = Date.now();
+        const elapsedMs = Math.max(0, nowMs - baseTs);
+        const step = Math.floor(elapsedMs / stepDelay);
+        const nextCycle = Math.floor(step / stepsPerCycle);
+        const nextPhase = step % stepsPerCycle;
+        const shift = Math.floor(nextCycle / 3) % cards.length;
+        if (nextCycle !== cycleIndex || !currentItems.length) {
+          prevItems = currentItems.length ? currentItems.slice() : prevItems;
+          const baseSet = buildBaseSet();
+          currentItems = cards.map((_, i) => baseSet[(i + shift) % cards.length]);
+          saveState(currentItems, prevItems, nextCycle);
+        }
+        renderPhase(nextPhase, false);
+      };
+
+      const timeToNext = stepDelay - (elapsed % stepDelay || 0);
+      const safeDelay = Math.max(timeToNext, 1200);
+      startTimer = setTimeout(() => {
+        syncToTime();
+        stepTimer = setInterval(syncToTime, stepDelay);
+      }, safeDelay);
+    };
+
+    initSpotlightRotation();
+
     if (window.AniDexI18n) window.AniDexI18n.init();
     if (window.AniDexTitleImages) window.AniDexTitleImages.init();
     if (window.AniDexSearch) window.AniDexSearch.init();
@@ -747,4 +1389,10 @@
     </script>
     <script data-ui-unlock>document.documentElement.classList.remove("preload-ui");</script>
   </body></html>
+
+
+
+
+
+
 
