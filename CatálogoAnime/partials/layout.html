@@ -470,6 +470,31 @@
     height: 5px !important;
   }
 
+
+  /* footer hover override */
+  .footer-shell:hover {
+    border-top-color: rgba(56, 189, 248, 0.95) !important;
+    box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.5), 0 0 46px rgba(56, 189, 248, 0.6), 0 0 18px rgba(168, 85, 247, 0.25) !important;
+  }
+
+
+  /* footer hover effect (smooth) */
+  .footer-shell {
+    transition: box-shadow 0.9s ease, transform 0.9s ease, border-top-color 0.9s ease, filter 0.9s ease;
+  }
+  .footer-shell:hover {
+    transform: translateY(-4px);
+    filter: brightness(1.05);
+    border-top-color: rgba(56, 189, 248, 0.95) !important;
+    box-shadow: 0 -24px 44px rgba(0, 0, 0, 0.55), 0 0 48px rgba(56, 189, 248, 0.65), 0 0 20px rgba(168, 85, 247, 0.3) !important;
+  }
+
+
+  /* footer static glow */
+  .footer-shell {
+    box-shadow: 0 -18px 36px rgba(0, 0, 0, 0.45), 0 0 26px rgba(168, 85, 247, 0.7), 0 0 18px rgba(56, 189, 248, 0.35);
+  }
+
 </style>
 
 <!-- Navbar Component -->
