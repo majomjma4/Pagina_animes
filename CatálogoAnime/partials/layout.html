@@ -102,9 +102,9 @@
     background-repeat: no-repeat;
     background-size: 100% auto;
     background-position: center bottom;
-    background-position-y: calc(100% + 180px);
-    opacity: 0.7;
-    filter: blur(2px) saturate(1.2) brightness(1.2);
+    background-position-y: bottom;
+    opacity: 1;
+    filter: none;
     z-index: 0;
   }
 
@@ -303,6 +303,8 @@
       0 0 22px rgba(56, 189, 248, 0.55),
       0 0 34px rgba(168, 85, 247, 0.4);
     animation: footerFloat 3.2s ease-in-out infinite, glowShift 4.2s ease-in-out infinite;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    will-change: transform;
   }
 
   .footer-side-left button:nth-child(1) { animation-delay: 0s; }
@@ -311,7 +313,9 @@
 
 
   .footer-social-text button:hover,
-  .footer-side-left button:hover {
+  .footer-side-left button:hover,
+  .footer-side-right button:hover {
+    animation: none;
     transform: translateY(-1px) scale(1.04);
     border-color: rgba(56, 189, 248, 0.7);
     color: #f5f3ff;
@@ -630,6 +634,9 @@
     </div>
   </footer>
 </template>
+
+
+
 
 
 

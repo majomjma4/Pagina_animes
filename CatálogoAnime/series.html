@@ -117,6 +117,20 @@
     .filter-panel:hover::-webkit-scrollbar-thumb {
       background-color: rgba(153, 153, 153, 0.5);
     }
+
+    /* Normalize popular anime card sizes */
+    section[aria-label="Grid de anime"] [data-anime-card] .space-y-2 > .flex {
+      flex-wrap: nowrap;
+      overflow: hidden;
+    }
+    section[aria-label="Grid de anime"] [data-anime-card] .space-y-2 > .flex > span {
+      white-space: nowrap;
+    }
+    section[aria-label="Grid de anime"] [data-anime-card] h3 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     </style>
     <link rel="icon" href="img/icon3.png" />
 
@@ -630,3 +644,5 @@
     <script data-ui-unlock>document.documentElement.classList.remove("preload-ui");</script>
   </body>
 </html>
+
+
